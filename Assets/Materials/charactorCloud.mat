@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ParticleFirecloud
+  m_Name: charactorCloud
   m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -26,11 +26,11 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 0.7
+        second: .699999988
       data:
         first:
           name: _InvFade
-        second: 0.8275
+        second: .827499986
     m_Colors:
       data:
         first:
@@ -42,16 +42,16 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
-          name: _Emission
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
           name: _TintColor
-        second: {r: 0.0627451, g: 0.043137256, b: 0.15686275, a: 0.05490196}
+        second: {r: .0627451017, g: .0431372561, b: .156862751, a: .0549019612}
       data:
         first:
           name: _EmisColor
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

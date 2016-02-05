@@ -146,11 +146,11 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.5
+        second: .5
       data:
         first:
           name: _Shininess
-        second: 0.1
+        second: .100000001
       data:
         first:
           name: _WindQuality
@@ -166,7 +166,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: 0.02
+        second: .0199999996
       data:
         first:
           name: _ZWrite
@@ -174,7 +174,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.5
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -219,20 +219,20 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
       data:
         first:
           name: _TintColor
-        second: {r: 0.54509807, g: 0.32941177, b: 0.7882353, a: 0.15686275}
+        second: {r: .545098066, g: .329411775, b: .788235307, a: .0392156877}
       data:
         first:
           name: _EmisColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 0}
       data:
         first:
           name: _Tint
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+        second: {r: .5, g: .5, b: .5, a: .5}
       data:
         first:
           name: _HueVariation
-        second: {r: 1, g: 0.5, b: 0, a: 0.1}
+        second: {r: 1, g: .5, b: 0, a: .100000001}
