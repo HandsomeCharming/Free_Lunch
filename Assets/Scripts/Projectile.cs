@@ -19,7 +19,10 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public static Projectile ShootProjectile(Character shooter, Vector2 dir, ProjectileType type) {
-		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), shooter.transform.position, Quaternion.identity);
+		Vector3 pos = shooter.transform.position;
+		pos.x += dir.x * 3f;
+		pos.z += dir.y * 3f;
+		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
 		Projectile ans = obj.GetComponent<Projectile>();
 		Destroy(obj, 2f);
 		ans.shooter = shooter;
@@ -43,5 +46,15 @@ public class Projectile : MonoBehaviour {
 		pos.x += direction.x;
 		pos.z += direction.y;
 		this.transform.position = pos;
+	}
+
+	void OnCollisionEnter(Collision coll) {
+		if(coll.gameObject.tag != "TempEnemy")return;
+		TempEnemy temp = coll.gameObject.GetComponent<TempEnemy>();
+		temp.hits--;
+		if(temp.hits <= 0) {
+			Destroy(temp.gameObject);
+		}
+		Destroy(this.gameObject);
 	}
 }

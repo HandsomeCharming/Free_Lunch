@@ -22,7 +22,7 @@ public class InputHandler : MonoBehaviour {
 		switch(state) {
 		case CharacterState.Stand: {
 			move ();
-			if(Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButton(0)) {
 				attack();
 			}
 			break;
@@ -36,7 +36,7 @@ public class InputHandler : MonoBehaviour {
 			} else {
 				character.state = CharacterState.Stand;
 			}
-			if(Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButton(0)) {
 				attack();
 			}
 			break;

@@ -4,16 +4,28 @@ using System.Collections;
 //Don't modify this file by yourself!
 
 public class CharacterStatus {
-	float hp;
-	int level;
-	float defense;
-	float defensePenetration;
-	float moveSpeed;
-	float healthRegen;
-	Vector2 facingDirection;
-	bool canMove;
-	bool canAttack;
-	bool canUseSkill;
+	public CharacterStatus() {
+		hp = 100f;
+		level = 0;
+		defense = 0;
+		defensePenetration = 0;
+		moveSpeed = 1;
+		healthRegen = 0;
+		facingDirection = new Vector2(0,0);
+		canMove = true;
+		canAttack = true;
+		canUseSkill = true;
+	}
+	public float hp;
+	public int level;
+	public float defense;
+	public float defensePenetration;
+	public float moveSpeed;
+	public float healthRegen;
+	public Vector2 facingDirection;
+	public bool canMove;
+	public bool canAttack;
+	public bool canUseSkill;
 }
 
 public class AttackModifier {
@@ -58,6 +70,20 @@ public enum CharacterSkillType {
 
 public class Character : MonoBehaviour {
 
+	public Character() {
+		state = CharacterState.Stand;
+		status = new CharacterStatus();
+		status.moveSpeed = 1f;
+		type = 0;
+
+		actionCds = new float[10];
+		actionCdRemain = new float[10];
+
+		for(int a=0;a!=10;++a)
+			actionCds[a] = 0.3f;
+		for(int a=0;a!=10;++a)
+			actionCdRemain[a] = 0;
+	}
 	//Character type
 	public int type;
 	public CharacterStatus status;
@@ -71,21 +97,31 @@ public class Character : MonoBehaviour {
 	public int[] passiveSkills;
 
 	public int[] activeSkills;
-	public float[] activeCds;
 	public int activeNum;
 
+	//Cooldown for certain actions, when set to 0, can do action.
+	// 0: attack
+	// 1: chargedAttack
+	// 2: dodge
+	// 3: block
+	// 4-10: actives
+	protected float[] actionCdRemain; 
+	protected float[] actionCds;
+	
 	public int[] negativeEffects;
 
 	public virtual void moveTo(Vector2 pos) {}
 	
 	public virtual void moveToward(Vector2 dir) {
 		Vector3 pos = gameObject.transform.position;
-		pos.x += dir.x;
-		pos.z += dir.y;
+		pos.x += dir.x * status.moveSpeed;
+		pos.z += dir.y * status.moveSpeed;
 		transform.position = pos;
 	}	
 
 	public virtual void attackToward(Vector2 dir) {
+		if(actionCdRemain[0] > 0) return;
+		actionCdRemain[0] = actionCds[0];
 		Projectile.ShootProjectile(this, dir, ProjectileType.Attack);
 	}
 
@@ -100,7 +136,10 @@ public class Character : MonoBehaviour {
 
 	public virtual void hit(Character other, CharacterSkillType skillType) {}
 
-	void Start() {
-		state = CharacterState.Stand;
+	void Update() {
+		if(actionCdRemain[0]>0) {
+			actionCdRemain[0] -= Time.deltaTime;
+		} 
+		if(actionCdRemain[0] <= 0) actionCdRemain[0] = 0;
 	}
 }
