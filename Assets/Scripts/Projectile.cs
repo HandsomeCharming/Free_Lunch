@@ -19,21 +19,29 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public static Projectile ShootProjectile(Character shooter, Vector2 dir, ProjectileType type) {
-		Projectile ans = new Projectile(shooter, dir, type);
+		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), shooter.transform.position, Quaternion.identity);
+		Projectile ans = obj.GetComponent<Projectile>();
+		Destroy(obj, 2f);
+		ans.shooter = shooter;
+		ans.direction = dir;
+		ans.type = type;
 		return ans;
 	}
 
 	// Use this for initialization
 	void Start () {
-		destroyOnDelay(2.0f);
+		//destroyOnDelay(2.0f);
 	}
 
 	IEnumerator destroyOnDelay(float delay) {
-		yield return new WaitForSeconds(2f);
-		Destroy(this);
+		yield return new WaitForSeconds(delay);
+		Destroy(this.gameObject);
 	}
 	// Update is called once per frame
 	void Update () {
-	
+		Vector3 pos = this.transform.position;
+		pos.x += direction.x;
+		pos.z += direction.y;
+		this.transform.position = pos;
 	}
 }

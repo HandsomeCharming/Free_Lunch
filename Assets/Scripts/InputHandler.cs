@@ -4,8 +4,9 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 	public Character character;
 
-	public float v;
-	public float h;
+	public float x;
+	public float y;
+	public float z;
 	// Use this for initialization
 	void Start () {
 			
@@ -26,13 +27,21 @@ public class InputHandler : MonoBehaviour {
 				character.moveToward(new Vector2(horizontal, vertical));
 				character.state = CharacterState.Move;
 			}
+			if(Input.GetMouseButtonDown(0)) {
+				Vector3 mousePosition = Input.mousePosition;
+				mousePosition.z = 50;
+				mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+				mousePosition = mousePosition - character.transform.position;
+				x = mousePosition.x;
+				y = mousePosition.y;
+				z = mousePosition.z;
+				character.attackToward(new Vector2(mousePosition.x, mousePosition.z).normalized);
+			}
 			break;
 		}
 		case CharacterState.Move: {
 			float vertical = Input.GetAxis("Vertical");
 			float horizontal = Input.GetAxis("Horizontal");
-			v = vertical;
-			h = horizontal;
 			if(vertical != 0 || horizontal != 0) {
 				character.moveToward(new Vector2(horizontal, vertical));
 				character.state = CharacterState.Move;
@@ -40,7 +49,14 @@ public class InputHandler : MonoBehaviour {
 				character.state = CharacterState.Stand;
 			}
 			if(Input.GetMouseButtonDown(0)) {
-				character.attackToward(new Vector2(1f,1f));
+				Vector3 mousePosition = Input.mousePosition;
+				mousePosition.z = 50;
+				mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+				mousePosition = mousePosition - character.transform.position;
+				x = mousePosition.x;
+				y = mousePosition.y;
+				z = mousePosition.z;
+				character.attackToward(new Vector2(mousePosition.x, mousePosition.z).normalized);
 			}
 			break;
 		}
