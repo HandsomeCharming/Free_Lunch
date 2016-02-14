@@ -119,11 +119,7 @@ public class Character : MonoBehaviour {
 		transform.position = pos;
 	}	
 
-	public virtual void attackToward(Vector2 dir) {
-		if(actionCdRemain[0] > 0) return;
-		actionCdRemain[0] = actionCds[0];
-		Projectile.ShootProjectile(this, dir, ProjectileType.Attack);
-	}
+	public virtual void attackToward(Vector2 dir) {}
 
 	public virtual void chargedAttackToward(Vector2 dir) {}
 

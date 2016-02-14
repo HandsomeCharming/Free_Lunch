@@ -13,6 +13,13 @@ public class MainCharacter : Character {
 			actionCdRemain[a] = 0;
 	}
 
+	public override void attackToward(Vector2 dir) {
+		if(actionCdRemain[0] > 0) return;
+		actionCdRemain[0] = actionCds[0];
+		Projectile.ShootProjectile(this, dir, ProjectileType.Attack);
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		//Temporary collider setup
