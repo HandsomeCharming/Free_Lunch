@@ -73,7 +73,7 @@ public class Character : MonoBehaviour {
 	public Character() {
 		state = CharacterState.Stand;
 		status = new CharacterStatus();
-		status.moveSpeed = 1f;
+		status.moveSpeed = 0.6f;
 		type = 0;
 
 		actionCds = new float[10];
