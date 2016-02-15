@@ -5,7 +5,8 @@ public enum ButtonType {
 	EnterMainMenu,
 	EnterLevelSelect,
 	EnterGame,
-	EnterSkillTree
+	EnterSkillTree,
+	EndSkillTree
 }
 
 public class Button : MonoBehaviour {
@@ -25,6 +26,10 @@ public class Button : MonoBehaviour {
 			break;
 		case ButtonType.EnterSkillTree:
 			Application.LoadLevel("SkillTree");
+			break;
+		case ButtonType.EndSkillTree:
+			SkillTreeHandler.skillTreeHandler.saveSkillsToDisk();
+			Application.LoadLevel("LevelSelectMenu");
 			break;
 		default:
 			break;

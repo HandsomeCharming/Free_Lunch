@@ -25,6 +25,10 @@ public class MainCharacter : Character {
 		//Temporary collider setup
 		SphereCollider collider = gameObject.AddComponent<SphereCollider>();
 		collider.radius = 2.4f;
+
+		if(GameSave.current == null) {
+			SaveLoad.Load();
+		}
 	}
 	
 	// Update is called once per frame

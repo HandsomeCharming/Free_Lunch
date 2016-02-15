@@ -9,7 +9,7 @@ public class CharacterStatus {
 		level = 0;
 		defense = 0;
 		defensePenetration = 0;
-		moveSpeed = 1;
+		moveSpeed = 0.6f;
 		healthRegen = 0;
 		facingDirection = new Vector2(0,0);
 		canMove = true;
@@ -117,6 +117,8 @@ public class Character : MonoBehaviour {
 		pos.x += dir.x * status.moveSpeed;
 		pos.z += dir.y * status.moveSpeed;
 		transform.position = pos;
+		//Vector3 velo = new Vector3(dir.x * status.moveSpeed, 0, dir.y * status.moveSpeed);
+		//GetComponent<Rigidbody>().velocity = velo;
 	}	
 
 	public virtual void attackToward(Vector2 dir) {}
