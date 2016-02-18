@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ProjectileType {
+/*public enum ProjectileType {
 	Attack = 0,
 	ChargedAttack
-}
+}*/
 
 public class Projectile : MonoBehaviour {
 	public Character shooter;
-	public ProjectileType type;
+	public CharacterSkillType type;
 
 	Vector2 direction;
 
-	Projectile(Character shooter, Vector2 dir, ProjectileType type) {
+	Projectile(Character shooter, Vector2 dir, CharacterSkillType type) {
 		this.shooter = shooter;
 		this.direction = dir;
 		this.type = type;
 	}
 
-	public static Projectile ShootProjectile(Character shooter, Vector2 dir, ProjectileType type) {
+	public static Projectile ShootProjectile(Character shooter, Vector2 dir, CharacterSkillType type) {
 		Vector3 pos = shooter.transform.position;
 		pos.x += dir.x * 3f;
 		pos.z += dir.y * 3f;
@@ -31,13 +31,13 @@ public class Projectile : MonoBehaviour {
 		return ans;
 	}
 
-	// Use this for initialization
 	void Start () {
 		//destroyOnDelay(2.0f);
 	}
 
 	IEnumerator destroyOnDelay(float delay) {
 		yield return new WaitForSeconds(delay);
+
 		Destroy(this.gameObject);
 	}
 	// Update is called once per frame
@@ -49,12 +49,18 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision coll) {
+		//Temp Enemy only
 		if(coll.gameObject.tag != "TempEnemy")return;
-		TempEnemy temp = coll.gameObject.GetComponent<TempEnemy>();
-		temp.hits--;
-		if(temp.hits <= 0) {
-			Destroy(temp.gameObject);
+		hit(coll.gameObject.GetComponent<Character>());
+
+		if(type == CharacterSkillType.ChargedAttack) {
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeExplosion"), this.transform.position, Quaternion.identity);
+			obj.GetComponent<CubeExplosion>().dir = direction;
 		}
 		Destroy(this.gameObject);
+	}
+
+	void hit(Character character) {
+		shooter.hit(character, type);
 	}
 }
