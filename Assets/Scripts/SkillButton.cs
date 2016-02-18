@@ -50,6 +50,15 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		}
 	}
 
+	//Triggered when loaded save data.
+	public void LoadedClick() {
+		if(pressed == 0) {
+			Image image = this.gameObject.GetComponent<Image>();
+			pressed = 1;
+			image.color = Color.red;
+		}
+	}
+
 	public void OnPointerEnter(PointerEventData eventData) {
 		if(description != null) return;
 		description = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillDescriptionText"))).GetComponent<Text>();
