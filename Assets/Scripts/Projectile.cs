@@ -18,17 +18,32 @@ public class Projectile : MonoBehaviour {
 		this.type = type;
 	}
 
-	public static Projectile ShootProjectile(Character shooter, Vector2 dir, CharacterSkillType type) {
+	public static Projectile ShootProjectile(Character shooter, Vector2 dir, CharacterSkillType skillType) {
 		Vector3 pos = shooter.transform.position;
 		pos.x += dir.x * 3f;
 		pos.z += dir.y * 3f;
-		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
+		GameObject obj = objectByType(shooter.type, skillType); //(GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
+		obj.transform.position = pos;
 		Projectile ans = obj.GetComponent<Projectile>();
 		Destroy(obj, 2f);
 		ans.shooter = shooter;
 		ans.direction = dir;
-		ans.type = type;
+		ans.type = skillType;
 		return ans;
+	}
+
+	static GameObject objectByType(int type, CharacterSkillType skillType) {
+		switch (type) {
+		case 0: {  //Main Character 
+			return (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"));
+		}
+		case 5: {
+			return (GameObject)Instantiate(Resources.Load("Prefabs/EnemyBullet"));
+		}
+		default:
+			break;
+		}
+		return null;
 	}
 
 	void Start () {
@@ -46,11 +61,13 @@ public class Projectile : MonoBehaviour {
 		pos.x += direction.x;
 		pos.z += direction.y;
 		this.transform.position = pos;
+
+		if(shooter == null) Destroy(this.gameObject);
 	}
 
-	void OnCollisionEnter(Collision coll) {
+	/*void OnCollisionEnter(Collision coll) {
 		//Temp Enemy only
-		if(coll.gameObject.tag != "TempEnemy")return;
+		if(coll.gameObject.tag == shooter.tag)return;
 		hit(coll.gameObject.GetComponent<Character>());
 
 		if(type == CharacterSkillType.ChargedAttack) {
@@ -58,6 +75,20 @@ public class Projectile : MonoBehaviour {
 			obj.GetComponent<CubeExplosion>().dir = direction;
 		}
 		Destroy(this.gameObject);
+	}*/
+
+	void OnTriggerEnter(Collider coll) {
+		//Temp Enemy only
+		if(coll.gameObject == null || shooter == null)return;
+		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet")return;
+		hit(coll.gameObject.GetComponent<Character>());
+		
+		if(type == CharacterSkillType.ChargedAttack) {
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeExplosion"), this.transform.position, Quaternion.identity);
+			obj.GetComponent<CubeExplosion>().dir = direction;
+		}
+		if(this.gameObject != null)
+			Destroy(this.gameObject);
 	}
 
 	void hit(Character character) {

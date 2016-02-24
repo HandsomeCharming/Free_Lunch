@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+// To Check types, see skill list.xlsx
+
 public class CharacterStatus {
 	public CharacterStatus() {
 		hp = 100f;
@@ -29,7 +32,22 @@ public class CharacterStatus {
 }
 
 public class AttackModifier {
-	int CharacterType;
+	public AttackModifier(){}
+	public AttackModifier(int ptype) {
+		type = ptype;
+		switch(type) {
+		case 3:
+			damage = 34f;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public int type;
+	public float damage;
+	public int negativeEffectCount;
+	public int negativeEffects;
 }
 
 public class ChargedAttackModifier {

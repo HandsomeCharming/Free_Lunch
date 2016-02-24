@@ -197,6 +197,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 139178, guid: a912aa27e9d0a4525bda68641f474f4a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a912aa27e9d0a4525bda68641f474f4a, type: 2}
   m_IsPrefabParent: 0
@@ -406,6 +410,10 @@ Prefab:
       propertyPath: InitialModule.startSize.scalar
       value: 1.20000005
       objectReference: {fileID: 0}
+    - target: {fileID: 126412, guid: 3b834978a7dde44d7ab4eb8a2b7031a9, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b834978a7dde44d7ab4eb8a2b7031a9, type: 2}
   m_IsPrefabParent: 0
@@ -474,6 +482,7 @@ MonoBehaviour:
   activeSkills: 
   activeNum: 0
   negativeEffects: 
+  div: 1
   cloud: {fileID: 1156114135}
   lightning: {fileID: 2133958125}
 --- !u!54 &1034405618
