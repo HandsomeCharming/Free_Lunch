@@ -19,6 +19,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 	public int skillCountMax = 1;
 	public string skillDescription;
 	public string skillTitle;
+	public int prereSkillType = -1;
 
 	public int pressed {get; set;}
 

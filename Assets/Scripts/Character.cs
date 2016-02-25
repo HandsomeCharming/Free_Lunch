@@ -29,7 +29,7 @@ public class Character : MonoBehaviour {
 
 	public CharacterState state;
 
-	public AttackModifier attackModifiers;
+	public AttackModifier attackModifier;
 	public ChargedAttackModifier chargedAttackModifiers;
 	public DodgeModifier dodgeModifier;
 	public BlockModifier blockModifier;
@@ -107,16 +107,11 @@ public class Character : MonoBehaviour {
 	public virtual void useSkillToward(int skillIndex, Vector2 dir) {}
 
 	public virtual void hit(Character other, CharacterSkillType skillType) {
-		TempEnemy temp = (TempEnemy) other;
-		temp.hits--;
-		if(temp.hits <= 0) {
-			AIController.current.characters.Remove(temp);
-			Destroy(temp.gameObject);
-		}
+
 
 	}
 
-	void Update() {
+	protected void Update() {
 		for(int a=0;a!=10;++a) {
 			if(actionCdRemain[a]>0) {
 				actionCdRemain[a] -= Time.deltaTime;

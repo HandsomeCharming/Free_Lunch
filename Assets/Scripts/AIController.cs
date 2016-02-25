@@ -32,6 +32,8 @@ public class AIController : MonoBehaviour {
 	void handleAI(Character character) {
 		Vector3 dir = player.transform.position - character.transform.position;
 		character.moveToward(new Vector2(dir.x, dir.z).normalized);
+		character.faceToward(new Vector2(dir.x, dir.z).normalized);
+		character.attack();
 	}
 
 	IEnumerator makeTempEnemy() {

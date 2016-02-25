@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum MainCharacterDiv {
+	Devour,
+	Division,
+	Computation
+}
+
 public class MainCharacter : Character {
+	public MainCharacterDiv div;
 
 	public ParticleSystem cloud;
 	public ParticleSystem lightning;
@@ -9,13 +16,16 @@ public class MainCharacter : Character {
 	public MainCharacter() {
 		actionCds = new float[10];
 		actionCdRemain = new float[10];
-		
+
+		type = 0;
 		for(int a=0;a!=10;++a)
 			actionCds[a] = 0.3f;
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
 
+		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier();
+		div = MainCharacterDiv.Division;
 	}
 
 
@@ -42,6 +52,18 @@ public class MainCharacter : Character {
 	public override void dodgeToward(Vector2 dir) {
 		faceToward(dir);
 		StartCoroutine(dodgeLerp(dir));
+	}
+
+	public override void hit(Character other, CharacterSkillType skillType) {
+		if(other == null) return;
+		if(other.tag == "TempEnemy") {
+			TempEnemy temp = (TempEnemy) other;
+			temp.status.hp -= attackModifier.damage;
+			if(temp.status.hp <= 0) {
+				AIController.current.characters.Remove(temp);
+				Destroy(temp.gameObject);
+			}
+		}
 	}
 
 	IEnumerator dodgeLerp(Vector2 dir) {
