@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class InputHandler : MonoBehaviour {
+
+	public static InputHandler current;
+
 	public Character character;
 
 	public float x;
@@ -11,8 +14,13 @@ public class InputHandler : MonoBehaviour {
 	float chargingTime = 0;
 	float dodgeTime = 0;
 	// Use this for initialization
+
+	public InputHandler() {
+		current = this;
+	}
+
 	void Start () {
-			
+		current = this;
 	}
 	
 	// Update is called once per frame
@@ -69,14 +77,15 @@ public class InputHandler : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.Space)) {
 				dodge();
 				character.state = CharacterState.Dodge;
+				chargedAttack();
 			} else if(Input.GetMouseButtonUp(1)) {
 				character.state = CharacterState.Move;
-				attack ();
+				chargedAttack ();
 			}
 
 			move ();
 			chargingTime+=Time.deltaTime;
-			if(chargingTime >= character.dodgeModifier.dodgeTime) {
+			if(chargingTime >= character.chargedAttackModifier.chargeTime) {
 				character.state = CharacterState.Move;
 				chargedAttack ();
 			}
@@ -141,6 +150,6 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void chargedAttack() {
-		character.chargedAttack();
+		character.chargedAttack(chargingTime);
 	}
 }

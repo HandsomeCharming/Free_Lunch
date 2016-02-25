@@ -11,6 +11,10 @@ public class AIController : MonoBehaviour {
 	public ArrayList characters {get; set;}
 	public int characterCount {get; set;}
 
+	public AIController() {
+		current = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		characters = new ArrayList();

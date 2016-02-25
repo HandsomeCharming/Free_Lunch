@@ -13,7 +13,7 @@ public class MainCharacter : Character {
 	public ParticleSystem cloud;
 	public ParticleSystem lightning;
 
-	public MainCharacter() {
+	public MainCharacter() : base() {
 		actionCds = new float[10];
 		actionCdRemain = new float[10];
 
@@ -23,8 +23,10 @@ public class MainCharacter : Character {
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
 
+		status.regularMoveSpeed = 1f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier();
+		chargedAttackModifier = new ChargedAttackModifier();
 		div = MainCharacterDiv.Division;
 	}
 
@@ -36,11 +38,19 @@ public class MainCharacter : Character {
 		Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Attack);
 	}
 
-	public override void chargedAttack() {
+	public override void startCharging() {
+		applyTemporaryEffect(35);//Apply speed reduce
+
+	}
+
+	public override void chargedAttack(float chargingTime) {
 		if(actionCdRemain[1] > 0) return;
 		actionCdRemain[1] = actionCds[1];
-		status.moveSpeed = status.regularMoveSpeed;
-		Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
+		removeTemporaryEffect(35);//remove speed reduce
+		if(chargingTime >= chargedAttackModifier.chargeTime)
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
+		else 
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Attack);
 	}
 
 	public override void attackToward(Vector2 dir) {
@@ -152,11 +162,6 @@ public class MainCharacter : Character {
 	
 	// Update is called once per frame
 	void Update () {
-		for(int a=0;a!=10;++a) {
-			if(actionCdRemain[a]>0) {
-				actionCdRemain[a] -= Time.deltaTime;
-			} 
-			if(actionCdRemain[a] <= 0) actionCdRemain[a] = 0;
-		}
+		base.Update();
 	}
 }

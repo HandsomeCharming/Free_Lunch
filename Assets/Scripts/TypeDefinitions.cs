@@ -48,6 +48,8 @@ public class AttackModifier {
 	public float damage;
 	public int negativeEffectCount;
 	public int negativeEffects;
+	public int attackCount = 0;
+	public int attackCountMax = 1;
 }
 
 public class ChargedAttackModifier {
@@ -62,6 +64,26 @@ public class DodgeModifier {
 
 public class BlockModifier {
 	int type;
+}
+
+public class PassiveSkill {
+	public int type;
+}
+
+public class TemporaryEffect {
+	public TemporaryEffect(int ptype) {
+		type = ptype;
+		switch (type) {
+		case 35:
+			totalTime = remainTime = 5f;
+			break;
+		default:
+			break;
+		}
+	}
+	public int type;
+	public float totalTime;
+	public float remainTime;
 }
 
 public enum CharacterState {

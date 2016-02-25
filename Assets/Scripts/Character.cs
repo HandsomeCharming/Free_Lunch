@@ -10,7 +10,8 @@ public class Character : MonoBehaviour {
 	public Character() {
 		state = CharacterState.Stand;
 		status = new CharacterStatus();
-		status.moveSpeed = 1f;
+		status.moveSpeed = 0.3f;
+		status.regularMoveSpeed = 0.3f;
 		type = 0;
 
 		actionCds = new float[10];
@@ -21,7 +22,8 @@ public class Character : MonoBehaviour {
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
 
-
+		passiveSkills = new ArrayList();
+		tempEffects = new ArrayList();
 	}
 	//Character type
 	public int type;
@@ -30,10 +32,12 @@ public class Character : MonoBehaviour {
 	public CharacterState state;
 
 	public AttackModifier attackModifier;
-	public ChargedAttackModifier chargedAttackModifiers;
+	public ChargedAttackModifier chargedAttackModifier;
 	public DodgeModifier dodgeModifier;
 	public BlockModifier blockModifier;
-	public int[] passiveSkills;
+
+	public ArrayList passiveSkills;  //Permenant passive skills
+	public ArrayList tempEffects;    //Temporary effects
 
 	public int[] activeSkills;
 	public int activeNum;
@@ -46,8 +50,7 @@ public class Character : MonoBehaviour {
 	// 4-10: actives
 	protected float[] actionCdRemain; 
 	protected float[] actionCds;
-	
-	public int[] negativeEffects;
+
 
 	public virtual void moveTo(Vector2 pos) {}
 	
@@ -84,10 +87,9 @@ public class Character : MonoBehaviour {
 	public virtual void attack(){}
 
 	public virtual void startCharging() {
-		status.moveSpeed = status.regularMoveSpeed/2f;
 	}
 
-	public virtual void chargedAttack() {
+	public virtual void chargedAttack(float chargingTime) {
 		print("Charged Attack");
 	}
 
@@ -111,12 +113,49 @@ public class Character : MonoBehaviour {
 
 	}
 
+	public virtual void applyTemporaryEffect(int type) {
+		TemporaryEffect tempEffect = new TemporaryEffect(type);
+		tempEffects.Add(tempEffect);
+	}
+
+	public virtual void removeTemporaryEffect(int type) {
+		for(int a=0;a<tempEffects.Count;++a) {
+			TemporaryEffect tempEffect = (TemporaryEffect) tempEffects[a];
+			if(tempEffect.type == type) {
+				tempEffects.Remove(tempEffect);
+			}
+		}
+	}
+
+	public virtual void calculateSpeed() {
+		float scale = 1f;
+		for(int a=0;a<tempEffects.Count;++a) {
+			TemporaryEffect tempEffect = (TemporaryEffect) tempEffects[a];
+			switch(tempEffect.type ) {
+			case 35:
+				scale *= 0.5f;
+				break;
+			default:
+				break;
+			}
+		}
+		status.moveSpeed = status.regularMoveSpeed * scale;
+	}
+
 	protected void Update() {
 		for(int a=0;a!=10;++a) {
 			if(actionCdRemain[a]>0) {
 				actionCdRemain[a] -= Time.deltaTime;
 			} 
 			if(actionCdRemain[a] <= 0) actionCdRemain[a] = 0;
+		}
+		calculateSpeed();
+		for(int a=0;a<tempEffects.Count;++a) {
+			TemporaryEffect tempEffect = (TemporaryEffect)tempEffects[a];
+			tempEffect.remainTime -= Time.deltaTime;
+			if(tempEffect.remainTime <= 0f) {
+				tempEffects.Remove(tempEffect);
+			}
 		}
 	}
 }

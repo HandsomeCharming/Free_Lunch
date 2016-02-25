@@ -84,8 +84,12 @@ public class Projectile : MonoBehaviour {
 		hit(coll.gameObject.GetComponent<Character>());
 		
 		if(type == CharacterSkillType.ChargedAttack) {
-			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeExplosion"), this.transform.position, Quaternion.identity);
-			obj.GetComponent<CubeExplosion>().dir = direction;
+			float angle = Vector2.Angle(new Vector2(1f,0),direction);
+			angle = direction.y<0?angle:-angle;
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/Explosion1"), this.transform.position, 
+			                                         Quaternion.Euler(0, angle+90f, 0 ) );
+			Destroy(obj, 0.8f);
+			//obj.GetComponent<CubeExplosion>().dir = direction;
 		}
 		if(this.gameObject != null)
 			Destroy(this.gameObject);
