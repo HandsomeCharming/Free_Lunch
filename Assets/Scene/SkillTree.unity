@@ -793,6 +793,10 @@ Prefab:
       propertyPath: skillLevel
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11445232, guid: 5f118dc8b118b48a0b5529b515106b3a, type: 2}
+      propertyPath: prereSkillType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f118dc8b118b48a0b5529b515106b3a, type: 2}
   m_IsPrefabParent: 0
