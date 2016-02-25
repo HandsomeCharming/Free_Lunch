@@ -80,6 +80,22 @@ public class Character : MonoBehaviour {
 		this.transform.rotation = Quaternion.Euler(0, lerpAngle, 0);
 	}
 
+	public virtual void faceTowardWithoutLerp(Vector2 dir) {
+		//status.facingDirection = dir;
+		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
+		angle = dir.y>0?angle:-angle;
+		float facingAngle = Vector2.Angle(new Vector2(1f, 0), status.facingDirection); 
+		facingAngle = status.facingDirection.y>0?facingAngle:-facingAngle;
+
+		float abs = Mathf.Abs(facingAngle - angle);
+		if(abs > 360f) abs -= 360f;
+
+		status.facingDirection.x = dir.x;
+		status.facingDirection.y = dir.y;
+
+		this.transform.rotation = Quaternion.Euler(0, -angle, 0);
+	}
+
 	public virtual void attackToward(Vector2 dir) {
 
 	}

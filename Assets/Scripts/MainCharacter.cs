@@ -60,7 +60,7 @@ public class MainCharacter : Character {
 	}
 
 	public override void dodgeToward(Vector2 dir) {
-		faceToward(dir);
+		faceTowardWithoutLerp(dir);
 		StartCoroutine(dodgeLerp(dir));
 	}
 

@@ -13,7 +13,7 @@ public class TempEnemy : Character {
 		if(AIController.current != null) {
 			AIController.current.characters.Add(this);
 		}
-		hits = 3;
+		//hits = 3;
 		status.moveSpeed = 0.2f;
 		type = 5;
 	}
