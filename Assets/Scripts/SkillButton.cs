@@ -14,8 +14,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 	public SkillDiv skilldiv;
 
 	public int skillType = 0;
-	public int skillLevel = 0;
-	public int skillCount = 0;
+	public int skillLevel = 0;  //Level in the skill tree
+	public int skillCount = 0;  //Level of the skill
 	public int skillCountMax = 1;
 	public string skillDescription;
 	public string skillTitle;

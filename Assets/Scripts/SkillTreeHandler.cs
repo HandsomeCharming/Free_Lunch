@@ -58,8 +58,22 @@ public class SkillTreeHandler : MonoBehaviour {
 		}
 	}
 
+	public bool checkClicked(int skillType) {
+		for(int a=0;a!=transform.childCount;++a) {
+			SkillButton button = transform.GetChild(a).GetComponent<SkillButton>();
+			if(button.skillType == skillType) {
+				if(button.skillCount == button.skillCountMax)
+					return true;
+				else 
+					return false;
+			}
+		}
+		return false;
+	}
+
 	public bool clickSkill(SkillButton button) {
-		if(skilltree.skillLevel != button.skillLevel || button.skillCount >= button.skillCountMax) {
+		if(skilltree.skillLevel != button.skillLevel || button.skillCount >= button.skillCountMax ||
+		   (button.prereSkillType != -1 && !checkClicked(button.prereSkillType)) ) {
 			return false;
 		}
 		button.skillCount++;
