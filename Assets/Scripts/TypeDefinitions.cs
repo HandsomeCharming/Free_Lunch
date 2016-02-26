@@ -31,7 +31,12 @@ public class CharacterStatus {
 	public bool canUseSkill;
 }
 
-public class AttackModifier {
+public class Modifier {
+	public int type; //Type of an modifier
+	public int subType;  //Subtype of an modifier
+}
+
+public class AttackModifier : Modifier {
 	public AttackModifier(){}
 	public AttackModifier(int ptype) {
 		type = ptype;
@@ -52,17 +57,17 @@ public class AttackModifier {
 	public int attackCountMax = 1;
 }
 
-public class ChargedAttackModifier {
+public class ChargedAttackModifier : Modifier {
 	public int type = 0;
 	public float chargeTime = 1.5f;
 }
 
-public class DodgeModifier {
+public class DodgeModifier : Modifier {
 	public int type = 0;
 	public float dodgeTime = 1f;
 }
 
-public class BlockModifier {
+public class BlockModifier : Modifier {
 	int type;
 }
 
