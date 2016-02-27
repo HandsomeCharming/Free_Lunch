@@ -23,7 +23,7 @@ public class MainCharacter : Character {
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
 
-		status.regularMoveSpeed = 1f;
+		status.regularMoveSpeed = 80f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier();
 		chargedAttackModifier = new ChargedAttackModifier();

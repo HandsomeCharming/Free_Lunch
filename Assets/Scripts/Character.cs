@@ -10,8 +10,8 @@ public class Character : MonoBehaviour {
 	public Character() {
 		state = CharacterState.Stand;
 		status = new CharacterStatus();
-		status.moveSpeed = 0.3f;
-		status.regularMoveSpeed = 0.3f;
+		status.moveSpeed = 30f;
+		status.regularMoveSpeed = 30f;
 		type = 0;
 
 		actionCds = new float[10];
@@ -58,9 +58,9 @@ public class Character : MonoBehaviour {
 		Vector3 pos = gameObject.transform.position;
 		pos.x += dir.x * status.moveSpeed;
 		pos.z += dir.y * status.moveSpeed;
-		transform.position = pos;
-		//Vector3 velo = new Vector3(dir.x * status.moveSpeed, 0, dir.y * status.moveSpeed);
-		//GetComponent<Rigidbody>().velocity = velo;
+		//transform.position = pos;
+		Vector3 velo = new Vector3(dir.x * status.moveSpeed, 0, dir.y * status.moveSpeed);
+		GetComponent<Rigidbody>().velocity = velo;
 	}	
 
 	public virtual void faceToward(Vector2 dir) {

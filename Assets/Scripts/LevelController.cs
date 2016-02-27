@@ -5,6 +5,8 @@ public class LevelController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Projectile.InitProjectileData();
+
 		Instantiate(Resources.Load("Prefabs/InputHandler"));
 		Instantiate(Resources.Load("Prefabs/AIController"));
 
