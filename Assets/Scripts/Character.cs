@@ -77,7 +77,7 @@ public class Character : MonoBehaviour {
 		status.facingDirection.x = Mathf.Cos(lerpAngle*Mathf.Deg2Rad);
 		status.facingDirection.y = Mathf.Sin(lerpAngle*Mathf.Deg2Rad);
 
-		this.transform.rotation = Quaternion.Euler(0, lerpAngle, 0);
+		this.transform.rotation = Quaternion.Euler(0, -lerpAngle, 0);
 	}
 
 	public virtual void faceTowardWithoutLerp(Vector2 dir) {
