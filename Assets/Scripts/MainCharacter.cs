@@ -39,14 +39,14 @@ public class MainCharacter : Character {
 	}
 
 	public override void startCharging() {
-		applyTemporaryEffect(35);//Apply speed reduce
+		applyTemporaryEffect(555);//Apply speed reduce
 
 	}
 
 	public override void chargedAttack(float chargingTime) {
 		if(actionCdRemain[1] > 0) return;
 		actionCdRemain[1] = actionCds[1];
-		removeTemporaryEffect(35);//remove speed reduce
+		removeTemporaryEffect(555);//remove speed reduce
 		if(chargingTime >= chargedAttackModifier.chargeTime)
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
 		else 

@@ -52,6 +52,14 @@ public class AttackModifier : Modifier {
 			damage = new float[1];
 			damage[0] = 34f;
 			break;
+		case 5:
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 34f;
+			negativeEffectCount = 1;
+			negativeEffects = new int[1];
+			negativeEffects[0] = 552;
+			break;
 		default:
 			break;
 		}
@@ -94,7 +102,10 @@ public class TemporaryEffect {
 	public TemporaryEffect(int ptype) {
 		type = ptype;
 		switch (type) {
-		case 35:
+		case 552:
+			totalTime = remainTime = 2f;
+			break;
+		case 555:
 			totalTime = remainTime = 5f;
 			break;
 		default:
