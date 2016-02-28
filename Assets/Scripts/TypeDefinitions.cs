@@ -52,6 +52,14 @@ public class AttackModifier : Modifier {
 			damage = new float[1];
 			damage[0] = 34f;
 			break;
+		case 4:
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 34f;
+			negativeEffectCount = 1;
+			negativeEffects = new int[1];
+			negativeEffects[0] = 550;
+			break;
 		case 5:
 			subTypeCount = 1;
 			damage = new float[1];
@@ -113,6 +121,8 @@ public class TemporaryEffect {
 		}
 	}
 	public int type;
+	public int layer = 1;
+	public int maxLayer = 1;
 	public float totalTime;
 	public float remainTime;
 }

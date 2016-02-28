@@ -71,6 +71,11 @@ public class MainCharacter : Character {
 			switch(skillType) {
 			case CharacterSkillType.Attack:
 				temp.status.hp -= attackModifier.damage[subType];
+				if(attackModifier.negativeEffectCount > 0) {
+					for(int a=0;a!=attackModifier.negativeEffectCount;++a) {
+
+					}
+				}
 				break;
 			case CharacterSkillType.ChargedAttack:
 				temp.status.hp -= chargedAttackModifier.damage[subType];
