@@ -65,6 +65,10 @@ public class Character : MonoBehaviour {
 		return 0;
 	}
 
+	public virtual void stand() {
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+	}
+
 	public virtual void moveTo(Vector2 pos) {}
 	
 	public virtual void moveToward(Vector2 dir) {
