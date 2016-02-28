@@ -62,6 +62,7 @@ public class Character : MonoBehaviour {
 		case CharacterSkillType.Block:
 			return blockModifier.type;
 		}
+		return 0;
 	}
 
 	public virtual void moveTo(Vector2 pos) {}
