@@ -35,6 +35,7 @@ public class InputHandler : MonoBehaviour {
 		switch(state) {
 		case CharacterState.Stand: {
 			face ();
+			stand();
 			if(vertical != 0 || horizontal != 0) {
 				move ();
 				character.state = CharacterState.Move;
@@ -126,6 +127,10 @@ public class InputHandler : MonoBehaviour {
 		if(vertical != 0 || horizontal != 0) {
 			character.moveToward(new Vector2(horizontal, vertical));
 		} 
+	}
+
+	void stand() {
+
 	}
 
 	void dodge() {
