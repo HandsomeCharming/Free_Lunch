@@ -51,6 +51,18 @@ public class Character : MonoBehaviour {
 	protected float[] actionCdRemain; 
 	protected float[] actionCds;
 
+	public int getSkillType(CharacterSkillType skillType) {
+		switch (skillType) {
+		case CharacterSkillType.Attack:
+			return attackModifier.type;
+		case CharacterSkillType.ChargedAttack:
+			return chargedAttackModifier.type;
+		case CharacterSkillType.Dodge:
+			return dodgeModifier.type;
+		case CharacterSkillType.Block:
+			return blockModifier.type;
+		}
+	}
 
 	public virtual void moveTo(Vector2 pos) {}
 	

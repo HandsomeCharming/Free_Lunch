@@ -6,7 +6,7 @@ public class TempEnemy : Character {
 
 	public TempEnemy() : base() {
 		type = 5;
-		attackModifier = new AttackModifier(15);
+		attackModifier = new AttackModifier(30);
 	}
 	// Use this for initialization
 	void Start () {

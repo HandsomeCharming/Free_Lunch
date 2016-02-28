@@ -49,7 +49,7 @@ public class AttackModifier : Modifier {
 		}
 	}
 
-	public int type;
+	//public int type;
 	public float damage;
 	public int negativeEffectCount;
 	public int negativeEffects;
@@ -58,17 +58,17 @@ public class AttackModifier : Modifier {
 }
 
 public class ChargedAttackModifier : Modifier {
-	public int type = 0;
+	//public int type = 0;
 	public float chargeTime = 1.5f;
 }
 
 public class DodgeModifier : Modifier {
-	public int type = 0;
+	//public int type = 0;
 	public float dodgeTime = 1f;
 }
 
 public class BlockModifier : Modifier {
-	int type;
+	//int type;
 }
 
 public class PassiveSkill {

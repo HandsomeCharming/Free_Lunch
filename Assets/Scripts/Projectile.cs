@@ -1,38 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 //Feb 27 To-do: Add ProjectileType static array.
 
+
+//Projectile is for animation and collider stuff
+//Damage and negative effects are in hit() and modifier stuff.
+
+public class ProjectileType {
+	public ProjectileType(int type, int subTypeCount) {
+		modifierType = type;
+		modifierSubTypeCount = subTypeCount;
+
+		projectileDatas = new ProjectileData[subTypeCount];
+	}
+
+	public ProjectileData[] projectileDatas;
+	
+	public int modifierType;
+	public int modifierSubTypeCount; 
+	public CharacterSkillType skillType;
+}
+
 public class ProjectileData {
 	public ProjectileData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed,
-	                      Vector3 direction, string prefabName) {
+	                      string prefabName) {
 		this.modifierType = modifierType;
 		this.modifierSubType = modifierSubType;
 		this.skillType = skillType;
 		this.speed = speed;
 		this.existTime = existTime;
-		this.direction = direction;
 		this.prefabName = prefabName;
 	}
 
-	public void setData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed,
-	               Vector3 direction, string prefabName) {
+	public void setData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed, string prefabName) {
 		this.modifierType = modifierType;
 		this.modifierSubType = modifierSubType;
 		this.skillType = skillType;
 		this.speed = speed;
 		this.existTime = existTime;
-		this.direction = direction;
 		this.prefabName = prefabName;
 	}
-
 	public int modifierType;
 	public int modifierSubType;
 	public CharacterSkillType skillType;
 	public float speed;
 	public float existTime;
-	public Vector3 direction;
 	public string prefabName;
 }
 
@@ -40,7 +54,7 @@ public class Projectile : MonoBehaviour {
 	public Character shooter;
 	public CharacterSkillType type;
 
-	public static ProjectileData[] projectileData;
+	public static Dictionary<int, ProjectileType> projectileTypes;
 	
 	float speed = 1;
 	float existTime = 2;
@@ -53,8 +67,13 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public static void InitProjectileData() {
-		projectileData = new ProjectileData[100];
+		projectileTypes = new Dictionary<int, ProjectileType>();
 
+		projectileTypes.Add(3, new ProjectileType(3,1));
+		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1f, "Prefabs/CubeBullet");
+
+		projectileTypes.Add(30, new ProjectileType(30,1));
+		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, "Prefabs/EnemyBullet");
 		//projectileData[0].setData
 	}
 
@@ -74,11 +93,16 @@ public class Projectile : MonoBehaviour {
 		return ans;
 	}
 
+
 	static GameObject objectByType(Character shooter, CharacterSkillType skillType, int subType = 0) {
-		int type = shooter.type;
+		Modifier modifier;
+
+		int type = shooter.attackModifier.type;
 		GameObject obj = null;
 		Projectile pro = null;
-		switch (type) {
+
+		obj = (GameObject)Instantiate(Resources.Load(projectileTypes[type].projectileDatas[subType].prefabName));
+		/*switch (type) {
 		case 0: {  //Main Character 
 			obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"));
 			pro = obj.GetComponent<Projectile>();
@@ -90,7 +114,7 @@ public class Projectile : MonoBehaviour {
 		}
 		default:
 			break;
-		}
+		}*/
 		return obj;
 	}
 
