@@ -130,7 +130,7 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void stand() {
-
+		character.stand();
 	}
 
 	void dodge() {

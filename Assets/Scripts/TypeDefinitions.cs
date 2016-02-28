@@ -74,8 +74,8 @@ public class ChargedAttackModifier : Modifier {
 		case 103:
 			subTypeCount = 2;
 			damage = new float[2];
-			damage[0] = 30f;
-			damage[1] = 120f;
+			damage[0] = 40f;
+			damage[1] = 30f;
 			break;
 		default:
 			break;
