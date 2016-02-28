@@ -143,8 +143,8 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 pos = this.transform.position;
-		pos.x += direction.x*2;
-		pos.z += direction.y*2;
+		pos.x += direction.x;
+		pos.z += direction.y;
 		this.transform.position = pos;
 
 		if(shooter == null) Destroy(this.gameObject);
