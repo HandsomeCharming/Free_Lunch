@@ -33,7 +33,13 @@ public class CharacterStatus {
 
 public class Modifier {
 	public int type; //Type of an modifier
-	public int subType;  //Subtype of an modifier
+	public int subTypeCount;  //Subtype of an modifier
+	
+	public float[] damage;
+	public int negativeEffectCount = 0;
+	public int[] negativeEffects;
+	public int attackCount = 0;
+	public int attackCountMax = 1;
 }
 
 public class AttackModifier : Modifier {
@@ -42,23 +48,32 @@ public class AttackModifier : Modifier {
 		type = ptype;
 		switch(type) {
 		case 3:
-			damage = 34f;
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 34f;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+public class ChargedAttackModifier : Modifier {
+	//public int type = 0;
+	public ChargedAttackModifier(int type) {
+		this.type = type;
+		switch(type) {
+		case 103:
+			subTypeCount = 2;
+			damage = new float[2];
+			damage[0] = 40f;
+			damage[1] = 30f;
 			break;
 		default:
 			break;
 		}
 	}
 
-	//public int type;
-	public float damage;
-	public int negativeEffectCount;
-	public int negativeEffects;
-	public int attackCount = 0;
-	public int attackCountMax = 1;
-}
-
-public class ChargedAttackModifier : Modifier {
-	//public int type = 0;
 	public float chargeTime = 1.5f;
 }
 

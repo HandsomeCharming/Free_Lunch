@@ -137,7 +137,7 @@ public class Character : MonoBehaviour {
 	//skill index is the index of active skills.
 	public virtual void useSkillToward(int skillIndex, Vector2 dir) {}
 
-	public virtual void hit(Character other, CharacterSkillType skillType) {
+	public virtual void hit(Character other, CharacterSkillType skillType, int subType = 0) {
 
 
 	}
