@@ -24,7 +24,7 @@ public class ProjectileType {
 }
 
 public class ProjectileData {
-	public ProjectileData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed,
+	public ProjectileData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed, float existTime,
 	                      string prefabName) {
 		this.modifierType = modifierType;
 		this.modifierSubType = modifierSubType;
@@ -34,7 +34,7 @@ public class ProjectileData {
 		this.prefabName = prefabName;
 	}
 
-	public void setData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed, string prefabName) {
+	public void setData(int modifierType, int modifierSubType, CharacterSkillType skillType, float speed, float existTime, string prefabName) {
 		this.modifierType = modifierType;
 		this.modifierSubType = modifierSubType;
 		this.skillType = skillType;
@@ -46,16 +46,18 @@ public class ProjectileData {
 	public int modifierSubType;
 	public CharacterSkillType skillType;
 	public float speed;
-	public float existTime;
+	public float existTime = 2f;
 	public string prefabName;
 }
 
 public class Projectile : MonoBehaviour {
 	public Character shooter;
-	public CharacterSkillType type;
+	public CharacterSkillType skillType;
 
 	public static Dictionary<int, ProjectileType> projectileTypes;
-	
+
+	int type;
+	int subType;
 	float speed = 1;
 	float existTime = 2;
 	Vector2 direction;
@@ -63,41 +65,54 @@ public class Projectile : MonoBehaviour {
 	Projectile(Character shooter, Vector2 dir, CharacterSkillType type) {
 		this.shooter = shooter;
 		this.direction = dir;
-		this.type = type;
+		this.skillType = type;
 	}
 
 	public static void InitProjectileData() {
 		projectileTypes = new Dictionary<int, ProjectileType>();
 
 		projectileTypes.Add(3, new ProjectileType(3,1));
-		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1f, "Prefabs/CubeBullet");
+		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(30, new ProjectileType(30,1));
-		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, "Prefabs/EnemyBullet");
+		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
+
+		projectileTypes.Add(103, new ProjectileType(103, 2));
+		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.Attack, 0f, 2f, "Prefabs/BurstExplosion");
 		//projectileData[0].setData
 	}
 
+	public static Projectile ShootProjectile(Character shooter, Vector2 dir, Vector3 pos, CharacterSkillType skillType, int subType = 0) {
+		GameObject obj = objectByType(shooter, skillType, subType); //(GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
+		obj.transform.position = pos;
+		Projectile ans = obj.GetComponent<Projectile>();
+		if(ans == null) ans = obj.GetComponentInChildren<Projectile>();
+		InitByType(ref ans, shooter, skillType, subType);
+		ans.shooter = shooter;
+		ans.direction = dir;
+		ans.skillType = skillType;
+
+		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
+		angle = dir.y>0?angle:-angle;
+		obj.transform.rotation = Quaternion.Euler(0, -angle, 0);
+
+		Destroy(obj, ans.existTime);
+		return ans;
+	}
 
 	public static Projectile ShootProjectile(Character shooter, Vector2 dir, CharacterSkillType skillType, int subType = 0) {
 		Vector3 pos = shooter.transform.position;
 		pos.x += dir.x * 3f;
 		pos.z += dir.y * 3f;
-		GameObject obj = objectByType(shooter, skillType); //(GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
-		obj.transform.position = pos;
-		Projectile ans = obj.GetComponent<Projectile>();
-		InitByType(ref ans, shooter, skillType, subType);
-		Destroy(obj, 2f);
-		ans.shooter = shooter;
-		ans.direction = dir;
-		ans.type = skillType;
-		return ans;
+		return ShootProjectile(shooter, dir, pos, skillType, subType);
 	}
 
 
 	static GameObject objectByType(Character shooter, CharacterSkillType skillType, int subType = 0) {
 		Modifier modifier;
 
-		int type = shooter.attackModifier.type;
+		int type = shooter.getSkillType(skillType);
 		GameObject obj = null;
 		Projectile pro = null;
 
@@ -119,16 +134,13 @@ public class Projectile : MonoBehaviour {
 	}
 
 	static void InitByType(ref Projectile projectile, Character shooter, CharacterSkillType skillType, int subType = 0) {
-		switch(skillType) {
-		case CharacterSkillType.Attack:
-			//speed = 1f;
-			break;
-		case CharacterSkillType.ChargedAttack:
-			//speed = 1f;
-			break;
-		default:
-			break;
-		}
+		int type = shooter.getSkillType(skillType);
+		ProjectileData data = projectileTypes[type].projectileDatas[subType];
+
+		projectile.type = type;
+		projectile.speed = data.speed;
+		projectile.existTime = data.existTime;
+		projectile.subType = subType;
 	}
 
 	void Start () {
@@ -143,8 +155,8 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 pos = this.transform.position;
-		pos.x += direction.x;
-		pos.z += direction.y;
+		pos.x += direction.x*speed;
+		pos.z += direction.y*speed;
 		this.transform.position = pos;
 
 		if(shooter == null) Destroy(this.gameObject);
@@ -168,19 +180,21 @@ public class Projectile : MonoBehaviour {
 		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet")return;
 		hit(coll.gameObject.GetComponent<Character>());
 		
-		if(type == CharacterSkillType.ChargedAttack) {
-			float angle = Vector2.Angle(new Vector2(1f,0),direction);
-			angle = direction.y<0?angle:-angle;
-			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/Explosion1"), this.transform.position, 
-			                                         Quaternion.Euler(90f, angle+30f, 0 ) );
-			Destroy(obj, 0.8f);
-			//obj.GetComponent<CubeExplosion>().dir = direction;
+		if(skillType == CharacterSkillType.ChargedAttack) {
+			if(subType == 0) {
+				float angle = Vector2.Angle(new Vector2(1f,0),direction);
+				angle = direction.y<0?angle:-angle;
+				Projectile pro = ShootProjectile(shooter, direction, transform.position, skillType, 1);
+			}
+			if(subType == 1) {
+
+			}
 		}
 		if(this.gameObject != null)
 			Destroy(this.gameObject);
 	}
 
 	void hit(Character character) {
-		shooter.hit(character, type);
+		shooter.hit(character, skillType, subType);
 	}
 }

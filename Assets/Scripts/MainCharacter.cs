@@ -26,7 +26,7 @@ public class MainCharacter : Character {
 		status.regularMoveSpeed = 80f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier();
-		chargedAttackModifier = new ChargedAttackModifier();
+		chargedAttackModifier = new ChargedAttackModifier(103);
 		div = MainCharacterDiv.Division;
 	}
 
@@ -64,11 +64,18 @@ public class MainCharacter : Character {
 		StartCoroutine(dodgeLerp(dir));
 	}
 
-	public override void hit(Character other, CharacterSkillType skillType) {
+	public override void hit(Character other, CharacterSkillType skillType, int subType = 0) {
 		if(other == null) return;
 		if(other.tag == "TempEnemy") {
 			TempEnemy temp = (TempEnemy) other;
-			temp.status.hp -= attackModifier.damage;
+			switch(skillType) {
+			case CharacterSkillType.Attack:
+				temp.status.hp -= attackModifier.damage[subType];
+				break;
+			case CharacterSkillType.ChargedAttack:
+				temp.status.hp -= chargedAttackModifier.damage[subType];
+				break;
+			}
 			if(temp.status.hp <= 0) {
 				AIController.current.characters.Remove(temp);
 				Destroy(temp.gameObject);
