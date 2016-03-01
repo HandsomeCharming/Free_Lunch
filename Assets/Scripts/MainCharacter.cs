@@ -22,10 +22,11 @@ public class MainCharacter : Character {
 			actionCds[a] = 0.3f;
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
+		actionCds[2] = 3f;
 
 		status.regularMoveSpeed = 80f;
 		attackModifier = new AttackModifier(3);
-		dodgeModifier = new DodgeModifier();
+		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
 		div = MainCharacterDiv.Division;
 	}
@@ -60,6 +61,8 @@ public class MainCharacter : Character {
 	}
 
 	public override void dodgeToward(Vector2 dir) {
+		if(actionCdRemain[2] > 0) return;
+		actionCdRemain[2] = actionCds[2];
 		faceTowardWithoutLerp(dir);
 		StartCoroutine(dodgeLerp(dir));
 	}
@@ -73,17 +76,13 @@ public class MainCharacter : Character {
 				temp.status.hp -= attackModifier.damage[subType];
 				if(attackModifier.negativeEffectCount > 0) {
 					for(int a=0;a!=attackModifier.negativeEffectCount;++a) {
-
+						other.applyTemporaryEffect(attackModifier.negativeEffects[a]);
 					}
 				}
 				break;
 			case CharacterSkillType.ChargedAttack:
 				temp.status.hp -= chargedAttackModifier.damage[subType];
 				break;
-			}
-			if(temp.status.hp <= 0) {
-				AIController.current.characters.Remove(temp);
-				Destroy(temp.gameObject);
 			}
 		}
 	}
@@ -100,7 +99,7 @@ public class MainCharacter : Character {
 		lightning.GetParticles(lightningList);
 		byte lightningAlpha = lightningList[0].color.a;
 		while(time < dodgeModifier.dodgeTime) {
-			pos += new Vector3(dir.x, 0, dir.y) * 2f;
+			pos += new Vector3(dir.x, 0, dir.y).normalized * 3f;
 			this.transform.position = pos;
 			if(time < dodgeModifier.dodgeTime/2f) {
 				scale.z = Mathf.Lerp(scalez, scalez/5f, time/(dodgeModifier.dodgeTime/2f));

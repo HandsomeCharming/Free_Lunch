@@ -95,7 +95,18 @@ public class ChargedAttackModifier : Modifier {
 
 public class DodgeModifier : Modifier {
 	//public int type = 0;
-	public float dodgeTime = 1f;
+	public DodgeModifier(int type) {
+		this.type = type;
+		switch(type) {
+		case 152:
+			break;
+		case 153:
+			break;
+		default:
+			break;
+		}
+	}
+	public float dodgeTime = 0.5f;
 }
 
 public class BlockModifier : Modifier {
@@ -110,6 +121,9 @@ public class TemporaryEffect {
 	public TemporaryEffect(int ptype) {
 		type = ptype;
 		switch (type) {
+		case 550:
+			totalTime = remainTime = 5f;
+			break;
 		case 552:
 			totalTime = remainTime = 2f;
 			break;
@@ -123,8 +137,19 @@ public class TemporaryEffect {
 	public int type;
 	public int layer = 1;
 	public int maxLayer = 1;
+	public float dotCalTime = 0.3f;
+	public float dotCalTimeRemain = 0.3f;
 	public float totalTime;
 	public float remainTime;
+
+	public bool dotTimeout() {
+		dotCalTimeRemain -= Time.deltaTime;
+		if(dotCalTimeRemain <= 0) {
+			dotCalTimeRemain = dotCalTime;
+			return true;
+		}
+		return false;
+	}
 }
 
 public enum CharacterState {
