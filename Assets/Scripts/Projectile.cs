@@ -74,6 +74,12 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(3, new ProjectileType(3,1));
 		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
 
+		projectileTypes.Add(4, new ProjectileType(4,1));
+		projectileTypes[4].projectileDatas[0] = new ProjectileData(4, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+
+		projectileTypes.Add(5, new ProjectileType(5,1));
+		projectileTypes[5].projectileDatas[0] = new ProjectileData(5, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+
 		projectileTypes.Add(30, new ProjectileType(30,1));
 		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
 
@@ -117,19 +123,6 @@ public class Projectile : MonoBehaviour {
 		Projectile pro = null;
 
 		obj = (GameObject)Instantiate(Resources.Load(projectileTypes[type].projectileDatas[subType].prefabName));
-		/*switch (type) {
-		case 0: {  //Main Character 
-			obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"));
-			pro = obj.GetComponent<Projectile>();
-
-			break;
-		}
-		case 5: {
-			return (GameObject)Instantiate(Resources.Load("Prefabs/EnemyBullet"));
-		}
-		default:
-			break;
-		}*/
 		return obj;
 	}
 
@@ -152,7 +145,7 @@ public class Projectile : MonoBehaviour {
 
 		Destroy(this.gameObject);
 	}
-	// Update is called once per frame
+
 	void Update () {
 		Vector3 pos = this.transform.position;
 		pos.x += direction.x*speed;
@@ -161,18 +154,6 @@ public class Projectile : MonoBehaviour {
 
 		if(shooter == null) Destroy(this.gameObject);
 	}
-
-	/*void OnCollisionEnter(Collision coll) {
-		//Temp Enemy only
-		if(coll.gameObject.tag == shooter.tag)return;
-		hit(coll.gameObject.GetComponent<Character>());
-
-		if(type == CharacterSkillType.ChargedAttack) {
-			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeExplosion"), this.transform.position, Quaternion.identity);
-			obj.GetComponent<CubeExplosion>().dir = direction;
-		}
-		Destroy(this.gameObject);
-	}*/
 
 	void OnTriggerEnter(Collider coll) {
 		//Temp Enemy only
@@ -198,3 +179,16 @@ public class Projectile : MonoBehaviour {
 		shooter.hit(character, skillType, subType);
 	}
 }
+
+
+/*void OnCollisionEnter(Collision coll) {
+		//Temp Enemy only
+		if(coll.gameObject.tag == shooter.tag)return;
+		hit(coll.gameObject.GetComponent<Character>());
+
+		if(type == CharacterSkillType.ChargedAttack) {
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/CubeExplosion"), this.transform.position, Quaternion.identity);
+			obj.GetComponent<CubeExplosion>().dir = direction;
+		}
+		Destroy(this.gameObject);
+	}*/

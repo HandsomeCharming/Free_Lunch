@@ -35,7 +35,8 @@ public class InputHandler : MonoBehaviour {
 		switch(state) {
 		case CharacterState.Stand: {
 			face ();
-			stand();
+			if(vertical == 0 && horizontal == 0) 
+				stand();
 			if(vertical != 0 || horizontal != 0) {
 				move ();
 				character.state = CharacterState.Move;
@@ -139,7 +140,9 @@ public class InputHandler : MonoBehaviour {
 		float horizontal = Input.GetAxis("Horizontal");
 		if(vertical != 0 || horizontal != 0) {
 			character.dodgeToward(new Vector2(horizontal, vertical).normalized);
-		} 
+		} else {
+			character.dodgeToward(new Vector2(1f, 0).normalized);
+		}
 	}
 
 	void attack() {

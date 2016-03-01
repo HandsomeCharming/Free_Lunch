@@ -165,7 +165,10 @@ public class Character : MonoBehaviour {
 		for(int a=0;a<tempEffects.Count;++a) {
 			TemporaryEffect tempEffect = (TemporaryEffect) tempEffects[a];
 			switch(tempEffect.type ) {
-			case 35:
+			case 552:
+				scale *= 0.5f;
+				break;
+			case 555:
 				scale *= 0.5f;
 				break;
 			default:
@@ -175,7 +178,33 @@ public class Character : MonoBehaviour {
 		status.moveSpeed = status.regularMoveSpeed * scale;
 	}
 
+	public virtual void calculateDot() {
+		for(int a=0;a<tempEffects.Count;++a) {
+			TemporaryEffect tempEffect = (TemporaryEffect) tempEffects[a];
+			switch(tempEffect.type ) {
+			case 550:
+				if(tempEffect.dotTimeout()) {
+					status.hp -= 5f;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	public void die() {
+		if(AIController.current.characters.Contains(this)) {
+			AIController.current.characters.Remove(this);
+		}
+		Destroy(this.gameObject);
+	}
+
 	protected void Update() {
+		if(status.hp <= 0f) {
+			die();
+			return;
+		}
 		for(int a=0;a!=10;++a) {
 			if(actionCdRemain[a]>0) {
 				actionCdRemain[a] -= Time.deltaTime;
@@ -183,6 +212,7 @@ public class Character : MonoBehaviour {
 			if(actionCdRemain[a] <= 0) actionCdRemain[a] = 0;
 		}
 		calculateSpeed();
+		calculateDot();
 		for(int a=0;a<tempEffects.Count;++a) {
 			TemporaryEffect tempEffect = (TemporaryEffect)tempEffects[a];
 			tempEffect.remainTime -= Time.deltaTime;
