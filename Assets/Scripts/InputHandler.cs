@@ -42,7 +42,7 @@ public class InputHandler : MonoBehaviour {
 					move ();
 					character.state = CharacterState.Move;
 				}
-				if(Input.GetKeyDown(KeyCode.Space)) {
+				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
 					dodge();
 					character.state = CharacterState.Dodge;
 				} else if(Input.GetMouseButton(0)) {
@@ -50,7 +50,7 @@ public class InputHandler : MonoBehaviour {
 				} else if(Input.GetMouseButtonDown(1)) {
 					startCharging();
 					character.state = CharacterState.ChargedAttack;
-				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+				} else if (Input.GetKeyDown(KeyCode.LeftShift) && character.actionCdRemain[3] == 0) {
 					block();
 					character.state = CharacterState.Block;
 				}
@@ -64,14 +64,14 @@ public class InputHandler : MonoBehaviour {
 				} else {
 					character.state = CharacterState.Stand;
 				}
-				if(Input.GetKeyDown(KeyCode.Space)) {
+				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
 					dodge();
 					character.state = CharacterState.Dodge;
 				} else if(Input.GetMouseButton(0)) {
 					attack();
 				} else if(Input.GetMouseButtonDown(1)) {
 					startCharging();
-				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+				} else if (Input.GetKeyDown(KeyCode.LeftShift) && character.actionCdRemain[3] == 0) {
 					block();
 					character.state = CharacterState.Block;
 				}
@@ -83,14 +83,14 @@ public class InputHandler : MonoBehaviour {
 			}
 			case CharacterState.ChargedAttack: {
 				face ();
-				if(Input.GetKeyDown(KeyCode.Space)) {
+				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
 					dodge();
 					character.state = CharacterState.Dodge;
 					chargedAttack();
 				} else if(Input.GetMouseButtonUp(1)) {
 					character.state = CharacterState.Move;
 					chargedAttack ();
-				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+				} else if (Input.GetKeyDown(KeyCode.LeftShift) && character.actionCdRemain[3] == 0) {
 					block();
 					character.state = CharacterState.Block;
 					chargedAttack();

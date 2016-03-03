@@ -48,8 +48,8 @@ public class Character : MonoBehaviour {
 	// 2: dodge
 	// 3: block
 	// 4-10: actives
-	protected float[] actionCdRemain; 
-	protected float[] actionCds;
+	public float[] actionCdRemain; 
+	public float[] actionCds;
 
 	public int getSkillType(CharacterSkillType skillType) {
 		switch (skillType) {
