@@ -112,6 +112,16 @@ public class DodgeModifier : Modifier {
 }
 
 public class BlockModifier : Modifier {
+	public BlockModifier(int type) {
+		this.type = type;
+		switch(type) {
+		case 200:
+			subTypeCount = 1;
+			blockTime = 1.0f;
+			break;
+		}
+	}
+	public float blockTime;
 	//int type;
 }
 

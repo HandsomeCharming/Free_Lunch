@@ -23,11 +23,13 @@ public class MainCharacter : Character {
 		for(int a=0;a!=10;++a)
 			actionCdRemain[a] = 0;
 		actionCds[2] = 3f;
+		actionCds[3] = 1.5f;
 
 		status.regularMoveSpeed = 40f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
+		blockModifier = new BlockModifier(200);
 		div = MainCharacterDiv.Division;
 	}
 
@@ -52,6 +54,12 @@ public class MainCharacter : Character {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
 		else 
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Attack);
+	}
+
+	public override void block() {
+		if(actionCdRemain[3] > 0) return;
+		actionCdRemain[3] = actionCds[3];
+		Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
 	}
 
 	public override void attackToward(Vector2 dir) {

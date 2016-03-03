@@ -90,6 +90,9 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(152, new ProjectileType(152, 2));
 		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Attack, 1f, 2f, "");
 		projectileTypes[152].projectileDatas[1] = new ProjectileData(152, 1, CharacterSkillType.Attack, 0f, 5f, "Prefabs/DodgeSlowCloud");
+
+		projectileTypes.Add(200, new ProjectileType(200, 2));
+		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Attack, 0f, 1f, "Prefabs/Shield");
 		//projectileData[0].setData
 	}
 
@@ -131,12 +134,16 @@ public class Projectile : MonoBehaviour {
 	static Quaternion rotationByType(Character shooter, Vector2 dir, CharacterSkillType skillType, int subType = 0) {
 		int type = shooter.getSkillType(skillType);
 
+		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
+		angle = dir.y>0?angle:-angle;
+
 		if(type == 152) {
 			return Quaternion.Euler(270, 0, 0);
 		}
+		else if(type == 200) {
+			return Quaternion.Euler(320, 90-angle, 90);
+		}
 		else {
-			float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
-			angle = dir.y>0?angle:-angle;
 			return Quaternion.Euler(0, -angle, 0);
 		}
 			
@@ -163,9 +170,17 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector3 pos = this.transform.position;
-		pos.x += direction.x*speed;
-		pos.z += direction.y*speed;
+		Vector3 pos;
+		if(type == 200) {
+			pos = shooter.transform.position;
+			pos.x += shooter.status.facingDirection.x * 3f;
+			pos.z += shooter.status.facingDirection.y * 3f;
+			this.transform.rotation = rotationByType(shooter, shooter.status.facingDirection, CharacterSkillType.Block, 0);
+		} else {
+			pos = this.transform.position;
+			pos.x += direction.x*speed;
+			pos.z += direction.y*speed;
+		}
 		this.transform.position = pos;
 
 		if(shooter == null) Destroy(this.gameObject);
@@ -192,7 +207,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	bool destroyOnContact() {
-		if(type == 152)return false;
+		if(type == 152 || type == 200)return false;
 		return true;
 	}
 

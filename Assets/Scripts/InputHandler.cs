@@ -13,6 +13,7 @@ public class InputHandler : MonoBehaviour {
 
 	float chargingTime = 0;
 	float dodgeTime = 0;
+	float blockTime = 0;
 	// Use this for initialization
 
 	public InputHandler() {
@@ -33,75 +34,96 @@ public class InputHandler : MonoBehaviour {
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
 		switch(state) {
-		case CharacterState.Stand: {
-			face ();
-			if(vertical == 0 && horizontal == 0) 
-				stand();
-			if(vertical != 0 || horizontal != 0) {
+			case CharacterState.Stand: {
+				face ();
+				if(vertical == 0 && horizontal == 0) 
+					stand();
+				if(vertical != 0 || horizontal != 0) {
+					move ();
+					character.state = CharacterState.Move;
+				}
+				if(Input.GetKeyDown(KeyCode.Space)) {
+					dodge();
+					character.state = CharacterState.Dodge;
+				} else if(Input.GetMouseButton(0)) {
+					attack();
+				} else if(Input.GetMouseButtonDown(1)) {
+					startCharging();
+					character.state = CharacterState.ChargedAttack;
+				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+					block();
+					character.state = CharacterState.Block;
+				}
+
+				break;
+			}
+			case CharacterState.Move: {
+				face ();
+				if(vertical != 0 || horizontal != 0) {
+					move ();
+				} else {
+					character.state = CharacterState.Stand;
+				}
+				if(Input.GetKeyDown(KeyCode.Space)) {
+					dodge();
+					character.state = CharacterState.Dodge;
+				} else if(Input.GetMouseButton(0)) {
+					attack();
+				} else if(Input.GetMouseButtonDown(1)) {
+					startCharging();
+				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+					block();
+					character.state = CharacterState.Block;
+				}
+
+				break;
+			}
+			case CharacterState.Attack: {
+				break;
+			}
+			case CharacterState.ChargedAttack: {
+				face ();
+				if(Input.GetKeyDown(KeyCode.Space)) {
+					dodge();
+					character.state = CharacterState.Dodge;
+					chargedAttack();
+				} else if(Input.GetMouseButtonUp(1)) {
+					character.state = CharacterState.Move;
+					chargedAttack ();
+				} else if (Input.GetKeyDown(KeyCode.LeftShift)) {
+					block();
+					character.state = CharacterState.Block;
+					chargedAttack();
+				}
+
 				move ();
-				character.state = CharacterState.Move;
+				chargingTime+=Time.deltaTime;
+				if(chargingTime >= character.chargedAttackModifier.chargeTime) {
+					character.state = CharacterState.Move;
+					chargedAttack ();
+				}
+				break;
 			}
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				dodge();
-				character.state = CharacterState.Dodge;
-			} else if(Input.GetMouseButton(0)) {
-				attack();
-			} else if(Input.GetMouseButtonDown(1)) {
-				startCharging();
-				character.state = CharacterState.ChargedAttack;
+			case CharacterState.Dodge: {
+				dodgeTime += Time.deltaTime;
+				if(dodgeTime >= character.dodgeModifier.dodgeTime) {
+						dodgeTime = 0;
+					character.state = CharacterState.Move;
+				}
+				break;
 			}
-
-			break;
-		}
-		case CharacterState.Move: {
-			face ();
-			if(vertical != 0 || horizontal != 0) {
-				move ();
-			} else {
-				character.state = CharacterState.Stand;
-			}
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				dodge();
-				character.state = CharacterState.Dodge;
-			} else if(Input.GetMouseButton(0)) {
-				attack();
-			} else if(Input.GetMouseButtonDown(1)) {
-				startCharging();
-			}
-
-			break;
-		}
-		case CharacterState.Attack: {
-			break;
-		}
-		case CharacterState.ChargedAttack: {
-			face ();
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				dodge();
-				character.state = CharacterState.Dodge;
-				chargedAttack();
-			} else if(Input.GetMouseButtonUp(1)) {
-				character.state = CharacterState.Move;
-				chargedAttack ();
-			}
-
-			move ();
-			chargingTime+=Time.deltaTime;
-			if(chargingTime >= character.chargedAttackModifier.chargeTime) {
-				character.state = CharacterState.Move;
-				chargedAttack ();
-			}
-			break;
-		}
-		case CharacterState.Dodge: {
-			dodgeTime += Time.deltaTime;
-			if(dodgeTime >= character.dodgeModifier.dodgeTime) {
-				character.state = CharacterState.Move;
-			}
-			break;
-		}
-		default:
-			break;
+			case CharacterState.Block: {
+				face();
+				move();
+				blockTime += Time.deltaTime;
+				if(blockTime >= character.blockModifier.blockTime) {
+					blockTime = 0;
+					character.state = CharacterState.Move;
+				}
+				break;
+				}
+			default:
+				break;
 		}
 	}
 
@@ -143,6 +165,10 @@ public class InputHandler : MonoBehaviour {
 		} else {
 			character.dodgeToward(new Vector2(1f, 0).normalized);
 		}
+	}
+
+	void block() {
+		character.block();
 	}
 
 	void attack() {
