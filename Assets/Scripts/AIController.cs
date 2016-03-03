@@ -44,7 +44,7 @@ public class AIController : MonoBehaviour {
 		while(true) {
 			yield return new WaitForSeconds(5f);
 			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(4f,8f), 0 ,Random.Range(4f,8f));
-			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
 		}
 	}
 }
