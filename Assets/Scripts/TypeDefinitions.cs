@@ -81,9 +81,7 @@ public class ChargedAttackModifier : Modifier {
 		switch(type) {
 		case 103:
 			subTypeCount = 2;
-			damage = new float[2];
-			damage[0] = 40f;
-			damage[1] = 30f;
+			damage = new float[2] {30f,40f};
 			break;
 		default:
 			break;
@@ -99,6 +97,10 @@ public class DodgeModifier : Modifier {
 		this.type = type;
 		switch(type) {
 		case 152:
+			subTypeCount = 2;
+			damage = new float[] {0f,0f};
+			negativeEffectCount = 2;
+			negativeEffects = new int[] {0, 556};
 			break;
 		case 153:
 			break;
@@ -129,6 +131,9 @@ public class TemporaryEffect {
 			break;
 		case 555:
 			totalTime = remainTime = 5f;
+			break;
+		case 556:
+			totalTime = remainTime = 1f;
 			break;
 		default:
 			break;

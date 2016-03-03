@@ -24,7 +24,7 @@ public class MainCharacter : Character {
 			actionCdRemain[a] = 0;
 		actionCds[2] = 3f;
 
-		status.regularMoveSpeed = 80f;
+		status.regularMoveSpeed = 40f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
@@ -83,6 +83,13 @@ public class MainCharacter : Character {
 			case CharacterSkillType.ChargedAttack:
 				temp.status.hp -= chargedAttackModifier.damage[subType];
 				break;
+			case CharacterSkillType.Dodge:
+				if(dodgeModifier.negativeEffectCount > 0) {
+					for(int a=0;a!=dodgeModifier.negativeEffectCount;++a) {
+						other.applyTemporaryEffect(dodgeModifier.negativeEffects[a]);
+					}
+				}
+				break;
 			}
 		}
 	}
@@ -98,9 +105,18 @@ public class MainCharacter : Character {
 		ParticleSystem.Particle []lightningList = new ParticleSystem.Particle[lightning.particleCount];
 		lightning.GetParticles(lightningList);
 		byte lightningAlpha = lightningList[0].color.a;
+
+		float dodgeSlowTimeout = 0.05f;  //Only for slow path
 		while(time < dodgeModifier.dodgeTime) {
-			pos += new Vector3(dir.x, 0, dir.y).normalized * 3f;
+			pos += new Vector3(dir.x, 0, dir.y).normalized * 1.5f;
 			this.transform.position = pos;
+			if(dodgeModifier.type == 152) {  //Slow path 
+				dodgeSlowTimeout -= Time.deltaTime;
+				if(dodgeSlowTimeout <= 0f) {
+					dodgeSlowTimeout = 0.05f;
+					Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Dodge, 1);
+				}
+			}
 			if(time < dodgeModifier.dodgeTime/2f) {
 				scale.z = Mathf.Lerp(scalez, scalez/5f, time/(dodgeModifier.dodgeTime/2f));
 			} else {

@@ -86,6 +86,10 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(103, new ProjectileType(103, 2));
 		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
 		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.Attack, 0f, 2f, "Prefabs/BurstExplosion");
+
+		projectileTypes.Add(152, new ProjectileType(152, 2));
+		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Attack, 1f, 2f, "");
+		projectileTypes[152].projectileDatas[1] = new ProjectileData(152, 1, CharacterSkillType.Attack, 0f, 5f, "Prefabs/DodgeSlowCloud");
 		//projectileData[0].setData
 	}
 
@@ -99,9 +103,7 @@ public class Projectile : MonoBehaviour {
 		ans.direction = dir;
 		ans.skillType = skillType;
 
-		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
-		angle = dir.y>0?angle:-angle;
-		obj.transform.rotation = Quaternion.Euler(0, -angle, 0);
+		obj.transform.rotation = rotationByType(shooter, dir, skillType, subType);
 
 		Destroy(obj, ans.existTime);
 		return ans;
@@ -124,6 +126,20 @@ public class Projectile : MonoBehaviour {
 
 		obj = (GameObject)Instantiate(Resources.Load(projectileTypes[type].projectileDatas[subType].prefabName));
 		return obj;
+	}
+
+	static Quaternion rotationByType(Character shooter, Vector2 dir, CharacterSkillType skillType, int subType = 0) {
+		int type = shooter.getSkillType(skillType);
+
+		if(type == 152) {
+			return Quaternion.Euler(270, 0, 0);
+		}
+		else {
+			float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
+			angle = dir.y>0?angle:-angle;
+			return Quaternion.Euler(0, -angle, 0);
+		}
+			
 	}
 
 	static void InitByType(ref Projectile projectile, Character shooter, CharacterSkillType skillType, int subType = 0) {
@@ -171,8 +187,13 @@ public class Projectile : MonoBehaviour {
 
 			}
 		}
-		if(this.gameObject != null)
+		if(this.gameObject != null && destroyOnContact())
 			Destroy(this.gameObject);
+	}
+
+	bool destroyOnContact() {
+		if(type == 152)return false;
+		return true;
 	}
 
 	void hit(Character character) {

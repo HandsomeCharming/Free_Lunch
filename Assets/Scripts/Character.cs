@@ -11,7 +11,7 @@ public class Character : MonoBehaviour {
 		state = CharacterState.Stand;
 		status = new CharacterStatus();
 		status.moveSpeed = 30f;
-		status.regularMoveSpeed = 30f;
+		status.regularMoveSpeed = 20f;
 		type = 0;
 
 		actionCds = new float[10];
@@ -147,6 +147,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public virtual void applyTemporaryEffect(int type) {
+		if(type <500)return;
 		TemporaryEffect tempEffect = new TemporaryEffect(type);
 		tempEffects.Add(tempEffect);
 	}
@@ -169,6 +170,9 @@ public class Character : MonoBehaviour {
 				scale *= 0.5f;
 				break;
 			case 555:
+				scale *= 0.5f;
+				break;
+			case 556:
 				scale *= 0.5f;
 				break;
 			default:
