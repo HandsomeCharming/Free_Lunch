@@ -95,7 +95,7 @@ public class Projectile : MonoBehaviour {
 		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Block, 0f, 1f, "Prefabs/Shield");
 
 		projectileTypes.Add(251, new ProjectileType(251, 1));
-		projectileTypes[251].projectileDatas[0] = new ProjectileData(251, 0, CharacterSkillType.Active1, 0f, 1f, "Prefabs/Ability251");
+		projectileTypes[251].projectileDatas[0] = new ProjectileData(251, 0, CharacterSkillType.Active1, 0f, 5f, "Prefabs/Ability251");
 		//projectileData[0].setData
 	}
 
@@ -141,13 +141,14 @@ public class Projectile : MonoBehaviour {
 		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
 		angle = dir.y>0?angle:-angle;
 
-		if(type == 152) {
+		switch(type) {
+		case 152:
 			return Quaternion.Euler(270, 0, 0);
-		}
-		else if(type == 200) {
+		case 200:
 			return Quaternion.Euler(320, 90-angle, 90);
-		}
-		else {
+		case 251:
+			return Quaternion.Euler(90, 0, 0);
+		default:
 			return Quaternion.Euler(0, -angle, 0);
 		}
 			
@@ -165,12 +166,6 @@ public class Projectile : MonoBehaviour {
 
 	void Start () {
 		//destroyOnDelay(2.0f);
-	}
-
-	IEnumerator destroyOnDelay(float delay) {
-		yield return new WaitForSeconds(delay);
-
-		Destroy(this.gameObject);
 	}
 
 	void Update () {
@@ -211,7 +206,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	bool destroyOnContact() {
-		if(type == 152 || type == 200)return false;
+		if(type == 152 || type == 200 || type == 251)return false;
 		return true;
 	}
 

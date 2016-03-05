@@ -48,8 +48,8 @@ public class Character : MonoBehaviour {
 	// 2: dodge
 	// 3: block
 	// 4-10: actives
-	public float[] actionCdRemain; 
-	public float[] actionCds;
+	public float[] actionCdRemain {get;set;}
+	public float[] actionCds {get;set;}
 
 	public int getSkillType(CharacterSkillType skillType) {
 		switch (skillType) {
@@ -178,6 +178,9 @@ public class Character : MonoBehaviour {
 				break;
 			case 556:
 				scale *= 0.5f;
+				break;
+			case 557:
+				scale *= 0f;
 				break;
 			default:
 				break;

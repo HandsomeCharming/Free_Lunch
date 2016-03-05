@@ -201,7 +201,7 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void useActive(int activeType) {
-
+		character.useSkill(activeType);
 	}
 
 	void chargedAttack() {

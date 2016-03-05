@@ -8,7 +8,7 @@ public class AIController : MonoBehaviour {
 
 	public static AIController current;
 
-	public bool autoSpawnEnemy;
+	public bool autoSpawnEnemy = true;
 
 	public ArrayList characters {get; set;}
 	public int characterCount {get; set;}

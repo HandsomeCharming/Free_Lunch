@@ -14,16 +14,9 @@ public class MainCharacter : Character {
 	public ParticleSystem lightning;
 
 	public MainCharacter() : base() {
-		actionCds = new float[10];
-		actionCdRemain = new float[10];
-
-		type = 0;
-		for(int a=0;a!=10;++a)
-			actionCds[a] = 0.3f;
-		for(int a=0;a!=10;++a)
-			actionCdRemain[a] = 0;
 		actionCds[2] = 3f;
 		actionCds[3] = 1.5f;
+		actionCds[4] = 5f;
 
 		status.regularMoveSpeed = 40f;
 		attackModifier = new AttackModifier(3);
@@ -35,7 +28,6 @@ public class MainCharacter : Character {
 
 		div = MainCharacterDiv.Division;
 	}
-
 
 	//Currently only division.
 	public override void attack() {
@@ -80,6 +72,8 @@ public class MainCharacter : Character {
 
 	public override void useSkill (int skillIndex)
 	{
+		if(actionCdRemain[skillIndex+4] > 0)return;
+		actionCdRemain[skillIndex+4] = actionCds[skillIndex+4];
 		ActiveModifier modifier = (ActiveModifier) activeSkills[skillIndex];
 		if(modifier.type == 251) {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Active1, 0);
@@ -106,6 +100,15 @@ public class MainCharacter : Character {
 				if(dodgeModifier.negativeEffectCount > 0) {
 					for(int a=0;a!=dodgeModifier.negativeEffectCount;++a) {
 						other.applyTemporaryEffect(dodgeModifier.negativeEffects[a]);
+					}
+				}
+				break;
+			case CharacterSkillType.Active1:
+				ActiveModifier mod = (ActiveModifier)activeSkills[0];
+				temp.status.hp -= mod.damage[0];
+				if(mod.negativeEffectCount > 0) {
+					for(int a=0;a!=mod.negativeEffectCount;++a) {
+						other.applyTemporaryEffect(mod.negativeEffects[a]);
 					}
 				}
 				break;
@@ -200,6 +203,10 @@ public class MainCharacter : Character {
 		//Temporary collider setup
 		SphereCollider collider = gameObject.AddComponent<SphereCollider>();
 		collider.radius = 2.4f;
+
+		GameObject hb = ((GameObject)Instantiate(Resources.Load("Prefabs/Healthbar")));
+		HealthAndChargeBar healthBar = hb.GetComponent<HealthAndChargeBar>();
+		healthBar.character = this;
 
 		if(GameSave.current == null) {
 			SaveLoad.Load();
