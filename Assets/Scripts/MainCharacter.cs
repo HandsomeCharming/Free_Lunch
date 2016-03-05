@@ -30,6 +30,9 @@ public class MainCharacter : Character {
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
 		blockModifier = new BlockModifier(200);
+		activeSkills = new ArrayList();
+		activeSkills.Add(new ActiveModifier(251));
+
 		div = MainCharacterDiv.Division;
 	}
 
@@ -73,6 +76,14 @@ public class MainCharacter : Character {
 		actionCdRemain[2] = actionCds[2];
 		faceTowardWithoutLerp(dir);
 		StartCoroutine(dodgeLerp(dir));
+	}
+
+	public override void useSkill (int skillIndex)
+	{
+		ActiveModifier modifier = (ActiveModifier) activeSkills[skillIndex];
+		if(modifier.type == 251) {
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Active1, 0);
+		}
 	}
 
 	public override void hit(Character other, CharacterSkillType skillType, int subType = 0) {

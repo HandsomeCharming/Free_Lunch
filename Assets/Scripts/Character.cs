@@ -39,7 +39,7 @@ public class Character : MonoBehaviour {
 	public ArrayList passiveSkills;  //Permenant passive skills
 	public ArrayList tempEffects;    //Temporary effects
 
-	public int[] activeSkills;
+	public ArrayList activeSkills;
 	public int activeNum;
 
 	//Cooldown for certain actions, when set to 0, can do action.
@@ -61,6 +61,10 @@ public class Character : MonoBehaviour {
 			return dodgeModifier.type;
 		case CharacterSkillType.Block:
 			return blockModifier.type;
+		case CharacterSkillType.Active1:
+			return ((ActiveModifier)activeSkills[0]).type;
+		case CharacterSkillType.Active2:
+			return ((ActiveModifier)activeSkills[1]).type;
 		}
 		return 0;
 	}
