@@ -130,8 +130,10 @@ public class MainCharacter : Character {
 
 		float dodgeSlowTimeout = 0.05f;  //Only for slow path
 		while(time < dodgeModifier.dodgeTime) {
-			pos += new Vector3(dir.x, 0, dir.y).normalized * 1.5f;
-			this.transform.position = pos;
+			pos = new Vector3(dir.x, 0, dir.y).normalized * 1.5f;
+			//this.transform.position = pos;
+			Rigidbody body = GetComponent<Rigidbody>();
+			body.velocity = pos * 65f;
 			if(dodgeModifier.type == 152) {  //Slow path 
 				dodgeSlowTimeout -= Time.deltaTime;
 				if(dodgeSlowTimeout <= 0f) {
