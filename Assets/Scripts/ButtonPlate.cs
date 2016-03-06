@@ -13,13 +13,14 @@ public class ButtonPlate : EventTrigger {
 	}
 	
 	void OnTriggerEnter(Collider coll) {
-		if(pressed)return;
+		if(coll.gameObject.tag != "Player" ||  pressed)return;
 		pressed = true;
 		print("press");
 		StartCoroutine(pushButton());
 	}
 
 	void OnTriggerExit(Collider coll) {
+		if(coll.gameObject.tag != "Player" ||  !pressed)return;
 		pressed = false;
 		StartCoroutine(releaseButton());
 	}

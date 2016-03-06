@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour {
 	public float y;
 	public float z;
 
-	float chargingTime = 0;
+	public float chargingTime = 0;
 	float dodgeTime = 0;
 	float blockTime = 0;
 	float activeTime = 0;
@@ -31,6 +31,7 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void handleInput () {
+		if(character == null) return;
 		CharacterState state = character.state;
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
@@ -206,5 +207,6 @@ public class InputHandler : MonoBehaviour {
 
 	void chargedAttack() {
 		character.chargedAttack(chargingTime);
+		chargingTime = 0;
 	}
 }

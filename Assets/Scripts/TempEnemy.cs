@@ -7,6 +7,8 @@ public class TempEnemy : Character {
 	public TempEnemy() : base() {
 		type = 5;
 		attackModifier = new AttackModifier(30);
+
+		actionCds[0] = 1f;
 	}
 	// Use this for initialization
 	void Start () {
@@ -26,5 +28,12 @@ public class TempEnemy : Character {
 
 	void Update() {
 		base.Update();
+	}
+
+	public override void hit (Character other, CharacterSkillType skillType, int subType = 0)
+	{
+		base.hit (other, skillType, subType);
+		print("hit");
+		other.gotHit(this, 10f);
 	}
 }

@@ -26,6 +26,7 @@ public class AIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(player == null) return;
 		handleAllAI();
 	}
 
@@ -46,8 +47,8 @@ public class AIController : MonoBehaviour {
 		while(true) {
 			yield return new WaitForSeconds(5f);
 			if(!autoSpawnEnemy) continue;
-			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(4f,8f), 0 ,Random.Range(4f,8f));
-			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(20f,30f), 0 ,Random.Range(20f,30f));
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
 		}
 	}
 }

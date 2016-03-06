@@ -62,6 +62,8 @@ public class Projectile : MonoBehaviour {
 	float existTime = 2;
 	Vector2 direction;
 
+	ArrayList hitByThis;
+
 	Projectile(Character shooter, Vector2 dir, CharacterSkillType type) {
 		this.shooter = shooter;
 		this.direction = dir;
@@ -105,6 +107,8 @@ public class Projectile : MonoBehaviour {
 		Projectile ans = obj.GetComponent<Projectile>();
 		if(ans == null) ans = obj.GetComponentInChildren<Projectile>();
 		InitByType(ref ans, shooter, skillType, subType);
+
+		ans.hitByThis = new ArrayList();
 		ans.shooter = shooter;
 		ans.direction = dir;
 		ans.skillType = skillType;
@@ -194,6 +198,11 @@ public class Projectile : MonoBehaviour {
 		//Temp Enemy only
 		if(coll.gameObject == null || shooter == null)return;
 		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet")return;
+		if(coll.gameObject.tag == "Wall" && destroyOnContact()) {
+			Destroy(this.gameObject);
+			return;
+		}
+		print("Trigger");
 		hit(coll.gameObject.GetComponent<Character>());
 		
 		if(skillType == CharacterSkillType.ChargedAttack) {
@@ -216,6 +225,8 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void hit(Character character) {
+		if(hitByThis.Contains(character))return;
+		hitByThis.Add(character);
 		shooter.hit(character, skillType, subType);
 	}
 }

@@ -7,6 +7,7 @@ using System.Collections;
 public class CharacterStatus {
 	public CharacterStatus() {
 		hp = 100f;
+		maxhp = 100f;
 		level = 0;
 		defense = 0;
 		defensePenetration = 0;
@@ -19,12 +20,15 @@ public class CharacterStatus {
 		canUseSkill = true;
 	}
 	public float hp;
+	public float maxhp;
 	public int level;
 	public float defense;
 	public float defensePenetration;
 	public float moveSpeed;
 	public float regularMoveSpeed;
 	public float healthRegen;
+	public float hitImmuneTime;
+	public float hitImmuneTimeRemain;
 	public Vector2 facingDirection;
 	public bool canMove;
 	public bool canAttack;
