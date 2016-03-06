@@ -14,7 +14,9 @@ public class InputHandler : MonoBehaviour {
 	float chargingTime = 0;
 	float dodgeTime = 0;
 	float blockTime = 0;
-	// Use this for initialization
+	float activeTime = 0;
+
+	int usingSkillType = 0;
 
 	public InputHandler() {
 		current = this;
@@ -23,8 +25,7 @@ public class InputHandler : MonoBehaviour {
 	void Start () {
 		current = this;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		handleInput();
 	}
@@ -53,6 +54,10 @@ public class InputHandler : MonoBehaviour {
 				} else if (Input.GetKeyDown(KeyCode.LeftShift) && character.actionCdRemain[3] == 0) {
 					block();
 					character.state = CharacterState.Block;
+				} else if(Input.GetKeyDown(KeyCode.C) && character.actionCdRemain[4] == 0) {
+					useActive(0);
+					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
+						character.state = CharacterState.UseSkill;
 				}
 
 				break;
@@ -74,6 +79,10 @@ public class InputHandler : MonoBehaviour {
 				} else if (Input.GetKeyDown(KeyCode.LeftShift) && character.actionCdRemain[3] == 0) {
 					block();
 					character.state = CharacterState.Block;
+				} else if(Input.GetKeyDown(KeyCode.C) && character.actionCdRemain[4] == 0) {
+					useActive(0);
+					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
+						character.state = CharacterState.UseSkill;
 				}
 
 				break;
@@ -121,7 +130,15 @@ public class InputHandler : MonoBehaviour {
 					character.state = CharacterState.Move;
 				}
 				break;
+			}
+			case CharacterState.UseSkill: {
+				face();
+				activeTime += Time.deltaTime;
+				if(activeTime >= ((ActiveModifier)character.activeSkills[usingSkillType]).existTime) {
+					character.state = CharacterState.Move;
 				}
+				break;
+			}
 			default:
 				break;
 		}
@@ -181,6 +198,10 @@ public class InputHandler : MonoBehaviour {
 		z = mousePosition.z;
 		character.attackToward(new Vector2(mousePosition.x, mousePosition.z).normalized);*/
 		character.attack ();
+	}
+
+	void useActive(int activeType) {
+		character.useSkill(activeType);
 	}
 
 	void chargedAttack() {

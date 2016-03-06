@@ -125,6 +125,23 @@ public class BlockModifier : Modifier {
 	//int type;
 }
 
+public class ActiveModifier : Modifier {
+	public ActiveModifier(int type) {
+		this.type = type;
+		switch(type) {
+		case 251:
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 34f;
+			negativeEffectCount = 1;
+			negativeEffects = new int[1];
+			negativeEffects[0] = 557;
+			break;
+		}
+	}
+	public float existTime = 0f;
+}
+
 public class PassiveSkill {
 	public int type;
 }
@@ -144,6 +161,9 @@ public class TemporaryEffect {
 			break;
 		case 556:
 			totalTime = remainTime = 1f;
+			break;
+		case 557:
+			totalTime = remainTime = 5f;
 			break;
 		default:
 			break;

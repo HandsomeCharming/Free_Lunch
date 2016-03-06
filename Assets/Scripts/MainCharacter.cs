@@ -14,25 +14,20 @@ public class MainCharacter : Character {
 	public ParticleSystem lightning;
 
 	public MainCharacter() : base() {
-		actionCds = new float[10];
-		actionCdRemain = new float[10];
-
-		type = 0;
-		for(int a=0;a!=10;++a)
-			actionCds[a] = 0.3f;
-		for(int a=0;a!=10;++a)
-			actionCdRemain[a] = 0;
 		actionCds[2] = 3f;
 		actionCds[3] = 1.5f;
+		actionCds[4] = 5f;
 
 		status.regularMoveSpeed = 40f;
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
 		blockModifier = new BlockModifier(200);
+		activeSkills = new ArrayList();
+		activeSkills.Add(new ActiveModifier(251));
+
 		div = MainCharacterDiv.Division;
 	}
-
 
 	//Currently only division.
 	public override void attack() {
@@ -75,6 +70,16 @@ public class MainCharacter : Character {
 		StartCoroutine(dodgeLerp(dir));
 	}
 
+	public override void useSkill (int skillIndex)
+	{
+		if(actionCdRemain[skillIndex+4] > 0)return;
+		actionCdRemain[skillIndex+4] = actionCds[skillIndex+4];
+		ActiveModifier modifier = (ActiveModifier) activeSkills[skillIndex];
+		if(modifier.type == 251) {
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Active1, 0);
+		}
+	}
+
 	public override void hit(Character other, CharacterSkillType skillType, int subType = 0) {
 		if(other == null) return;
 		if(other.tag == "TempEnemy") {
@@ -98,6 +103,15 @@ public class MainCharacter : Character {
 					}
 				}
 				break;
+			case CharacterSkillType.Active1:
+				ActiveModifier mod = (ActiveModifier)activeSkills[0];
+				temp.status.hp -= mod.damage[0];
+				if(mod.negativeEffectCount > 0) {
+					for(int a=0;a!=mod.negativeEffectCount;++a) {
+						other.applyTemporaryEffect(mod.negativeEffects[a]);
+					}
+				}
+				break;
 			}
 		}
 	}
@@ -116,8 +130,10 @@ public class MainCharacter : Character {
 
 		float dodgeSlowTimeout = 0.05f;  //Only for slow path
 		while(time < dodgeModifier.dodgeTime) {
-			pos += new Vector3(dir.x, 0, dir.y).normalized * 1.5f;
-			this.transform.position = pos;
+			pos = new Vector3(dir.x, 0, dir.y).normalized * 1.5f;
+			//this.transform.position = pos;
+			Rigidbody body = GetComponent<Rigidbody>();
+			body.velocity = pos * 65f;
 			if(dodgeModifier.type == 152) {  //Slow path 
 				dodgeSlowTimeout -= Time.deltaTime;
 				if(dodgeSlowTimeout <= 0f) {
@@ -189,6 +205,10 @@ public class MainCharacter : Character {
 		//Temporary collider setup
 		SphereCollider collider = gameObject.AddComponent<SphereCollider>();
 		collider.radius = 2.4f;
+
+		GameObject hb = ((GameObject)Instantiate(Resources.Load("Prefabs/Healthbar")));
+		HealthAndChargeBar healthBar = hb.GetComponent<HealthAndChargeBar>();
+		healthBar.character = this;
 
 		if(GameSave.current == null) {
 			SaveLoad.Load();

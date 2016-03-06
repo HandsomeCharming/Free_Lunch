@@ -39,7 +39,7 @@ public class Character : MonoBehaviour {
 	public ArrayList passiveSkills;  //Permenant passive skills
 	public ArrayList tempEffects;    //Temporary effects
 
-	public int[] activeSkills;
+	public ArrayList activeSkills;
 	public int activeNum;
 
 	//Cooldown for certain actions, when set to 0, can do action.
@@ -48,8 +48,8 @@ public class Character : MonoBehaviour {
 	// 2: dodge
 	// 3: block
 	// 4-10: actives
-	public float[] actionCdRemain; 
-	public float[] actionCds;
+	public float[] actionCdRemain {get;set;}
+	public float[] actionCds {get;set;}
 
 	public int getSkillType(CharacterSkillType skillType) {
 		switch (skillType) {
@@ -61,6 +61,10 @@ public class Character : MonoBehaviour {
 			return dodgeModifier.type;
 		case CharacterSkillType.Block:
 			return blockModifier.type;
+		case CharacterSkillType.Active1:
+			return ((ActiveModifier)activeSkills[0]).type;
+		case CharacterSkillType.Active2:
+			return ((ActiveModifier)activeSkills[1]).type;
 		}
 		return 0;
 	}
@@ -174,6 +178,9 @@ public class Character : MonoBehaviour {
 				break;
 			case 556:
 				scale *= 0.5f;
+				break;
+			case 557:
+				scale *= 0f;
 				break;
 			default:
 				break;

@@ -8,6 +8,8 @@ public class AIController : MonoBehaviour {
 
 	public static AIController current;
 
+	public bool autoSpawnEnemy = true;
+
 	public ArrayList characters {get; set;}
 	public int characterCount {get; set;}
 
@@ -43,6 +45,7 @@ public class AIController : MonoBehaviour {
 	IEnumerator makeTempEnemy() {
 		while(true) {
 			yield return new WaitForSeconds(5f);
+			if(!autoSpawnEnemy) continue;
 			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(4f,8f), 0 ,Random.Range(4f,8f));
 			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
 		}

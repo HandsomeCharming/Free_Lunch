@@ -84,15 +84,18 @@ public class Projectile : MonoBehaviour {
 		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
 
 		projectileTypes.Add(103, new ProjectileType(103, 2));
-		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
-		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.Attack, 0f, 2f, "Prefabs/BurstExplosion");
+		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.ChargedAttack, 1f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.ChargedAttack, 0f, 2f, "Prefabs/BurstExplosion");
 
 		projectileTypes.Add(152, new ProjectileType(152, 2));
-		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Attack, 1f, 2f, "");
-		projectileTypes[152].projectileDatas[1] = new ProjectileData(152, 1, CharacterSkillType.Attack, 0f, 5f, "Prefabs/DodgeSlowCloud");
+		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Dodge, 1f, 2f, "");
+		projectileTypes[152].projectileDatas[1] = new ProjectileData(152, 1, CharacterSkillType.Dodge, 0f, 5f, "Prefabs/DodgeSlowCloud");
 
-		projectileTypes.Add(200, new ProjectileType(200, 2));
-		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Attack, 0f, 1f, "Prefabs/Shield");
+		projectileTypes.Add(200, new ProjectileType(200, 1));
+		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Block, 0f, 1f, "Prefabs/Shield");
+
+		projectileTypes.Add(251, new ProjectileType(251, 1));
+		projectileTypes[251].projectileDatas[0] = new ProjectileData(251, 0, CharacterSkillType.Active1, 0f, 5f, "Prefabs/Ability251");
 		//projectileData[0].setData
 	}
 
@@ -120,6 +123,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 
+
 	static GameObject objectByType(Character shooter, CharacterSkillType skillType, int subType = 0) {
 		Modifier modifier;
 
@@ -137,13 +141,14 @@ public class Projectile : MonoBehaviour {
 		float angle = Vector2.Angle(new Vector2(1f, 0), dir); 
 		angle = dir.y>0?angle:-angle;
 
-		if(type == 152) {
+		switch(type) {
+		case 152:
 			return Quaternion.Euler(270, 0, 0);
-		}
-		else if(type == 200) {
+		case 200:
 			return Quaternion.Euler(320, 90-angle, 90);
-		}
-		else {
+		case 251:
+			return Quaternion.Euler(90, 0, 0);
+		default:
 			return Quaternion.Euler(0, -angle, 0);
 		}
 			
@@ -161,12 +166,6 @@ public class Projectile : MonoBehaviour {
 
 	void Start () {
 		//destroyOnDelay(2.0f);
-	}
-
-	IEnumerator destroyOnDelay(float delay) {
-		yield return new WaitForSeconds(delay);
-
-		Destroy(this.gameObject);
 	}
 
 	void Update () {
@@ -207,7 +206,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	bool destroyOnContact() {
-		if(type == 152 || type == 200)return false;
+		if(type == 152 || type == 200 || type == 251)return false;
 		return true;
 	}
 
