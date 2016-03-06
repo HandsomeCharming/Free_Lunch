@@ -11,13 +11,12 @@ public class MainCamera : MonoBehaviour {
 
 	public MainCamera() {
 		current = this;
-		cameraBoundaries = new float[4] {-450, -400, 450, 400};//minx, miny, maxx,miny
 
 	}
 	// Use this for initialization
 	void Start () {
 		current = this;
-		cameraBoundaries = new float[4] {-450, -400, 450, 400};
+		cameraBoundaries = new float[4] {-319, -348, 310, 319}; //minx, miny, maxx, maxy
 	}
 	
 	// Update is called once per frame
