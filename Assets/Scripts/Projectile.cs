@@ -117,8 +117,13 @@ public class Projectile : MonoBehaviour {
 
 	public static Projectile ShootProjectile(Character shooter, Vector2 dir, CharacterSkillType skillType, int subType = 0) {
 		Vector3 pos = shooter.transform.position;
-		pos.x += dir.x * 3f;
-		pos.z += dir.y * 3f;
+		if(shooter.getSkillType(skillType) != 152) {
+			pos.x += dir.x * 3f;
+			pos.z += dir.y * 3f;
+		} else {
+			pos.x -= dir.x * 3f;
+			pos.z -= dir.y * 3f;
+		}
 		return ShootProjectile(shooter, dir, pos, skillType, subType);
 	}
 
