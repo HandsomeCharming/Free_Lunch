@@ -202,7 +202,6 @@ public class Projectile : MonoBehaviour {
 			Destroy(this.gameObject);
 			return;
 		}
-		print("Trigger");
 		hit(coll.gameObject.GetComponent<Character>());
 		
 		if(skillType == CharacterSkillType.ChargedAttack) {
