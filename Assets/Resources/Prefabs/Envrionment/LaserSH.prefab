@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442628}
   m_Layer: 0
-  m_Name: LaserA
+  m_Name: LaserSH
   m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
