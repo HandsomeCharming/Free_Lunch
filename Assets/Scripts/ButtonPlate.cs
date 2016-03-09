@@ -7,6 +7,10 @@ public class ButtonPlate : EventTrigger {
 
 	public float pressTime = 0.3f;
 	public bool pressed = false;
+
+	public bool canPressAgain;
+
+	public GameObject destroy;
 	// Use this for initialization
 	void Start () {
 		eventType = 0;
@@ -17,11 +21,16 @@ public class ButtonPlate : EventTrigger {
 		pressed = true;
 		print("press");
 		StartCoroutine(pushButton());
+		if( destroy != null) {
+			Destroy(destroy);
+			destroy = null;
+		}
 	}
 
 	void OnTriggerExit(Collider coll) {
 		if(coll.gameObject.tag != "Player" ||  !pressed)return;
-		pressed = false;
+		if(canPressAgain)
+			pressed = false;
 		StartCoroutine(releaseButton());
 	}
 		

@@ -44,7 +44,7 @@ GameObject:
   - 136: {fileID: 13630546}
   - 114: {fileID: 11473826}
   m_Layer: 0
-  m_Name: Button
+  m_Name: ButtonPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,6 +228,8 @@ MonoBehaviour:
   button: {fileID: 156008}
   pressTime: 0.3
   pressed: 0
+  canPressAgain: 0
+  destroy: {fileID: 0}
 --- !u!136 &13630546
 CapsuleCollider:
   m_ObjectHideFlags: 1
