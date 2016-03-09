@@ -29,8 +29,7 @@ public class ButtonPlate : EventTrigger {
 
 	void OnTriggerExit(Collider coll) {
 		if(coll.gameObject.tag != "Player" ||  !pressed)return;
-		if(canPressAgain)
-			pressed = false;
+
 		StartCoroutine(releaseButton());
 	}
 		
@@ -57,6 +56,8 @@ public class ButtonPlate : EventTrigger {
 			button.transform.position = pos;
 			yield return new WaitForEndOfFrame();
 		}
+		if(canPressAgain)
+			pressed = false;
 		//return true;
 	}
 }
