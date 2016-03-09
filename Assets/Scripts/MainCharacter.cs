@@ -219,4 +219,8 @@ public class MainCharacter : Character {
 	void Update () {
 		base.Update();
 	}
+
+	void OnDestroy() {
+		Application.LoadLevel(Application.loadedLevel);
+	}
 }

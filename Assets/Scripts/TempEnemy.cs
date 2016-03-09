@@ -32,6 +32,7 @@ public class TempEnemy : Character {
 
 	public override void hit (Character other, CharacterSkillType skillType, int subType = 0)
 	{
+		if(this == null || other == null) return;
 		base.hit (other, skillType, subType);
 		other.gotHit(this, 10f);
 	}
