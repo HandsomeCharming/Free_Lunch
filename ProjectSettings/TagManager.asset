@@ -7,6 +7,7 @@ TagManager:
   - TempEnemy
   - Bullet
   - Wall
+  - Trap
   layers:
   - Default
   - TransparentFX

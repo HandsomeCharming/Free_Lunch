@@ -197,7 +197,7 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter(Collider coll) {
 		//Temp Enemy only
 		if(coll.gameObject == null || shooter == null)return;
-		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet")return;
+		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet" || coll.gameObject.tag == "Trap")return;
 		if(coll.gameObject.tag == "Wall" && destroyOnContact()) {
 			Destroy(this.gameObject);
 			return;
