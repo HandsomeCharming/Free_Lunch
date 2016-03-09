@@ -15,7 +15,7 @@ public class LevelController : MonoBehaviour {
 		MainCamera.current.character = player;
 		InputHandler.current.character = player;
 		AIController.current.player = player;
-		Vector3 pos = new Vector3 (-280, 10, -370);		
+		Vector3 pos = new Vector3 (-320, 0, -370);		
 		player.gameObject.transform.position = pos;
 	}
 
