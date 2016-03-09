@@ -19,7 +19,7 @@ public class Button : MonoBehaviour {
 			Application.LoadLevel("MainMenu");
 			break;
 		case ButtonType.EnterGame: 
-			Application.LoadLevel("C1");
+			Application.LoadLevel("Level1");
 			break;
 		case ButtonType.EnterLevelSelect:
 			Application.LoadLevel("LevelSelectMenu");

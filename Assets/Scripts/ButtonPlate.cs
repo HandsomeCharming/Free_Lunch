@@ -35,7 +35,7 @@ public class ButtonPlate : EventTrigger {
 			button.transform.position = pos;
 			yield return new WaitForEndOfFrame();
 		}
-		return true;
+		//return true;
 	}
 
 	IEnumerator releaseButton() {
@@ -48,6 +48,6 @@ public class ButtonPlate : EventTrigger {
 			button.transform.position = pos;
 			yield return new WaitForEndOfFrame();
 		}
-		return true;
+		//return true;
 	}
 }
