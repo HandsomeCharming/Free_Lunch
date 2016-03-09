@@ -146,6 +146,7 @@ public class Character : MonoBehaviour {
 	public virtual void useSkillToward(int skillIndex, Vector2 dir) {}
 
 	public virtual void gotHit(Character other, float damage) {
+		if(state == CharacterState.Dodge)return;
 		status.hp -= damage;
 	}
 
