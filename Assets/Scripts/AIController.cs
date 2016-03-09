@@ -43,6 +43,10 @@ public class AIController : MonoBehaviour {
 		character.attack();
 	}
 
+	public void makeEnemy(int type, Vector3 pos) {
+		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+	}
+
 	IEnumerator makeTempEnemy() {
 		while(true) {
 			yield return new WaitForSeconds(5f);
