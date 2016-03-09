@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class LevelController : MonoBehaviour {
-	public float playerSpawnX;
-	public float playerSpawnY;
+	public float playerSpawnPosX;
+	public float playerSpawnPosY;
 	// Use this for initialization
 	void Start () {
 		Projectile.InitProjectileData();
@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour {
 		MainCamera.current.character = player;
 		InputHandler.current.character = player;
 		AIController.current.player = player;
-		Vector3 pos = new Vector3 (-280, 0, -370);		
+		Vector3 pos = new Vector3 (playerSpawnPosX, 0, playerSpawnPosY);		
 		player.gameObject.transform.position = pos;
 	}
 

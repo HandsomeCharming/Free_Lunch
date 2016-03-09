@@ -43,12 +43,16 @@ public class AIController : MonoBehaviour {
 		character.attack();
 	}
 
+	public void makeEnemy(int type, Vector3 pos) {
+		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+	}
+
 	IEnumerator makeTempEnemy() {
 		while(true) {
 			yield return new WaitForSeconds(5f);
 			if(!autoSpawnEnemy) continue;
 			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(20f,30f), 0 ,Random.Range(20f,30f));
-			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
 		}
 	}
 }
