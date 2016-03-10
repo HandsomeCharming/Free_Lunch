@@ -5,7 +5,7 @@ public class EnemyTrigger : EventTrigger {
 	bool triggered = false;
 
 	void OnTriggerEnter(Collider coll) {
-		if(triggered == true)return;
+		if(triggered == true || coll.tag != "Player")return;
 		triggered = true;
 		EnemySpawnPoint[] spawnPoints = (EnemySpawnPoint[])this.GetComponentsInChildren<EnemySpawnPoint>();
 		for(int a=0;a!=spawnPoints.Length;++a) {
