@@ -4055,8 +4055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cadaab2739549a8a3b88cde45b59ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnPosX: 180
-  playerSpawnPosY: -50
+  playerSpawnPosX: -320
+  playerSpawnPosY: -350
 --- !u!4 &1817992932
 Transform:
   m_ObjectHideFlags: 0
