@@ -10,12 +10,14 @@ public class ButtonPlate : EventTrigger {
 
 	public bool canPressAgain;
 
+	Vector3 oriPos;
 	bool lerping = false;
 
 	public GameObject destroy;
 	// Use this for initialization
 	void Start () {
 		eventType = 0;
+		oriPos = this.button.transform.position;
 	}
 	
 	void OnTriggerEnter(Collider coll) {
@@ -30,7 +32,7 @@ public class ButtonPlate : EventTrigger {
 	}
 
 	void OnTriggerExit(Collider coll) {
-		if(coll.gameObject.tag != "Player" ||  !pressed || lerping)return;
+		if(coll.gameObject.tag != "Player" ||  !pressed || !canPressAgain)return;
 
 		StartCoroutine(releaseButton());
 	}
@@ -39,7 +41,6 @@ public class ButtonPlate : EventTrigger {
 		float time = 0;
 		lerping = true;
 		mark.GetComponent<SpriteRenderer>().color = Color.green;
-		Vector3 oriPos = button.transform.position;
 		while(time < pressTime) {
 			time += Time.deltaTime;
 			Vector3 pos = Vector3.Lerp(oriPos, oriPos - new Vector3(0,0.4f,0), time/pressTime);
@@ -53,16 +54,18 @@ public class ButtonPlate : EventTrigger {
 
 	IEnumerator releaseButton() {
 		float time = 0;
+		while(lerping) {
+			yield return new WaitForEndOfFrame();
+		}
 		lerping = true;
 		mark.GetComponent<SpriteRenderer>().color = Color.white;
-		Vector3 oriPos = button.transform.position;
 		while(time < pressTime) {
 			time += Time.deltaTime;
-			Vector3 pos = Vector3.Lerp(oriPos, oriPos + new Vector3(0,0.4f,0), time/pressTime);
+			Vector3 pos = Vector3.Lerp(oriPos - new Vector3(0,0.4f,0), oriPos, time/pressTime);
 			button.transform.position = pos;
 			yield return new WaitForEndOfFrame();
 		}
-		button.transform.position = oriPos + new Vector3(0,0.4f,0);
+		button.transform.position = oriPos;
 		if(canPressAgain)
 			pressed = false;
 		lerping = false;
