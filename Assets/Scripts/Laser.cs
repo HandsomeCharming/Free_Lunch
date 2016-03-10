@@ -21,4 +21,13 @@ public class Laser : MonoBehaviour {
 			ch.gotHit(null, 30f);
 		}
 	}
+
+	void OnCollisionStay(Collision col) {
+		if(hitTime > 0f) return;
+		hitTime = 0.5f;
+		if(col.rigidbody.tag == "Player") {
+			Character ch = col.gameObject.GetComponent<Character>();
+			ch.gotHit(null, 30f);
+		}
+	}
 }
