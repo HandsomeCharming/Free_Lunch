@@ -221,6 +221,6 @@ public class MainCharacter : Character {
 	}
 
 	void OnDestroy() {
-		Application.LoadLevel(Application.loadedLevel);
+		
 	}
 }
