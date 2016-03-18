@@ -4055,8 +4055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cadaab2739549a8a3b88cde45b59ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnPosX: -320
-  playerSpawnPosY: -350
+  playerSpawnPosX: 180
+  playerSpawnPosY: -20
 --- !u!4 &1817992932
 Transform:
   m_ObjectHideFlags: 0
@@ -4064,7 +4064,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817992930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 131.13306, y: 364.5702, z: 72.193985}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4445,6 +4445,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11418230, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 478280, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
       propertyPath: m_LocalPosition.x
       value: -140
@@ -4505,6 +4509,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11418230, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418230, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418230, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 155948762}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
   m_IsPrefabParent: 0

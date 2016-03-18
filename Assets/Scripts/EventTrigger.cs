@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class EventTrigger : MonoBehaviour {
+
+	public UnityEvent mEvent;
 
 	public int eventType = 0;
 
