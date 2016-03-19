@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2332648}
   - 54: {fileID: 5407398}
   - 114: {fileID: 11420608}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TempCubeEnemy
   m_TagString: TempEnemy
   m_Icon: {fileID: 0}
@@ -105,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   state: 0
-  activeSkills: 
   activeNum: 0
   hits: 0
 --- !u!1001 &100100000

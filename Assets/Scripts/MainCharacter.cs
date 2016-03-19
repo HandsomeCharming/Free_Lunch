@@ -22,7 +22,7 @@ public class MainCharacter : Character {
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
-		blockModifier = new BlockModifier(200);
+		blockModifier = new BlockModifier(204);
 		activeSkills = new ArrayList();
 		activeSkills.Add(new ActiveModifier(251));
 
@@ -33,6 +33,9 @@ public class MainCharacter : Character {
 	public override void attack() {
 		if(actionCdRemain[0] > 0) return;
 		actionCdRemain[0] = actionCds[0];
+		if(state == CharacterState.Block && blockModifier.type == 203) {
+			actionCdRemain[0] = actionCds[0]*0.5f;
+		}
 		Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Attack);
 	}
 
@@ -44,6 +47,9 @@ public class MainCharacter : Character {
 	public override void chargedAttack(float chargingTime) {
 		if(actionCdRemain[1] > 0) return;
 		actionCdRemain[1] = actionCds[1];
+		if(state == CharacterState.Block && blockModifier.type == 203) {
+			actionCdRemain[1] = actionCds[1]*0.5f;
+		}
 		removeTemporaryEffect(555);//remove speed reduce
 		if(chargingTime >= chargedAttackModifier.chargeTime)
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
@@ -120,6 +126,9 @@ public class MainCharacter : Character {
 		float time = 0;
 		Vector3 pos = this.transform.position;
 		Vector3 scale = this.transform.localScale;
+
+		this.gameObject.layer = 10;
+
 		float scalez = scale.z;
 		ParticleSystem.Particle []particleList = new ParticleSystem.Particle[cloud.particleCount];
 		cloud.GetParticles(particleList);
@@ -198,6 +207,8 @@ public class MainCharacter : Character {
 
 		scale.z = scalez;
 		this.transform.localScale = scale;
+
+		this.gameObject.layer = 8;
 	}
 
 	// Use this for initialization

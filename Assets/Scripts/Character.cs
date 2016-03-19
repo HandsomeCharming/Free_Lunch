@@ -94,7 +94,7 @@ public class Character : MonoBehaviour {
 		float abs = Mathf.Abs(facingAngle - angle);
 		if(abs > 360f) abs -= 360f;
 
-		float lerpAngle = Mathf.LerpAngle(facingAngle, angle, abs<=15f?1:15f/(abs)); 
+		float lerpAngle = Mathf.LerpAngle(facingAngle, angle, abs<=status.turningSpeed?1:status.turningSpeed/(abs)); 
 		status.facingDirection.x = Mathf.Cos(lerpAngle*Mathf.Deg2Rad);
 		status.facingDirection.y = Mathf.Sin(lerpAngle*Mathf.Deg2Rad);
 
@@ -126,6 +126,10 @@ public class Character : MonoBehaviour {
 	public virtual void startCharging() {
 	}
 
+	public virtual void stop() {
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+	}
+
 	public virtual void chargedAttack(float chargingTime) {
 		print("Charged Attack");
 	}
@@ -146,7 +150,7 @@ public class Character : MonoBehaviour {
 	public virtual void useSkillToward(int skillIndex, Vector2 dir) {}
 
 	public virtual void gotHit(Character other, float damage) {
-		if(state == CharacterState.Dodge)return;
+		if(state == CharacterState.Dodge || (state == CharacterState.Block && blockModifier.type == 204))return;
 		status.hp -= damage;
 	}
 

@@ -11,7 +11,7 @@ GameObject:
   - 54: {fileID: 5454972}
   - 135: {fileID: 13557390}
   - 114: {fileID: 11434224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DivisionCharacterB
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 487378}
   - 198: {fileID: 19889812}
   - 199: {fileID: 19970452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 435646}
   - 198: {fileID: 19811916}
   - 199: {fileID: 19915206}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}

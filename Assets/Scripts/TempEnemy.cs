@@ -17,6 +17,7 @@ public class TempEnemy : Character {
 		}
 		//hits = 3;
 		status.moveSpeed = 0.2f;
+		status.turningSpeed = 3f;
 		type = 5;
 	}
 

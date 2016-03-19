@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Wall
   - Trap
+  - Fridge
   layers:
   - Default
   - TransparentFX
@@ -17,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Fridge
+  - Dodge
+  - Enemy
   - 
   - 
   - 

@@ -96,6 +96,9 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(200, new ProjectileType(200, 1));
 		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Block, 0f, 1f, "Prefabs/Shield");
 
+		projectileTypes.Add(204, new ProjectileType(204, 1));
+		projectileTypes[204].projectileDatas[0] = new ProjectileData(204, 0, CharacterSkillType.Block, 0f, 100f, "Prefabs/ReadOnly");
+
 		projectileTypes.Add(251, new ProjectileType(251, 1));
 		projectileTypes[251].projectileDatas[0] = new ProjectileData(251, 0, CharacterSkillType.Active1, 0f, 5f, "Prefabs/Ability251");
 		//projectileData[0].setData
@@ -114,6 +117,10 @@ public class Projectile : MonoBehaviour {
 		ans.skillType = skillType;
 
 		obj.transform.rotation = rotationByType(shooter, dir, skillType, subType);
+
+		if(ans.type == 204) {
+			Physics.IgnoreCollision(ans.GetComponent<Collider>(), shooter.GetComponent<Collider>());
+		}
 
 		Destroy(obj, ans.existTime);
 		return ans;
@@ -184,7 +191,16 @@ public class Projectile : MonoBehaviour {
 			pos.x += shooter.status.facingDirection.x * 3f;
 			pos.z += shooter.status.facingDirection.y * 3f;
 			this.transform.rotation = rotationByType(shooter, shooter.status.facingDirection, CharacterSkillType.Block, 0);
-		} else {
+			if(InputHandler.current.blockTime == 0) {
+				Destroy(this.gameObject);
+			}
+		} else if(type == 204) {
+			pos = this.transform.position;
+			if(InputHandler.current.blockTime == 0) {
+				Destroy(this.gameObject);
+			}
+		}
+		else {
 			pos = this.transform.position;
 			pos.x += direction.x*speed;
 			pos.z += direction.y*speed;
@@ -219,7 +235,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	bool destroyOnContact() {
-		if(type == 152 || type == 200 || type == 251)return false;
+		if(type == 152 || type == 200 || type == 204 || type == 251)return false;
 		return true;
 	}
 

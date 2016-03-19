@@ -14,6 +14,7 @@ public class CharacterStatus {
 		moveSpeed = 0.6f;
 		regularMoveSpeed = 0.6f;
 		healthRegen = 0;
+		turningSpeed = 15f;
 		facingDirection = new Vector2(1f,0);
 		canMove = true;
 		canAttack = true;
@@ -29,6 +30,7 @@ public class CharacterStatus {
 	public float healthRegen;
 	public float hitImmuneTime;
 	public float hitImmuneTimeRemain;
+	public float turningSpeed;
 	public Vector2 facingDirection;
 	public bool canMove;
 	public bool canAttack;
@@ -122,6 +124,14 @@ public class BlockModifier : Modifier {
 		case 200:
 			subTypeCount = 1;
 			blockTime = 1.0f;
+			break;
+		case 203:
+			subTypeCount = 1;
+			blockTime = 100.0f;
+			break;
+		case 204:
+			subTypeCount = 1;
+			blockTime = 100.0f;
 			break;
 		}
 	}

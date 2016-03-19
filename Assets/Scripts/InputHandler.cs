@@ -13,7 +13,7 @@ public class InputHandler : MonoBehaviour {
 
 	public float chargingTime = 0;
 	float dodgeTime = 0;
-	float blockTime = 0;
+	public float blockTime = 0;
 	float activeTime = 0;
 
 	int usingSkillType = 0;
@@ -123,10 +123,20 @@ public class InputHandler : MonoBehaviour {
 				break;
 			}
 			case CharacterState.Block: {
-				face();
-				move();
+				if(character.blockModifier.type == 203) {
+					face();
+					if(Input.GetMouseButton(0)) {
+						attack();
+					} else if(Input.GetMouseButton(1) && character.actionCdRemain[1] == 0) {
+						startCharging();
+					}
+				}
+				else if(character.blockModifier.type != 204) {
+					face();
+					move();
+				}
 				blockTime += Time.deltaTime;
-				if(blockTime >= character.blockModifier.blockTime) {
+				if(Input.GetKeyDown(KeyCode.LeftShift) ||  blockTime >= character.blockModifier.blockTime) {
 					blockTime = 0;
 					character.state = CharacterState.Move;
 				}
@@ -186,6 +196,7 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void block() {
+		character.stop();
 		character.block();
 	}
 
