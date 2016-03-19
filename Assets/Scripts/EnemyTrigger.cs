@@ -34,6 +34,7 @@ public class EnemyTrigger : EventTrigger {
 		if(deadCount == 0) {
 			print("asd");
 			allDead = true;
+			mEvent.Invoke();
 		}
 	}
 }
