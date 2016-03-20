@@ -133,6 +133,9 @@ public class InputHandler : MonoBehaviour {
 						if(chargingTime >= character.chargedAttackModifier.chargeTime*0.5f) {
 							chargedAttack ();
 						}
+					} 
+					if(Input.GetMouseButtonUp(1)) {
+						chargedAttack();
 					}
 				}
 				else if(character.blockModifier.type != 204) {
