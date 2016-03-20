@@ -22,7 +22,7 @@ public class MainCharacter : Character {
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
-		blockModifier = new BlockModifier(204);
+		blockModifier = new BlockModifier(203);
 		activeSkills = new ArrayList();
 		activeSkills.Add(new ActiveModifier(251));
 
@@ -49,6 +49,12 @@ public class MainCharacter : Character {
 		actionCdRemain[1] = actionCds[1];
 		if(state == CharacterState.Block && blockModifier.type == 203) {
 			actionCdRemain[1] = actionCds[1]*0.5f;
+			removeTemporaryEffect(555);//remove speed reduce
+			if(chargingTime >= chargedAttackModifier.chargeTime*0.5f)
+				Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.ChargedAttack);
+			else 
+				Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Attack);
+			return;
 		}
 		removeTemporaryEffect(555);//remove speed reduce
 		if(chargingTime >= chargedAttackModifier.chargeTime)
@@ -60,7 +66,8 @@ public class MainCharacter : Character {
 	public override void block() {
 		if(actionCdRemain[3] > 0) return;
 		actionCdRemain[3] = actionCds[3];
-		Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
+		if(blockModifier.type != 203)
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
 	}
 
 	public override void attackToward(Vector2 dir) {

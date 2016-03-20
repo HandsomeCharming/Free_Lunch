@@ -125,10 +125,14 @@ public class InputHandler : MonoBehaviour {
 			case CharacterState.Block: {
 				if(character.blockModifier.type == 203) {
 					face();
+					character.stop();
 					if(Input.GetMouseButton(0)) {
 						attack();
 					} else if(Input.GetMouseButton(1) && character.actionCdRemain[1] == 0) {
-						startCharging();
+						chargingTime+=Time.deltaTime;
+						if(chargingTime >= character.chargedAttackModifier.chargeTime*0.5f) {
+							chargedAttack ();
+						}
 					}
 				}
 				else if(character.blockModifier.type != 204) {
@@ -139,6 +143,10 @@ public class InputHandler : MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.LeftShift) ||  blockTime >= character.blockModifier.blockTime) {
 					blockTime = 0;
 					character.state = CharacterState.Move;
+				}
+				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
+					dodge();
+					character.state = CharacterState.Dodge;
 				}
 				break;
 			}
