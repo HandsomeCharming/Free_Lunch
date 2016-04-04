@@ -74,13 +74,13 @@ public class Projectile : MonoBehaviour {
 		projectileTypes = new Dictionary<int, ProjectileType>();
 
 		projectileTypes.Add(3, new ProjectileType(3,1));
-		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(4, new ProjectileType(4,1));
-		projectileTypes[4].projectileDatas[0] = new ProjectileData(4, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[4].projectileDatas[0] = new ProjectileData(4, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(5, new ProjectileType(5,1));
-		projectileTypes[5].projectileDatas[0] = new ProjectileData(5, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[5].projectileDatas[0] = new ProjectileData(5, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(30, new ProjectileType(30,1));
 		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
