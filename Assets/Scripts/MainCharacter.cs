@@ -96,7 +96,8 @@ public class MainCharacter : Character {
 	public override void hit(Character other, CharacterSkillType skillType, int subType = 0) {
 		if(other == null) return;
 		if(other.tag == "TempEnemy") {
-			TempEnemy temp = (TempEnemy) other;
+			//TempEnemy temp = (TempEnemy) other;
+			Character temp = (Character) other;
 			switch(skillType) {
 			case CharacterSkillType.Attack:
 				temp.status.hp -= attackModifier.damage[subType];
