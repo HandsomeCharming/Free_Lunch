@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3392502}
   - 23: {fileID: 2392220}
   - 64: {fileID: 6489692}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,29 +29,9 @@ GameObject:
   - 114: {fileID: 11465698}
   - 54: {fileID: 5478172}
   - 136: {fileID: 13642908}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RotateEnemy
   m_TagString: TempEnemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &118996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 402152}
-  - 33: {fileID: 3354274}
-  - 136: {fileID: 13679228}
-  - 23: {fileID: 2393668}
-  - 54: {fileID: 5400732}
-  - 114: {fileID: 11496770}
-  m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,9 +47,29 @@ GameObject:
   - 33: {fileID: 3375600}
   - 23: {fileID: 2310720}
   - 64: {fileID: 6439128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rotor
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &158626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 453468}
+  - 33: {fileID: 3399500}
+  - 136: {fileID: 13606004}
+  - 23: {fileID: 2399042}
+  - 54: {fileID: 5402322}
+  - 114: {fileID: 11494328}
+  m_Layer: 11
+  m_Name: Bullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,25 +85,13 @@ GameObject:
   - 33: {fileID: 3339186}
   - 135: {fileID: 13522118}
   - 23: {fileID: 2392536}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChargeBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &402152
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 0.003, y: 0.2, z: 0.005}
-  m_Children: []
-  m_Father: {fileID: 452500}
-  m_RootOrder: 3
 --- !u!4 &452500
 Transform:
   m_ObjectHideFlags: 1
@@ -117,9 +105,21 @@ Transform:
   - {fileID: 493634}
   - {fileID: 457546}
   - {fileID: 473608}
-  - {fileID: 402152}
+  - {fileID: 453468}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &453468
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158626}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
+  m_LocalScale: {x: 0.003, y: 0.2, z: 0.005}
+  m_Children: []
+  m_Father: {fileID: 452500}
+  m_RootOrder: 3
 --- !u!4 &457546
 Transform:
   m_ObjectHideFlags: 1
@@ -234,15 +234,15 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!23 &2393668
+--- !u!23 &2399042
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
+  m_GameObject: {fileID: 158626}
   m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: c38572cc6e4ec497ab9ab0c394be348c, type: 2}
   m_SubsetIndices: 
@@ -267,13 +267,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162120}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &3354274
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3375600
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -288,12 +281,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110974}
   m_Mesh: {fileID: 4300002, guid: a3db3a25752a94688a83cf5f85698f61, type: 3}
---- !u!54 &5400732
+--- !u!33 &3399500
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158626}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5402322
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
+  m_GameObject: {fileID: 158626}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -358,13 +358,13 @@ MonoBehaviour:
   activeNum: 0
   rotor: {fileID: 151036}
   chargeBall: {fileID: 162120}
-  bullet: {fileID: 11496770}
---- !u!114 &11496770
+  bullet: {fileID: 11494328}
+--- !u!114 &11494328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
+  m_GameObject: {fileID: 158626}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48752b0b18eed4706a4aefcdc08c1f93, type: 3}
@@ -385,6 +385,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &13606004
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13642908
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -398,19 +411,6 @@ CapsuleCollider:
   m_Height: 0.024999999
   m_Direction: 1
   m_Center: {x: -0.006250001, y: 0.0000000012076826, z: 0.0047384514}
---- !u!136 &13679228
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
