@@ -22,7 +22,7 @@ public class MainCharacter : Character {
 		attackModifier = new AttackModifier(3);
 		dodgeModifier = new DodgeModifier(152);
 		chargedAttackModifier = new ChargedAttackModifier(103);
-		blockModifier = new BlockModifier(203);
+		blockModifier = new BlockModifier(200);
 		activeSkills = new ArrayList();
 		activeSkills.Add(new ActiveModifier(251));
 
