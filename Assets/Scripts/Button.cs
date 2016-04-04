@@ -29,7 +29,7 @@ public class Button : MonoBehaviour {
 			break;
 		case ButtonType.EndSkillTree:
 			SkillTreeHandler.skillTreeHandler.saveSkillsToDisk();
-			Application.LoadLevel("LevelSelectMenu");
+			Application.LoadLevel("MainMenu");
 			break;
 		default:
 			break;
