@@ -104,6 +104,24 @@ public class Projectile : MonoBehaviour {
 		//projectileData[0].setData
 	}
 
+	public void init(Character shooter, Vector2 dir, Vector3 pos, CharacterSkillType skillType, int subType = 0) {
+		transform.position = pos;
+		initByType(shooter, skillType, subType);
+
+		hitByThis = new ArrayList();
+		shooter = shooter;
+		direction = dir;
+		skillType = skillType;
+
+		transform.rotation = rotationByType(shooter, dir, skillType, subType);
+
+		if(type == 204) {
+			Physics.IgnoreCollision(GetComponent<Collider>(), shooter.GetComponent<Collider>());
+		}
+
+		Destroy(this.gameObject, existTime);
+	}
+
 	public static Projectile ShootProjectile(Character shooter, Vector2 dir, Vector3 pos, CharacterSkillType skillType, int subType = 0) {
 		GameObject obj = objectByType(shooter, skillType, subType); //(GameObject)Instantiate(Resources.Load("Prefabs/CubeBullet"), pos, Quaternion.identity);
 		obj.transform.position = pos;
@@ -168,6 +186,16 @@ public class Projectile : MonoBehaviour {
 			return Quaternion.Euler(0, -angle, 0);
 		}
 			
+	}
+
+	void initByType(Character shooter, CharacterSkillType skillType, int subType = 0) {
+		int type = shooter.getSkillType(skillType);
+		ProjectileData data = projectileTypes[type].projectileDatas[subType];
+
+		type = type;
+		speed = data.speed;
+		existTime = data.existTime;
+		subType = subType;
 	}
 
 	static void InitByType(ref Projectile projectile, Character shooter, CharacterSkillType skillType, int subType = 0) {

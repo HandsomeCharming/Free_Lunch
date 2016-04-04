@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class TempEnemy : Character {
-	public int hits;
 
 	public TempEnemy() : base() {
 		type = 5;

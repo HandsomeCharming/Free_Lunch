@@ -40,7 +40,7 @@ public class AIController : MonoBehaviour {
 		Vector3 dir = player.transform.position - character.transform.position;
 		character.moveToward(new Vector2(dir.x, dir.z).normalized);
 		character.faceToward(new Vector2(dir.x, dir.z).normalized);
-		character.attack();
+		character.startCharging();
 	}
 
 	public GameObject makeEnemy(int type, Vector3 pos) {
@@ -53,7 +53,7 @@ public class AIController : MonoBehaviour {
 			yield return new WaitForSeconds(5f);
 			if(!autoSpawnEnemy) continue;
 			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(20f,30f), 0 ,Random.Range(20f,30f));
-			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/RotateEnemy"), pos, Quaternion.Euler(new Vector3(270f,90f,0f)));
 		}
 	}
 }
