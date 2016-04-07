@@ -41,7 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
-  chargeBar: {fileID: 0}
+  chargeBar: {fileID: 2800000, guid: 32c5019ebc9cf4916878e0fe400b728c, type: 3}
+  cursorSize: 120
 --- !u!212 &21255336
 SpriteRenderer:
   m_ObjectHideFlags: 1

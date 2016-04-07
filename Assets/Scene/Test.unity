@@ -748,6 +748,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawnPosX: 0
   playerSpawnPosY: 0
+  cursurHotspot: {x: 0, y: 0}
+  cursorTexture: {fileID: 2800000, guid: 14601759c1c3845059b284b45c85f7a8, type: 3}
+  cursorMode: 0
+  cursorSize: 20
 --- !u!114 &1514172549 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11434224, guid: 4e5dfaef3019c4069b8c0ff7299ae74f,
