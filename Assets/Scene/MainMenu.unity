@@ -285,6 +285,45 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399969501}
+--- !u!1 &435183226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 435183228}
+  - 114: {fileID: 435183227}
+  m_Layer: 0
+  m_Name: FPSDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &435183227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435183226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16801cf869b2d4d8abe8960846bcc39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &435183228
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435183226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 431, y: 215, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &458995799
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +535,7 @@ GameObject:
   - 223: {fileID: 1071428063}
   - 114: {fileID: 1071428062}
   - 114: {fileID: 1071428061}
+  - 114: {fileID: 1071428064}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -586,6 +626,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1071428064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1071428059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6e84262bba047768866bfc9f3abd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  back:
+  - {fileID: 1231106269}
+  - {fileID: 1302700729}
+  - {fileID: 1183862772}
+  - {fileID: 458995800}
+  backSpeed:
+  - 0.0001
+  - 0.0001
+  - 0.0001
+  - 0.0001
+  backMaxMin:
+  - {x: 0.48, y: 0.52}
+  - {x: 0.24, y: 0.26}
+  - {x: 0.12, y: 0.13}
+  - {x: 0.065, y: 0.07}
 --- !u!1 &1154205070
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +815,7 @@ GameObject:
   - 224: {fileID: 1231106269}
   - 222: {fileID: 1231106271}
   - 114: {fileID: 1231106270}
+  - 114: {fileID: 1231106272}
   m_Layer: 5
   m_Name: Background1
   m_TagString: Untagged
@@ -806,6 +873,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1231106268}
+--- !u!114 &1231106272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1231106268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6e84262bba047768866bfc9f3abd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  back: []
+  backSpeed: []
+  backMaxMin: []
 --- !u!1 &1247511878
 GameObject:
   m_ObjectHideFlags: 0
