@@ -109,6 +109,8 @@ public class InputHandler : MonoBehaviour {
 			}
 			case CharacterState.ChargedAttack: {
 				face ();
+
+				chargingTime+=Time.deltaTime;
 				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
 					dodge();
 					character.state = CharacterState.Dodge;
@@ -123,7 +125,6 @@ public class InputHandler : MonoBehaviour {
 				}
 
 				move ();
-				chargingTime+=Time.deltaTime;
 				if(chargingTime >= character.chargedAttackModifier.chargeTime) {
 					character.state = CharacterState.Move;
 					chargedAttack ();
@@ -174,8 +175,10 @@ public class InputHandler : MonoBehaviour {
 				face();
 				move();
 				activeTime += Time.deltaTime;
+
 				if(activeTime >= ((ActiveModifier)character.activeSkills[usingSkillType]).existTime) {
 					character.state = CharacterState.Move;
+					activeTime = 0f;
 				}
 				break;
 			}
