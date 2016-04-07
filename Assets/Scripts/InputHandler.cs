@@ -57,12 +57,16 @@ public class InputHandler : MonoBehaviour {
 					character.state = CharacterState.Block;
 				} else if(Input.GetKeyDown(KeyCode.C) && character.actionCdRemain[4] == 0) {
 					useActive(0);
-					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
+					if(((ActiveModifier)character.activeSkills[0]).existTime > 0) {
 						character.state = CharacterState.UseSkill;
+						usingSkillType = 0;
+					}
 				} else if(Input.GetKeyDown(KeyCode.V) && character.actionCdRemain[5] == 0) {
 					useActive(1);
-					if(((ActiveModifier)character.activeSkills[1]).existTime > 0)
+					if(((ActiveModifier)character.activeSkills[1]).existTime > 0) {
 						character.state = CharacterState.UseSkill;
+						usingSkillType = 1;
+					}
 				}
 
 				break;
@@ -86,12 +90,16 @@ public class InputHandler : MonoBehaviour {
 					character.state = CharacterState.Block;
 				} else if(Input.GetKeyDown(KeyCode.C) && character.actionCdRemain[4] == 0) {
 					useActive(0);
-					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
+					if(((ActiveModifier)character.activeSkills[0]).existTime > 0) {
 						character.state = CharacterState.UseSkill;
+						usingSkillType = 0;
+					}
 				} else if(Input.GetKeyDown(KeyCode.V) && character.actionCdRemain[5] == 0) {
 					useActive(1);
-					if(((ActiveModifier)character.activeSkills[1]).existTime > 0)
+					if(((ActiveModifier)character.activeSkills[1]).existTime > 0) {
 						character.state = CharacterState.UseSkill;
+						usingSkillType = 1;
+					}
 				}
 
 				break;

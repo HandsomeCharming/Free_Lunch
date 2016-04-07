@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 457546}
   - 33: {fileID: 3392502}
   - 23: {fileID: 2392220}
-  - 64: {fileID: 6489692}
   m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
@@ -46,7 +45,6 @@ GameObject:
   - 4: {fileID: 493634}
   - 33: {fileID: 3375600}
   - 23: {fileID: 2310720}
-  - 64: {fileID: 6439128}
   m_Layer: 11
   m_Name: Rotor
   m_TagString: Untagged
@@ -83,7 +81,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 473608}
   - 33: {fileID: 3339186}
-  - 135: {fileID: 13522118}
   - 23: {fileID: 2392536}
   m_Layer: 11
   m_Name: ChargeBall
@@ -318,30 +315,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!64 &6439128
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: a3db3a25752a94688a83cf5f85698f61, type: 3}
---- !u!64 &6489692
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110974}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300002, guid: a3db3a25752a94688a83cf5f85698f61, type: 3}
 --- !u!114 &11465698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,18 +346,6 @@ MonoBehaviour:
   parent: {fileID: 11465698}
   alphaTime: 0.25
   shootTime: 0.5
---- !u!135 &13522118
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162120}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13606004
 CapsuleCollider:
   m_ObjectHideFlags: 1
