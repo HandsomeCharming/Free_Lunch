@@ -60,6 +60,8 @@ public class Projectile : MonoBehaviour {
 	int subType;
 	float speed = 1;
 	float existTime = 2;
+	float timeToClearHitMax = 0.2f; //For dot, if 0, dont clear
+	float timeToClearHit = 0.2f;
 	Vector2 direction;
 
 	ArrayList hitByThis;
@@ -96,11 +98,17 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(200, new ProjectileType(200, 1));
 		projectileTypes[200].projectileDatas[0] = new ProjectileData(200, 0, CharacterSkillType.Block, 0f, 1f, "Prefabs/Shield");
 
+		projectileTypes.Add(203, new ProjectileType(203, 1));
+		projectileTypes[203].projectileDatas[0] = new ProjectileData(203, 0, CharacterSkillType.Block, 0f, 100f, "Prefabs/Deploy");
+
 		projectileTypes.Add(204, new ProjectileType(204, 1));
 		projectileTypes[204].projectileDatas[0] = new ProjectileData(204, 0, CharacterSkillType.Block, 0f, 100f, "Prefabs/ReadOnly");
 
 		projectileTypes.Add(251, new ProjectileType(251, 1));
 		projectileTypes[251].projectileDatas[0] = new ProjectileData(251, 0, CharacterSkillType.Active1, 0f, 5f, "Prefabs/Ability251");
+
+		projectileTypes.Add(258, new ProjectileType(258, 1));
+		projectileTypes[258].projectileDatas[0] = new ProjectileData(258, 0, CharacterSkillType.Active2, 0f, 2f, "Prefabs/Overflow");
 		//projectileData[0].setData
 	}
 
@@ -182,6 +190,8 @@ public class Projectile : MonoBehaviour {
 			return Quaternion.Euler(320, 90-angle, 90);
 		case 251:
 			return Quaternion.Euler(90, 0, 0);
+		case 258:
+			return Quaternion.Euler(0, 90-angle, 0);
 		default:
 			return Quaternion.Euler(0, -angle, 0);
 		}
@@ -222,11 +232,15 @@ public class Projectile : MonoBehaviour {
 			if(InputHandler.current.blockTime == 0) {
 				Destroy(this.gameObject);
 			}
-		} else if(type == 204) {
+			
+		} else if(type == 204 || type == 203) {
 			pos = this.transform.position;
 			if(InputHandler.current.blockTime == 0) {
 				Destroy(this.gameObject);
 			}
+		} else if(type == 258) {
+			pos = shooter.transform.position;
+			this.transform.rotation = rotationByType(shooter, shooter.status.facingDirection, CharacterSkillType.Active2, 0);
 		}
 		else {
 			pos = this.transform.position;
@@ -234,6 +248,17 @@ public class Projectile : MonoBehaviour {
 			pos.z += direction.y*speed;
 		}
 		this.transform.position = pos;
+
+		if(hitByThis != null && hitByThis.Count > 0) {
+			if(timeToClearHit <= 0) {
+				timeToClearHit = timeToClearHitMax;
+				while(hitByThis.Count > 0) {
+					hitByThis.RemoveAt(0);
+				}
+			} else {
+				timeToClearHit -= Time.deltaTime;
+			}
+		}
 
 		if(shooter == null) Destroy(this.gameObject);
 	}
@@ -262,8 +287,18 @@ public class Projectile : MonoBehaviour {
 			Destroy(this.gameObject);
 	}
 
+	void OnTriggerStay(Collider coll) {
+		if(coll.gameObject == null || shooter == null)return;
+		if(coll.gameObject.tag == shooter.tag || coll.gameObject.tag == "Bullet" || coll.gameObject.tag == "Trap")return;
+		if(coll.gameObject.tag == "Wall" && destroyOnContact()) {
+			Destroy(this.gameObject);
+			return;
+		}
+		hit(coll.gameObject.GetComponent<Character>());
+	}
+
 	bool destroyOnContact() {
-		if(type == 152 || type == 200 || type == 204 || type == 251)return false;
+		if(type == 152 || type == 200 || type == 204 || type == 251 || type == 258)return false;
 		return true;
 	}
 

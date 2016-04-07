@@ -151,10 +151,16 @@ public class ActiveModifier : Modifier {
 		case 251:
 			subTypeCount = 1;
 			damage = new float[1];
-			damage[0] = 34f;
+			damage[0] = 0.5f;
 			negativeEffectCount = 1;
 			negativeEffects = new int[1];
 			negativeEffects[0] = 557;
+			break;
+		case 258:
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 3f;
+			existTime = 2f;
 			break;
 		}
 	}
@@ -176,7 +182,7 @@ public class TemporaryEffect {
 			totalTime = remainTime = 2f;
 			break;
 		case 555:
-			totalTime = remainTime = 5f;
+			totalTime = remainTime = 2f;
 			break;
 		case 556:
 			totalTime = remainTime = 1f;

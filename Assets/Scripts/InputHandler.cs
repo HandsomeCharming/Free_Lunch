@@ -59,6 +59,10 @@ public class InputHandler : MonoBehaviour {
 					useActive(0);
 					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
 						character.state = CharacterState.UseSkill;
+				} else if(Input.GetKeyDown(KeyCode.V) && character.actionCdRemain[5] == 0) {
+					useActive(1);
+					if(((ActiveModifier)character.activeSkills[1]).existTime > 0)
+						character.state = CharacterState.UseSkill;
 				}
 
 				break;
@@ -83,6 +87,10 @@ public class InputHandler : MonoBehaviour {
 				} else if(Input.GetKeyDown(KeyCode.C) && character.actionCdRemain[4] == 0) {
 					useActive(0);
 					if(((ActiveModifier)character.activeSkills[0]).existTime > 0)
+						character.state = CharacterState.UseSkill;
+				} else if(Input.GetKeyDown(KeyCode.V) && character.actionCdRemain[5] == 0) {
+					useActive(1);
+					if(((ActiveModifier)character.activeSkills[1]).existTime > 0)
 						character.state = CharacterState.UseSkill;
 				}
 
@@ -148,6 +156,7 @@ public class InputHandler : MonoBehaviour {
 					character.state = CharacterState.Move;
 				}
 				if(Input.GetKeyDown(KeyCode.Space) && character.actionCdRemain[2] == 0) {
+					blockTime = 0;
 					dodge();
 					character.state = CharacterState.Dodge;
 				}
@@ -155,6 +164,7 @@ public class InputHandler : MonoBehaviour {
 			}
 			case CharacterState.UseSkill: {
 				face();
+				move();
 				activeTime += Time.deltaTime;
 				if(activeTime >= ((ActiveModifier)character.activeSkills[usingSkillType]).existTime) {
 					character.state = CharacterState.Move;

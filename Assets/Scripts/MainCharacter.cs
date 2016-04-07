@@ -17,6 +17,7 @@ public class MainCharacter : Character {
 		actionCds[2] = 3f;
 		actionCds[3] = 1.5f;
 		actionCds[4] = 5f;
+		actionCds[5] = 5f;
 
 		status.regularMoveSpeed = 40f;
 		attackModifier = new AttackModifier(3);
@@ -25,6 +26,7 @@ public class MainCharacter : Character {
 		blockModifier = new BlockModifier(203);
 		activeSkills = new ArrayList();
 		activeSkills.Add(new ActiveModifier(251));
+		activeSkills.Add(new ActiveModifier(258));
 
 		div = MainCharacterDiv.Division;
 	}
@@ -66,8 +68,12 @@ public class MainCharacter : Character {
 	public override void block() {
 		if(actionCdRemain[3] > 0) return;
 		actionCdRemain[3] = actionCds[3];
-		if(blockModifier.type != 203)
+		if(blockModifier.type != 203) {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
+		}
+		else {
+			Projectile.ShootProjectile(this, status.facingDirection, this.transform.position, CharacterSkillType.Block);
+		}
 	}
 
 	public override void attackToward(Vector2 dir) {
@@ -91,6 +97,10 @@ public class MainCharacter : Character {
 		if(modifier.type == 251) {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Active1, 0);
 		}
+		if(modifier.type == 258) {
+			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Active2, 0);
+			applyTemporaryEffect(555);
+		}
 	}
 
 	public override void hit(Character other, CharacterSkillType skillType, int subType = 0) {
@@ -107,7 +117,7 @@ public class MainCharacter : Character {
 					}
 				}
 				break;
-			case CharacterSkillType.ChargedAttack:
+			case CharacterSkillType.ChargedAttack: 
 				temp.status.hp -= chargedAttackModifier.damage[subType];
 				break;
 			case CharacterSkillType.Dodge:
@@ -117,7 +127,7 @@ public class MainCharacter : Character {
 					}
 				}
 				break;
-			case CharacterSkillType.Active1:
+			case CharacterSkillType.Active1: {
 				ActiveModifier mod = (ActiveModifier)activeSkills[0];
 				temp.status.hp -= mod.damage[0];
 				if(mod.negativeEffectCount > 0) {
@@ -126,9 +136,21 @@ public class MainCharacter : Character {
 					}
 				}
 				break;
+				}
+			case CharacterSkillType.Active2: {
+					ActiveModifier mod = (ActiveModifier)activeSkills[1];
+					temp.status.hp -= mod.damage[0];
+					if(mod.negativeEffectCount > 0) {
+						for(int a=0;a!=mod.negativeEffectCount;++a) {
+							other.applyTemporaryEffect(mod.negativeEffects[a]);
+						}
+					}
+					break;
+				}
 			}
 		}
 	}
+
 
 	IEnumerator dodgeLerp(Vector2 dir) {
 		float time = 0;
