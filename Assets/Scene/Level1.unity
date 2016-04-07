@@ -4018,6 +4018,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawnPosX: -320
   playerSpawnPosY: -340
+  cursurHotspot: {x: 0, y: 0}
+  cursorTexture: {fileID: 2800000, guid: 14601759c1c3845059b284b45c85f7a8, type: 3}
+  cursorMode: 0
+  cursorSize: 20
 --- !u!4 &1817992932
 Transform:
   m_ObjectHideFlags: 0
