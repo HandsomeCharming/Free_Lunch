@@ -31,6 +31,7 @@ public class AIController : MonoBehaviour {
 	}
 
 	void handleAllAI() {
+		if(characters.Count == 0)return;
 		foreach (Character character in characters) {
 			handleAI(character);
 		}
