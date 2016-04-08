@@ -174,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.925952, y: 5, z: 254.76857}
-  m_Center: {x: 0.003008604, y: 0, z: 126.492424}
+  m_Size: {x: 3.925952, y: 5, z: 311.78778}
+  m_Center: {x: 0.003008604, y: 0, z: 150.23111}
 --- !u!95 &9563888
 Animator:
   serializedVersion: 3
@@ -260,7 +260,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 1.28
+      scalar: 1.747
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -592,7 +592,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 25
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1759,7 +1759,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 1.28
+      scalar: 1.747
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2091,7 +2091,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 25
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
