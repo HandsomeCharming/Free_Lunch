@@ -42,6 +42,7 @@ public class AIController : MonoBehaviour {
 		character.moveToward(new Vector2(dir.x, dir.z).normalized);
 		character.faceToward(new Vector2(dir.x, dir.z).normalized);
 		character.startCharging();
+		character.attack ();
 	}
 
 	public GameObject makeEnemy(int type, Vector3 pos) {

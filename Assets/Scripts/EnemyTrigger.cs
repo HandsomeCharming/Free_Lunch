@@ -21,7 +21,6 @@ public class EnemyTrigger : EventTrigger {
 			enemies[enemyCount] = (AIController.current.makeEnemy(spawnPoints[a].enemyType, spawnPoints[a].gameObject.transform.position));
 			enemyCount++;
 		}
-		print(enemyCount);
 	}
 
 	void Update() {
@@ -30,9 +29,7 @@ public class EnemyTrigger : EventTrigger {
 		for(int a=0;a<enemyCount;++a) {
 			if(enemies[a] == null) deadCount--;
 		}
-		print(deadCount);
 		if(deadCount == 0) {
-			print("asd");
 			allDead = true;
 			mEvent.Invoke();
 		}
