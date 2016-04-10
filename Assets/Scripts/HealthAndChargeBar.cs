@@ -68,21 +68,17 @@ public class HealthAndChargeBar : MonoBehaviour {
 				}
 				colorState = ColorState.Red;
 			} else if(hp/character.status.maxhp <= 0.6f && colorState == ColorState.Yellow) {
-				print(2);
 				for(int a=0; a!=20;++a) {
 					GameObject obj =  (GameObject)hpBarPart[a];
 					SpriteRenderer rend = obj.GetComponent<SpriteRenderer>();
 					rend.color = new Color(255/255f,164f/255f, 0);
-					print(rend.color);
 				}
 				colorState = ColorState.Orange;
 			}
 		}
 
 		transform.position = character.transform.position;
-		if(InputHandler.current.chargingTime > 0) {
-			
-		}
+
 	}
 
 	void OnGUI()
