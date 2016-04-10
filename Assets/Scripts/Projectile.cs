@@ -65,6 +65,7 @@ public class Projectile : MonoBehaviour {
 	Vector2 direction;
 
 	ArrayList hitByThis;
+	bool clearHit = false;
 
 	Projectile(Character shooter, Vector2 dir, CharacterSkillType type) {
 		this.shooter = shooter;
@@ -216,6 +217,10 @@ public class Projectile : MonoBehaviour {
 		projectile.speed = data.speed;
 		projectile.existTime = data.existTime;
 		projectile.subType = subType;
+
+		if(type == 251 || type == 258) {
+			projectile.clearHit = true;
+		}
 	}
 
 	void Start () {
@@ -249,7 +254,7 @@ public class Projectile : MonoBehaviour {
 		}
 		this.transform.position = pos;
 
-		if(hitByThis != null && hitByThis.Count > 0) {
+		if(clearHit && hitByThis != null && hitByThis.Count > 0) {
 			if(timeToClearHit <= 0) {
 				timeToClearHit = timeToClearHitMax;
 				while(hitByThis.Count > 0) {
