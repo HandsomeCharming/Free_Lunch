@@ -160,6 +160,9 @@ public class Character : MonoBehaviour {
 
 	public virtual void applyTemporaryEffect(int type) {
 		if(type <500)return;
+		foreach (TemporaryEffect t in tempEffects) {
+			if(t.type == type)return;
+		}
 		TemporaryEffect tempEffect = new TemporaryEffect(type);
 		tempEffects.Add(tempEffect);
 	}

@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scene/C1.unity
+  - enabled: 1
     path: Assets/Scene/MainMenu.unity
   - enabled: 1
     path: Assets/Scene/SkillTree.unity
@@ -13,7 +15,5 @@ EditorBuildSettings:
     path: Assets/Scene/LevelSelectMenu.unity
   - enabled: 1
     path: Assets/Scene/Level1.unity
-  - enabled: 0
-    path: Assets/Scene/C1.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Test.unity
