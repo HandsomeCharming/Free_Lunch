@@ -189,7 +189,7 @@ public class InputHandler : MonoBehaviour {
 
 	void face() {
 		Vector3 mousePosition = Input.mousePosition;
-		mousePosition.z = 50;
+		mousePosition.z = MainCamera.current.transform.position.y;
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 		mousePosition = mousePosition - character.transform.position;
 		x = mousePosition.x;

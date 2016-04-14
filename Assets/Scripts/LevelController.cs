@@ -34,7 +34,7 @@ public class LevelController : MonoBehaviour {
 		player.gameObject.transform.position = pos;
 
 		//Cursor.SetCursor(cursorTexture, cursurHotspot, cursorMode);
-		Cursor.visible = false;
+		//Cursor.visible = false;
 	}
 
 	Character loadPlayer() {
