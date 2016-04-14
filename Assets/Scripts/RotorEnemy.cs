@@ -12,6 +12,7 @@ public class RotorEnemy : Character {
 		chargedAttackModifier = new ChargedAttackModifier(115);
 
 		actionCds[1] = 5f;
+		actionCdRemain[1] = 3f;
 	}
 	// Use this for initialization
 	void Start () {

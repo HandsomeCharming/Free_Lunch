@@ -39,10 +39,21 @@ public class AIController : MonoBehaviour {
 
 	void handleAI(Character character) {
 		Vector3 dir = player.transform.position - character.transform.position;
-		character.moveToward(new Vector2(dir.x, dir.z).normalized);
-		character.faceToward(new Vector2(dir.x, dir.z).normalized);
-		character.startCharging();
-		character.attack();
+		switch(character.type) {
+		case 5:
+			character.moveToward(new Vector2(dir.x, dir.z).normalized);
+			character.faceToward(new Vector2(dir.x, dir.z).normalized);
+			character.attack();
+			break;
+		case 6:
+			character.faceToward(new Vector2(dir.x, dir.z).normalized);
+			if(character.actionCdRemain[1] == 0) {
+				character.startCharging(); 
+			} else {
+				
+			}
+			break;
+		}
 	}
 
 	public GameObject makeEnemy(int type, Vector3 pos) {
