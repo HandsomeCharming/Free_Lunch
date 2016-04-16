@@ -20,12 +20,19 @@ public class InputHandler : MonoBehaviour {
 
 	bool paused = false;
 
+	Canvas pauseMenu;
+
 	public InputHandler() {
 		current = this;
 	}
 
 	void Start () {
 		current = this;
+		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/PauseMenu"));
+		//pauseMenu = (Canvas)obj;
+		//obj.SetActive(false);
+		pauseMenu = obj.GetComponent<Canvas>();
+		pauseMenu.enabled = false;
 	}
 
 	void Update () {
@@ -37,10 +44,12 @@ public class InputHandler : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Escape)) {
 			if(!paused) {
 				Time.timeScale = 0;
+				pauseMenu.enabled = true;
 				paused = true;
 			}
 			else {
 				Time.timeScale = 1f;
+				pauseMenu.enabled = false;
 				paused = false;
 			}
 		} 
