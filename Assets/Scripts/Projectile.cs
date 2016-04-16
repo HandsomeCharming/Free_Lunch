@@ -348,10 +348,12 @@ public class Projectile : MonoBehaviour {
 		if(hitByThis.Contains(character))return;
 		hitByThis.Add(character);
 		//shooter.hit(character, skillType, subType);
-		if(shooter == null)
+		if(shooter == null || shooter.type != 0) {
 			character.gotHit(null, modifier, subType);
-		else 
+		}
+		else {
 			shooter.hit(character, skillType, subType);
+		}
 	}
 }
 
