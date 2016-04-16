@@ -154,6 +154,16 @@ public class Character : MonoBehaviour {
 		status.hp -= damage;
 	}
 
+	public virtual void gotHit(Character other, Modifier modifier, int subType) {
+		if(state == CharacterState.Dodge || (state == CharacterState.Block && blockModifier.type == 204))return;
+		status.hp -= modifier.damage[subType];
+		if(modifier.negativeEffectCount > 0) {
+			for(int a=0;a!=modifier.negativeEffectCount;++a) {
+				other.applyTemporaryEffect(modifier.negativeEffects[a]);
+			}
+		}
+	}
+
 	public virtual void hit(Character other, CharacterSkillType skillType, int subType = 0) {
 
 	}

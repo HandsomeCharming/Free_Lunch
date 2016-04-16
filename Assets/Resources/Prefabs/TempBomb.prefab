@@ -12,9 +12,11 @@ GameObject:
   - 23: {fileID: 2315536}
   - 95: {fileID: 9527564}
   - 114: {fileID: 11432212}
-  m_Layer: 0
+  - 54: {fileID: 5444802}
+  - 135: {fileID: 13525246}
+  m_Layer: 11
   m_Name: TempBomb
-  m_TagString: Untagged
+  m_TagString: TempEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 137160}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 250, y: 250, z: 250}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,6 +66,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137160}
   m_Mesh: {fileID: 4300000, guid: bf876ef8a18a44eb49392bb39845a000, type: 3}
+--- !u!54 &5444802
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137160}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!95 &9527564
 Animator:
   serializedVersion: 3
@@ -92,6 +109,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519ba48aa88ab48aeba61f9133a4a91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  state: 0
+  activeNum: 0
+  startAcc: 0
+--- !u!135 &13525246
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009236203
+  m_Center: {x: 0.0019047447, y: -0.0011067797, z: 0.009615271}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

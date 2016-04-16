@@ -13,6 +13,7 @@ public class LevelController : MonoBehaviour {
 	int sizeX;
 	int sizeY;
 
+
 	void Awake() {
 		sizeX = cursorSize;
 		sizeY = cursorSize;
@@ -32,7 +33,7 @@ public class LevelController : MonoBehaviour {
 		AIController.current.player = player;
 		Vector3 pos = new Vector3 (playerSpawnPosX, 0, playerSpawnPosY);		
 		player.gameObject.transform.position = pos;
-
+	
 		//Cursor.SetCursor(cursorTexture, cursurHotspot, cursorMode);
 		//Cursor.visible = false;
 	}
@@ -43,7 +44,7 @@ public class LevelController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	void OnGUI()
