@@ -53,6 +53,15 @@ public class AIController : MonoBehaviour {
 				
 			}
 			break;
+		case 7:
+			character.moveToward(new Vector2(dir.x, dir.z).normalized);
+			character.faceToward(new Vector2(dir.x, dir.z).normalized);
+			if(character.actionCdRemain[1] == 0 && Vector3.Distance(character.transform.position, player.transform.position) <= 5f ) {
+				character.startCharging(); 
+			} else {
+
+			}
+			break;
 		}
 	}
 
@@ -77,6 +86,7 @@ public class AIController : MonoBehaviour {
 			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/RotateEnemy"), pos, Quaternion.Euler(new Vector3(270f,90f,0f)));
 
 			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempBomb"), pos, Quaternion.identity);
 		}
 	}
 }

@@ -18,6 +18,8 @@ public class InputHandler : MonoBehaviour {
 
 	int usingSkillType = 0;
 
+	bool paused = false;
+
 	public InputHandler() {
 		current = this;
 	}
@@ -32,6 +34,17 @@ public class InputHandler : MonoBehaviour {
 
 	void handleInput () {
 		if(character == null) return;
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			if(!paused) {
+				Time.timeScale = 0;
+				paused = true;
+			}
+			else {
+				Time.timeScale = 1f;
+				paused = false;
+			}
+		} 
+		if(paused)return;
 		CharacterState state = character.state;
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");

@@ -17,7 +17,7 @@ public class ProjectileType {
 	}
 
 	public ProjectileData[] projectileDatas;
-	
+
 	public int modifierType;
 	public int modifierSubTypeCount; 
 	public CharacterSkillType skillType;
@@ -56,6 +56,8 @@ public class Projectile : MonoBehaviour {
 
 	public static Dictionary<int, ProjectileType> projectileTypes;
 
+	public Modifier modifier;
+
 	int type;
 	int subType;
 	float speed = 1;
@@ -91,6 +93,9 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(103, new ProjectileType(103, 2));
 		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.ChargedAttack, 2.0f, 2f, "Prefabs/CubeBullet");
 		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.ChargedAttack, 0f, 2f, "Prefabs/BurstExplosion");
+
+		projectileTypes.Add(116, new ProjectileType(116,1));
+		projectileTypes[116].projectileDatas[0] = new ProjectileData(116, 0, CharacterSkillType.ChargedAttack, 0f, 1f, "Prefabs/TempBombExplosion");
 
 		projectileTypes.Add(152, new ProjectileType(152, 2));
 		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Dodge, 1f, 2f, "");
@@ -142,6 +147,27 @@ public class Projectile : MonoBehaviour {
 		ans.shooter = shooter;
 		ans.direction = dir;
 		ans.skillType = skillType;
+
+		switch(skillType) {
+		case CharacterSkillType.Attack:
+			ans.modifier = shooter.attackModifier;
+			break;
+		case CharacterSkillType.ChargedAttack:
+			ans.modifier = shooter.chargedAttackModifier;
+			break;
+		case CharacterSkillType.Block:
+			ans.modifier = shooter.blockModifier;
+			break;
+		case CharacterSkillType.Dodge:
+			ans.modifier = shooter.dodgeModifier;
+			break;
+		case CharacterSkillType.Active1:
+			ans.modifier = (ActiveModifier)shooter.activeSkills[0];
+			break;
+		case CharacterSkillType.Active2:
+			ans.modifier = (ActiveModifier)shooter.activeSkills[1];
+			break;
+		}
 
 		obj.transform.rotation = rotationByType(shooter, dir, skillType, subType);
 
@@ -227,8 +253,16 @@ public class Projectile : MonoBehaviour {
 		//destroyOnDelay(2.0f);
 	}
 
+
+
 	void Update () {
 		Vector3 pos;
+
+		if(destroyIfShooterDestroyed() && shooter == null) {
+			Destroy(this.gameObject);
+			return;
+		}
+
 		if(type == 200) {
 			pos = shooter.transform.position;
 			pos.x += shooter.status.facingDirection.x * 3f;
@@ -264,8 +298,6 @@ public class Projectile : MonoBehaviour {
 				timeToClearHit -= Time.deltaTime;
 			}
 		}
-
-		if(shooter == null) Destroy(this.gameObject);
 	}
 
 	void OnTriggerEnter(Collider coll) {
@@ -279,7 +311,7 @@ public class Projectile : MonoBehaviour {
 		hit(coll.gameObject.GetComponent<Character>());
 		
 		if(skillType == CharacterSkillType.ChargedAttack) {
-			if(subType == 0) {
+			if(type == 103 && subType == 0) {
 				float angle = Vector2.Angle(new Vector2(1f,0),direction);
 				angle = direction.y<0?angle:-angle;
 				Projectile pro = ShootProjectile(shooter, direction, transform.position, skillType, 1);
@@ -302,15 +334,24 @@ public class Projectile : MonoBehaviour {
 		hit(coll.gameObject.GetComponent<Character>());
 	}
 
+	bool destroyIfShooterDestroyed() {
+		if(type == 200 || type == 258) return true;
+		return false;
+	}
+
 	bool destroyOnContact() {
-		if(type == 152 || type == 200 || type == 204 || type == 251 || type == 258)return false;
+		if(type == 116 || type == 152 || type == 200 || type == 204 || type == 251 || type == 258)return false;
 		return true;
 	}
 
 	void hit(Character character) {
 		if(hitByThis.Contains(character))return;
 		hitByThis.Add(character);
-		shooter.hit(character, skillType, subType);
+		//shooter.hit(character, skillType, subType);
+		if(shooter == null)
+			character.gotHit(null, modifier, subType);
+		else 
+			shooter.hit(character, skillType, subType);
 	}
 }
 

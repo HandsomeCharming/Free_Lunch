@@ -72,6 +72,7 @@ public class MainCharacter : Character {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
 		}
 		else {
+			GetComponent<Rigidbody>().isKinematic = true;
 			Projectile.ShootProjectile(this, status.facingDirection, this.transform.position, CharacterSkillType.Block);
 		}
 	}
@@ -255,10 +256,13 @@ public class MainCharacter : Character {
 			SaveLoad.Load();
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		base.Update();
+		if(GetComponent<Rigidbody>().isKinematic == true && state != CharacterState.Block) {
+			GetComponent<Rigidbody>().isKinematic = false;
+		}
 	}
 
 	void OnDestroy() {
