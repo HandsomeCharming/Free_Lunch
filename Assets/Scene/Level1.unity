@@ -2498,7 +2498,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11421624, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
       propertyPath: enemyType
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e394d7edb8504ab49eeedc3e9f7bd56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 5
 --- !u!4 &1271601468 stripped
 Transform:
   m_PrefabParentObject: {fileID: 445196, guid: cdbc0d264c08e4326b935620da270bce, type: 2}
@@ -3113,7 +3113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e394d7edb8504ab49eeedc3e9f7bd56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 5
 --- !u!1001 &1454241328
 Prefab:
   m_ObjectHideFlags: 0
@@ -3234,6 +3234,10 @@ Prefab:
     - target: {fileID: 456126, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421624, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: enemyType
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
@@ -3568,6 +3572,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11421624, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: enemyType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
   m_IsPrefabParent: 0
@@ -3776,6 +3784,10 @@ Prefab:
     - target: {fileID: 11418230, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
       propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421624, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: enemyType
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
@@ -4393,7 +4405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e394d7edb8504ab49eeedc3e9f7bd56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 5
 --- !u!4 &2024657244 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433878, guid: 995af36ba28e8410f92ebe2200910dff, type: 2}
@@ -4543,6 +4555,10 @@ Prefab:
       propertyPath: mEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 155948762}
+    - target: {fileID: 11421624, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
+      propertyPath: enemyType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f3c3e33ef4e4285abaa5c12e85cdbf, type: 2}
   m_IsPrefabParent: 0
@@ -4586,7 +4602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e394d7edb8504ab49eeedc3e9f7bd56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 5
 --- !u!4 &2144762303 stripped
 Transform:
   m_PrefabParentObject: {fileID: 442628, guid: 84d6d1308f92143e5b359d22bf838474, type: 2}
