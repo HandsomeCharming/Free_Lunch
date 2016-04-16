@@ -159,7 +159,7 @@ public class Character : MonoBehaviour {
 		status.hp -= modifier.damage[subType];
 		if(modifier.negativeEffectCount > 0) {
 			for(int a=0;a!=modifier.negativeEffectCount;++a) {
-				other.applyTemporaryEffect(modifier.negativeEffects[a]);
+				applyTemporaryEffect(modifier.negativeEffects[a]);
 			}
 		}
 	}

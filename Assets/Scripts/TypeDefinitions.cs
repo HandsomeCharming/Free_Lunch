@@ -74,6 +74,11 @@ public class AttackModifier : Modifier {
 			negativeEffects = new int[1];
 			negativeEffects[0] = 552;
 			break;
+		case 30:
+			subTypeCount = 1;
+			damage = new float[1];
+			damage[0] = 20f;
+			break;
 		default:
 			break;
 		}
