@@ -233,6 +233,7 @@ public class Character : MonoBehaviour {
 	}
 
 	protected void Update() {
+		if(Time.timeScale == 0)return;
 		if(status.hp <= 0f) {
 			die();
 			return;

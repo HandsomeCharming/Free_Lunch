@@ -256,6 +256,7 @@ public class Projectile : MonoBehaviour {
 
 
 	void Update () {
+		if(Time.timeScale == 0)return;
 		Vector3 pos;
 
 		if(destroyIfShooterDestroyed() && shooter == null) {
