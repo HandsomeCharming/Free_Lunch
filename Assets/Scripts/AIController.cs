@@ -40,9 +40,9 @@ public class AIController : MonoBehaviour {
 
 	void handleAI(Character character) {
 		Vector3 dir = player.transform.position - character.transform.position;
-		Enemy enemy = (Enemy) character;
 		switch(character.type) {
 		case 5:
+			Enemy enemy = (Enemy) character;
 			//character.moveToward(new Vector2(dir.x, dir.z).normalized);
 			if(!enemy.isMoving) {
 				if(Vector3.Distance(player.transform.position, enemy.transform.position)>50f) {
