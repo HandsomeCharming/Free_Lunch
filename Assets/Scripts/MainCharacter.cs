@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 using System.Collections;
 
 public enum MainCharacterDiv {
@@ -160,6 +161,8 @@ public class MainCharacter : Character {
 
 		this.gameObject.layer = 10;
 
+		MainCamera.current.GetComponent<CameraMotionBlur>().enabled = true;
+
 		float scalez = scale.z;
 		ParticleSystem.Particle []particleList = new ParticleSystem.Particle[cloud.particleCount];
 		cloud.GetParticles(particleList);
@@ -238,6 +241,8 @@ public class MainCharacter : Character {
 
 		scale.z = scalez;
 		this.transform.localScale = scale;
+
+		MainCamera.current.GetComponent<CameraMotionBlur>().enabled = false;
 
 		this.gameObject.layer = 8;
 	}
