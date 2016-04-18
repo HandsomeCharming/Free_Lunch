@@ -14,7 +14,11 @@ public class Enemy : Character {
 	public void Update() {
 		base.Update();
 		if(isMoving) {
-
+			Vector2 pos = new Vector2(transform.position.x, transform.position.z);
+			if(Vector2.Distance(pos, movePos) <= 0.2f) {
+				isMoving = false;
+			}
+			moveToward((movePos - pos).normalized);
 		}
 	}
 }

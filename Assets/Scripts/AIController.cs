@@ -40,11 +40,15 @@ public class AIController : MonoBehaviour {
 
 	void handleAI(Character character) {
 		Vector3 dir = player.transform.position - character.transform.position;
+		Enemy enemy = (Enemy) character;
 		switch(character.type) {
 		case 5:
-			character.moveToward(new Vector2(dir.x, dir.z).normalized);
-			character.faceToward(new Vector2(dir.x, dir.z).normalized);
-			character.attack();
+			//character.moveToward(new Vector2(dir.x, dir.z).normalized);
+			if(!enemy.isMoving)
+				enemy.moveTo(new Vector2(character.transform.position.x + Random.insideUnitSphere.x*3f, character.transform.position.z + Random.insideUnitSphere.y * 3f));
+
+			enemy.faceToward(new Vector2(dir.x, dir.z).normalized);
+			enemy.attack();
 			break;
 		case 6:
 			character.faceToward(new Vector2(dir.x, dir.z).normalized);
@@ -86,7 +90,7 @@ public class AIController : MonoBehaviour {
 			Vector3 pos = player.transform.position + (Random.Range(0,1)==0?-1:1) * new Vector3(Random.Range(20f,30f), 0 ,Random.Range(20f,30f));
 			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/RotateEnemy"), pos, Quaternion.Euler(new Vector3(270f,90f,0f)));
 
-			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
+			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempCubeEnemy"), pos, Quaternion.identity);
 			//GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/TempBomb"), pos, Quaternion.identity);
 		}
 	}
