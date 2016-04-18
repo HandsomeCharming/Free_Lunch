@@ -44,8 +44,13 @@ public class AIController : MonoBehaviour {
 		switch(character.type) {
 		case 5:
 			//character.moveToward(new Vector2(dir.x, dir.z).normalized);
-			if(!enemy.isMoving)
-				enemy.moveTo(new Vector2(character.transform.position.x + Random.insideUnitSphere.x*10f, character.transform.position.z + Random.insideUnitSphere.y * 10f));
+			if(!enemy.isMoving) {
+				if(Vector3.Distance(player.transform.position, enemy.transform.position)>50f) {
+					enemy.moveToward(new Vector2(dir.x, dir.z).normalized);
+				} else {
+					enemy.moveTo(new Vector2(character.transform.position.x + Random.onUnitSphere.x*10f, character.transform.position.z + Random.onUnitSphere.y * 10f));
+				}
+			}
 
 			enemy.faceToward(new Vector2(dir.x, dir.z).normalized);
 			enemy.attack();

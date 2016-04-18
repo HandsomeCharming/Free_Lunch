@@ -29,7 +29,7 @@ public class PauseMenuButton : MonoBehaviour {
 	}
 
 	public void restart() {
-
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void returnToLevelSelect() {

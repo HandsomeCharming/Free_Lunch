@@ -35,7 +35,7 @@ public class HealthAndChargeBar : MonoBehaviour {
 			float rad = degree*Mathf.Deg2Rad;*/
 			float degree = 18f*a + 9;
 			float rad = degree*Mathf.Deg2Rad;
-			Vector3 pos = new Vector3(hpBarRadius*Mathf.Sin(rad), 0,  hpBarRadius*Mathf.Cos(rad));
+			Vector3 pos = new Vector3(hpBarRadius*Mathf.Sin(rad), 0.5f,  hpBarRadius*Mathf.Cos(rad));
 			Vector3 rot = new Vector3(90f, 90f+degree, 0);
 			GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/HPBarPart"), pos, Quaternion.Euler(rot));
 			obj.transform.parent = gameObject.transform;
