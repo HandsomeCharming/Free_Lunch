@@ -88,6 +88,9 @@ public class AIController : MonoBehaviour {
 		case 6:
 			obj= (GameObject)Instantiate(Resources.Load("Prefabs/RotateEnemy"), pos, Quaternion.identity);
 			break;
+		case 7:
+			obj = (GameObject)Instantiate (Resources.Load ("Prefabs/TempBomb"), pos, Quaternion.identity);
+			break;
 		}
 		return obj;
 	}

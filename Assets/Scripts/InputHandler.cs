@@ -59,6 +59,9 @@ public class InputHandler : MonoBehaviour {
 			}
 		} 
 		if(paused)return;
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			character.status.hp = 100;
+		}
 		CharacterState state = character.state;
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
