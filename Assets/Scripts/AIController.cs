@@ -48,6 +48,7 @@ public class AIController : MonoBehaviour {
 				if(Vector3.Distance(player.transform.position, enemy.transform.position)>50f) {
 					enemy.moveToward(new Vector2(dir.x, dir.z).normalized);
 				} else {
+					Random.Range(50,100);
 					enemy.moveTo(new Vector2(character.transform.position.x + Random.onUnitSphere.x*10f, character.transform.position.z + Random.onUnitSphere.y * 10f));
 				}
 			}

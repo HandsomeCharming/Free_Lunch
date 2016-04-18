@@ -29,15 +29,17 @@ public class PauseMenuButton : MonoBehaviour {
 	}
 
 	public void restart() {
+		Time.timeScale = 1f;
 		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void returnToLevelSelect() {
+		Time.timeScale = 1f;
 		Application.LoadLevel("LevelSelectMenu");
 	}
 
 	public void goSetting() {
-
+		//Time.timeScale = 1f;
 	}
 
 	void OnMouseDown() {
