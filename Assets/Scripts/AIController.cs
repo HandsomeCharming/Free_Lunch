@@ -58,7 +58,10 @@ public class AIController : MonoBehaviour {
 			break;
 		case 6:
 			character.faceToward(new Vector2(dir.x, dir.z).normalized);
-			if(character.actionCdRemain[1] == 0) {
+			float angle = Vector2.Angle(new Vector2(dir.x, dir.z), character.status.facingDirection);
+			if(Vector3.Distance(player.transform.position, character.transform.position)>50f) {
+				//character.moveToward(new Vector2(dir.x, dir.z).normalized);
+			} else if(character.actionCdRemain[1] == 0 && (angle<20f||angle>340f)) {
 				character.startCharging(); 
 			} else {
 				
