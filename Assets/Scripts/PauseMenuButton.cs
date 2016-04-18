@@ -27,4 +27,27 @@ public class PauseMenuButton : MonoBehaviour {
 		pauseMenu.enabled = false;
 		InputHandler.current.paused = false;
 	}
+
+	public void restart() {
+
+	}
+
+	public void returnToLevelSelect() {
+
+	}
+
+	public void goSetting() {
+
+	}
+
+	void OnMouseDown() {
+		print(3);
+	}
+
+	void OnMouseOver() {
+		if(Input.GetMouseButtonDown(0)) {
+
+		}
+		print(4);
+	}
 }
