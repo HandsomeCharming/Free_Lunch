@@ -124,12 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e9b95cf609d96409b6c40519432957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filterType: 2
+  filterType: 0
   preview: 0
   previewScale: {x: 1, y: 1, z: 1}
   movementScale: 0.3
-  rotationScale: 1
-  maxVelocity: 8
+  rotationScale: 0
+  maxVelocity: 2
   minVelocity: 0.1
   velocityScale: 1
   softZDistance: 0.005
