@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 using System.Collections;
 
 public class MainCamera : MonoBehaviour {
@@ -8,6 +9,8 @@ public class MainCamera : MonoBehaviour {
 	public float[] cameraBoundaries;
 
 	public Character character;
+
+	bool paused = false;
 
 	public MainCamera() {
 		current = this;
@@ -22,6 +25,14 @@ public class MainCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(character == null)return;
+		if(!paused && InputHandler.current.paused) {
+			paused = true;
+			GetComponent<Blur>().enabled = true;
+		} else if(paused && !InputHandler.current.paused) { 
+			paused = false;
+			GetComponent<Blur>().enabled = false;
+		}
+
 		Vector3 pos = transform.position;
 		pos.y = 0;
 		Vector3 minus = character.transform.position - pos;

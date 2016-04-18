@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour {
 
 	int usingSkillType = 0;
 
-	bool paused = false;
+	public bool paused = false;
 
 	Canvas pauseMenu;
 
