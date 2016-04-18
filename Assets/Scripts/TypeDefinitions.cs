@@ -93,7 +93,7 @@ public class ChargedAttackModifier : Modifier {
 		case 103:
 			subTypeCount = 2;
 			damage = new float[2] {30f,40f};
-			chargeTime = 0.5f;
+			chargeTime = 1.0f;
 			break;
 		case 115:
 			subTypeCount = 1;
