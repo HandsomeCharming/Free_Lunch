@@ -33,7 +33,7 @@ public class PauseMenuButton : MonoBehaviour {
 	}
 
 	public void returnToLevelSelect() {
-
+		Application.LoadLevel("LevelSelectMenu");
 	}
 
 	public void goSetting() {
