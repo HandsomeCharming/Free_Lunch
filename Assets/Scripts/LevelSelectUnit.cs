@@ -6,7 +6,7 @@ public class LevelSelectUnit : MonoBehaviour {
 	public float circleRadius = 0.31642f;
 	public float circleSpeed = 1f;
 
-	float rad = 0;
+	float rad = 90f*Mathf.Deg2Rad;
 	// Use this for initialization
 	void Start () {
 		
