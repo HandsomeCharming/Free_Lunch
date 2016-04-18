@@ -73,7 +73,9 @@ public class Character : MonoBehaviour {
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 	}
 
-	public virtual void moveTo(Vector2 pos) {}
+	public virtual void moveTo(Vector2 pos) {
+
+	}
 	
 	public virtual void moveToward(Vector2 dir) {
 		Vector3 pos = gameObject.transform.position;

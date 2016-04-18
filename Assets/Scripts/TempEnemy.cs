@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TempEnemy : Character {
+public class TempEnemy : Enemy {
 
 	public TempEnemy() : base() {
 		type = 5;
