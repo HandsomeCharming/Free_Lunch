@@ -6,7 +6,8 @@ public enum PauseMenuButtonType {
 	Return = 0,
 	Restart,
 	ReturnToLevelSelect,
-	BaseSetting
+	BaseSetting,
+	ReturnToMainMenu
 }
 
 public class PauseMenuButton : MonoBehaviour {
@@ -38,6 +39,10 @@ public class PauseMenuButton : MonoBehaviour {
 		Application.LoadLevel("LevelSelectMenu");
 	}
 
+	public void returnToMainMenu() {
+		Time.timeScale = 1f;
+		Application.LoadLevel("MainMenu");
+	}
 	public void goSetting() {
 		//Time.timeScale = 1f;
 	}

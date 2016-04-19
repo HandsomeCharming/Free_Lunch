@@ -8,6 +8,6 @@ public class IgnoreAlphaScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		GetComponent<Image>().eventAlphaThreshold = 0.1f;
+		GetComponent<Image>().eventAlphaThreshold = 0.01f;
 	}
 }
