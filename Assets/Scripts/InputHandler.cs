@@ -28,7 +28,12 @@ public class InputHandler : MonoBehaviour {
 
 	void Start () {
 		current = this;
-		GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/PauseMenu"));
+		GameObject obj;
+		if(Application.loadedLevelName == "LevelSelectMenu") {
+			obj = (GameObject)Instantiate(Resources.Load("Prefabs/PauseMenuLevelSelect"));
+		} else {
+			obj = (GameObject)Instantiate(Resources.Load("Prefabs/PauseMenuInGame"));
+		}
 		//pauseMenu = (Canvas)obj;
 		//obj.SetActive(false);
 		pauseMenu = obj.GetComponent<Canvas>();
@@ -43,10 +48,7 @@ public class InputHandler : MonoBehaviour {
 		if(character == null) return;
 
 		if(Input.GetKeyDown(KeyCode.Escape)) {
-			if(Application.loadedLevelName == "LevelSelectMenu") {
-				Application.LoadLevel("MainMenu");
-				return;
-			}
+			
 			if(!paused) {
 				Time.timeScale = 0;
 				pauseMenu.enabled = true;
