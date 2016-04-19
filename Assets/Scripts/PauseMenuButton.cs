@@ -43,6 +43,12 @@ public class PauseMenuButton : MonoBehaviour {
 		Time.timeScale = 1f;
 		Application.LoadLevel("MainMenu");
 	}
+
+	public void returnToSkillTree() {
+		Time.timeScale = 1f;
+		Application.LoadLevel("SkillTree");
+	}
+
 	public void goSetting() {
 		//Time.timeScale = 1f;
 	}
