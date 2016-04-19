@@ -42,7 +42,8 @@ MonoBehaviour:
   character: {fileID: 0}
   chargeBar: {fileID: 2800000, guid: 32c5019ebc9cf4916878e0fe400b728c, type: 3}
   hpBarRadius: 4
-  cursorSize: 120
+  cursorSize: 8
+  hpChangeFrame: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -111,7 +111,7 @@ public class HealthAndChargeBar : MonoBehaviour {
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
 		float lerp = (InputHandler.current.chargingTime)/character.chargedAttackModifier.chargeTime;
-		float scale = Mathf.Lerp(cursorSize, 10, lerp);
+		float scale = Mathf.Lerp(cursorSize, 2, lerp);
 
 		cursorCharge.transform.position = mousePosition;
 		cursorCharge.transform.localScale = new Vector3(scale, scale, scale);
