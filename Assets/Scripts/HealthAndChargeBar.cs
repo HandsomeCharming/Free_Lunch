@@ -101,7 +101,7 @@ public class HealthAndChargeBar : MonoBehaviour {
 			}
 		}
 
-		transform.position = character.transform.position;
+		transform.position = character.transform.position - new Vector3(0, 0.9f, 0);
 
 	}
 
