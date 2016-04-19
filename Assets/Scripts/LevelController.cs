@@ -36,6 +36,7 @@ public class LevelController : MonoBehaviour {
 	
 		//Cursor.SetCursor(cursorTexture, cursurHotspot, cursorMode);
 		//Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Confined;
 	}
 
 	Character loadPlayer() {
@@ -44,11 +45,10 @@ public class LevelController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	void OnGUI()
 	{
-		GUI.DrawTexture(new Rect(Event.current.mousePosition.x - (cursorSize/2), Event.current.mousePosition.y - (cursorSize/2), sizeX, sizeY), cursorTexture);
+		//GUI.DrawTexture(new Rect(Event.current.mousePosition.x - (cursorSize/2), Event.current.mousePosition.y - (cursorSize/2), sizeX, sizeY), cursorTexture);
 	}
 }

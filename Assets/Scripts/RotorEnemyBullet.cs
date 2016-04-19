@@ -46,6 +46,7 @@ public class RotorEnemyBullet : MonoBehaviour {
 		}
 		mrenderer.enabled = false;
 		parent.status.turningSpeed = 3f;
+		parent.state = CharacterState.Move;
 		yield break;
 	}
 
@@ -67,5 +68,6 @@ public class RotorEnemyBullet : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		transform.localPosition = new Vector3(0.2f, 0f, 0f);
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotorEnemy : Character {
+public class RotorEnemy : Enemy {
 
 	public GameObject rotor;
 	public GameObject chargeBall;
@@ -39,6 +39,7 @@ public class RotorEnemy : Character {
 		float time = 0f;
 
 		status.turningSpeed = 0f;
+		state = CharacterState.ChargedAttack;
 		chargeBall.SetActive(true);
 		chargeBall.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
 		Vector3 rotate = rotor.transform.localRotation.eulerAngles;

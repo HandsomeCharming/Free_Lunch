@@ -329,6 +329,8 @@ MonoBehaviour:
   type: 0
   state: 0
   activeNum: 0
+  isMoving: 0
+  movePos: {x: 0, y: 0}
   rotor: {fileID: 151036}
   chargeBall: {fileID: 162120}
   bullet: {fileID: 11494328}
