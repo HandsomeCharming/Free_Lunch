@@ -9,6 +9,7 @@ public class MainCamera : MonoBehaviour {
 	public float[] cameraBoundaries;
 
 	public Character character;
+	public Character otherFocus = null;
 
 	bool paused = false;
 
@@ -35,14 +36,28 @@ public class MainCamera : MonoBehaviour {
 
 		Vector3 pos = transform.position;
 		pos.y = 0;
-		Vector3 minus = character.transform.position - pos;
-		if(minus.magnitude <=1.5f) {
-			pos.x = Mathf.Clamp(character.transform.position.x, cameraBoundaries[0], cameraBoundaries[2]);
-			pos.z = Mathf.Clamp(character.transform.position.z, cameraBoundaries[1], cameraBoundaries[3]);
+		Vector3 minus;
+		if(otherFocus == null) {
+			minus = character.transform.position - pos;
+			if(minus.magnitude <=1.5f) {
+				pos.x = Mathf.Clamp(character.transform.position.x, cameraBoundaries[0], cameraBoundaries[2]);
+				pos.z = Mathf.Clamp(character.transform.position.z, cameraBoundaries[1], cameraBoundaries[3]);
+			} else {
+				pos.x = Mathf.Clamp(transform.position.x + minus.normalized.x*2f, cameraBoundaries[0], cameraBoundaries[2]);
+				pos.z = Mathf.Clamp(transform.position.z + minus.normalized.z*2f, cameraBoundaries[1], cameraBoundaries[3]);
+			}
 		} else {
-			pos.x = Mathf.Clamp(transform.position.x + minus.normalized.x*2f, cameraBoundaries[0], cameraBoundaries[2]);
-			pos.z = Mathf.Clamp(transform.position.z + minus.normalized.z*2f, cameraBoundaries[1], cameraBoundaries[3]);
+			minus = (otherFocus.transform.position+character.transform.position)/2f -pos;
+			Vector3 midp = (otherFocus.transform.position+character.transform.position)/2f;
+			if(minus.magnitude <=1.5f) {
+				pos.x = Mathf.Clamp(midp.x, cameraBoundaries[0], cameraBoundaries[2]);
+				pos.z = Mathf.Clamp(midp.z, cameraBoundaries[1], cameraBoundaries[3]);
+			} else {
+				pos.x = Mathf.Clamp(transform.position.x + minus.normalized.x*2f, cameraBoundaries[0], cameraBoundaries[2]);
+				pos.z = Mathf.Clamp(transform.position.z + minus.normalized.z*2f, cameraBoundaries[1], cameraBoundaries[3]);
+			}
 		}
+
 		pos.y = transform.position.y;
 		transform.position = pos;
 	}

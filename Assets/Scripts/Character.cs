@@ -189,6 +189,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public virtual void calculateSpeed() {
+		
 		float scale = 1f;
 		for(int a=0;a<tempEffects.Count;++a) {
 			TemporaryEffect tempEffect = (TemporaryEffect) tempEffects[a];
@@ -208,6 +209,9 @@ public class Character : MonoBehaviour {
 			default:
 				break;
 			}
+		}
+		if(status.canBeCCed == false) {
+			scale = 1f;
 		}
 		status.moveSpeed = status.regularMoveSpeed * scale;
 	}

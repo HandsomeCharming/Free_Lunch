@@ -1,57 +1,42 @@
 fileFormatVersion: 2
-guid: 3f0a81069a17f45c5979b63fe695cecf
-timeCreated: 1461040247
+guid: cf523eec3c3b340a0ada519bf7412281
+timeCreated: 1461195399
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cannon
-    100004: Cube_000
-    100006: Cube_002
-    100008: Boss
-    100010: InnerShield
-    100012: lowerShield
-    100014: upper_shield
-    100016: Cylinder
-    400000: //RootNode
-    400002: Cannon
-    400004: Cube_000
-    400006: Cube_002
-    400008: Boss
-    400010: InnerShield
-    400012: lowerShield
-    400014: upper_shield
-    400016: Cylinder
-    2300000: //RootNode
+    100000: Boss
+    100002: //RootNode
+    100004: Cannon
+    100006: InnerShield
+    100008: lowerShield
+    100010: upper shield
+    100012: Cylinder
+    400000: Boss
+    400002: //RootNode
+    400004: Cannon
+    400006: InnerShield
+    400008: lowerShield
+    400010: upper shield
+    400012: Cylinder
+    2300000: Boss
     2300002: Cannon
-    2300004: Cube_000
-    2300006: Cube_002
-    2300008: Boss
-    2300010: InnerShield
-    2300012: lowerShield
-    2300014: upper_shield
-    2300016: Cylinder
-    3300000: //RootNode
+    2300004: InnerShield
+    2300006: lowerShield
+    2300008: upper shield
+    2300010: Cylinder
+    3300000: Boss
     3300002: Cannon
-    3300004: Cube_000
-    3300006: Cube_002
-    3300008: Boss
-    3300010: InnerShield
-    3300012: lowerShield
-    3300014: upper_shield
-    3300016: Cylinder
-    4300000: Cube
-    4300002: Cannon
-    4300004: Cube_000
-    4300006: Cube_002
-    4300008: lowerShield
-    4300010: upper_shield
-    4300012: Boss
-    4300014: InnerShield
-    4300016: Cylinder
-    7400000: Default Take
-    9500000: //RootNode
+    3300004: InnerShield
+    3300006: lowerShield
+    3300008: upper shield
+    3300010: Cylinder
+    4300000: lowerShield
+    4300002: upper shield
+    4300004: Boss
+    4300006: InnerShield
+    4300008: Cannon
+    4300010: Cylinder
   materials:
     importMaterials: 1
     materialName: 0
@@ -110,7 +95,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

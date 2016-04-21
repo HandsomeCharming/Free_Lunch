@@ -19,6 +19,7 @@ public class CharacterStatus {
 		canMove = true;
 		canAttack = true;
 		canUseSkill = true;
+		canBeCCed = true;
 	}
 	public float hp;
 	public float maxhp;
@@ -35,6 +36,7 @@ public class CharacterStatus {
 	public bool canMove;
 	public bool canAttack;
 	public bool canUseSkill;
+	public bool canBeCCed;
 }
 
 public class Modifier {

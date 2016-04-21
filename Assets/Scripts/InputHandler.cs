@@ -48,7 +48,6 @@ public class InputHandler : MonoBehaviour {
 		if(character == null) return;
 
 		if(Input.GetKeyDown(KeyCode.Escape)) {
-			
 			if(!paused) {
 				Time.timeScale = 0;
 				pauseMenu.enabled = true;
