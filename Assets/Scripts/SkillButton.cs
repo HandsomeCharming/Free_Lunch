@@ -23,17 +23,34 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 	public int pressed {get; set;}
 
+	public Image baseImage;
+	public bool selected = false;
+	public bool canClick = true;
+
 	Text description;
 
 	SkillTreeHandler skillTreeHandler;
 
+	Transform oriTrans;
+
+
+	bool pickedUp = false;
+
 	void Start() {
-		skillTreeHandler = transform.parent.gameObject.GetComponent<SkillTreeHandler>();
+		oriTrans = transform;
+		skillTreeHandler = SkillTreeHandler.skillTreeHandler;//transform.parent.gameObject.GetComponent<SkillTreeHandler>();
+	}
+
+	void Awake() {
+		oriTrans = transform;
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
 		Image image = this.gameObject.GetComponent<Image>();
-		if (eventData.button == PointerEventData.InputButton.Left) {
+		if(skillTreeHandler == null) {
+			skillTreeHandler = SkillTreeHandler.skillTreeHandler;
+		}
+		/*if (eventData.button == PointerEventData.InputButton.Left) {
 			if(skillTreeHandler.clickSkill(this)) {
 				if(pressed == 0) {
 					pressed = 1;
@@ -48,7 +65,55 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 					image.color = Color.white;
 				}
 			}
+		}*/
+	}
+
+
+	public void disableClick() {
+		canClick = false;
+		GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillForbiddenBase");
+	}
+
+	public void enableClick() {
+		canClick = true;
+		GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillTreeDBase");
+	}
+
+	public void OnDrag() { 
+		if(!canClick)return;
+		pickedUp = true;
+		transform.position = Input.mousePosition; 
+		if(Input.mousePosition.y > Screen.height*0.65) {
+			GameObject obj = (GameObject)SkillSlot.current.slots[skillLevel];
+			Image image = obj.GetComponent<Image>();
+			if(image.sprite.name != "SkillSlotHighlighted")
+				image.sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillSlotHighlighted");
+			if(baseImage.sprite.name != "SkillSlot")
+				baseImage.sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillSlot");
+			
+		} 
+		else {
+			GameObject obj = (GameObject)SkillSlot.current.slots[skillLevel];
+			Image image = obj.GetComponent<Image>();
+			if(image.sprite.name != "SkillSlot")
+				image.sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillSlot");
+			if(baseImage.sprite.name != "SkillSlotHighlighted")
+				baseImage.sprite = Resources.Load<Sprite>("Sprites/Skilltree/SkillSlotHighlighted");
 		}
+	}
+
+	public void OnDrop() {
+		if(!canClick)return;
+		if(Input.mousePosition.y > Screen.height*0.65) {
+			transform.position = ((GameObject)SkillSlot.current.slots[skillLevel]).transform.position;
+			selected = true;
+			SkillTreeHandler.skillTreeHandler.clickSkill(this);
+		} else {
+			SkillTreeHandler.skillTreeHandler.removeSkill(this);
+			selected = false;
+			transform.position =  baseImage.transform.position;
+		}
+
 	}
 
 	//Triggered when loaded save data.

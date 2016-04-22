@@ -21,15 +21,38 @@ public class MainCharacter : Character {
 		actionCds[5] = 5f;
 
 		status.regularMoveSpeed = 40f;
-		attackModifier = new AttackModifier(3);
-		dodgeModifier = new DodgeModifier(152);
-		chargedAttackModifier = new ChargedAttackModifier(103);
-		blockModifier = new BlockModifier(203);
-		activeSkills = new ArrayList();
-		activeSkills.Add(new ActiveModifier(251));
-		activeSkills.Add(new ActiveModifier(258));
+		if(!loadSkills()) {
+			attackModifier = new AttackModifier(3);
+			dodgeModifier = new DodgeModifier(150);
+			chargedAttackModifier = new ChargedAttackModifier(103);
+			blockModifier = new BlockModifier(200);
+			activeSkills = new ArrayList();
+			//activeSkills.Add(new ActiveModifier(251));
+			//activeSkills.Add(new ActiveModifier(258));
+		}
 
 		div = MainCharacterDiv.Division;
+	}
+
+	public bool loadSkills() {
+		if(SaveLoad.Load()) {
+			SkillTree tree = GameSave.current.skilltree;
+			Skill[] skills = tree.skills;
+			if(skills[0]!=null)attackModifier = new AttackModifier(skills[0].skillType);
+			else attackModifier = new AttackModifier(3);
+			if(skills[1]!=null)chargedAttackModifier = new ChargedAttackModifier(skills[1].skillType);
+			else chargedAttackModifier = new ChargedAttackModifier(103);
+			if(skills[2]!=null)dodgeModifier = new DodgeModifier(skills[2].skillType);
+			else dodgeModifier = new DodgeModifier(150);
+			if(skills[3]!=null)blockModifier = new BlockModifier(skills[3].skillType);
+			else blockModifier = new BlockModifier(200);
+			activeSkills = new ArrayList();
+			if(skills[4]!=null)activeSkills.Add(new ActiveModifier(skills[4].skillType));
+			if(skills[6]!=null)activeSkills.Add(new ActiveModifier(skills[6].skillType));
+
+			return true;
+		}
+		return false;
 	}
 
 	//Currently only division.
@@ -69,7 +92,7 @@ public class MainCharacter : Character {
 	public override void block() {
 		if(actionCdRemain[3] > 0) return;
 		actionCdRemain[3] = actionCds[3];
-		if(blockModifier.type != 203) {
+		if(blockModifier.type == 200) {
 			Projectile.ShootProjectile(this, status.facingDirection, CharacterSkillType.Block);
 		}
 		else {
@@ -93,6 +116,7 @@ public class MainCharacter : Character {
 
 	public override void useSkill (int skillIndex)
 	{
+		if(activeSkills.Count < skillIndex)return;
 		if(actionCdRemain[skillIndex+4] > 0)return;
 		actionCdRemain[skillIndex+4] = actionCds[skillIndex+4];
 		ActiveModifier modifier = (ActiveModifier) activeSkills[skillIndex];

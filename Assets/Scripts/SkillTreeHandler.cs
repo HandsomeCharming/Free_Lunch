@@ -8,6 +8,7 @@ public class Skill {
 	public int skillCount {get; set;}
 
 	public Skill() { skillType=0; skillCount=0;}
+	public Skill(int type) {skillType = type;}
 }
 
 [System.Serializable] 
@@ -37,6 +38,8 @@ public class SkillTreeHandler : MonoBehaviour {
 	public static SkillTreeHandler skillTreeHandler;
 
 	SkillTree skilltree;
+	public GameObject skillTreeButtons;
+	public SkillSlot slots;
 	
 	// Use this for initialization
 	void Start () {
@@ -46,7 +49,7 @@ public class SkillTreeHandler : MonoBehaviour {
 		} else {
 			skilltree = GameSave.current.skilltree;
 		}
-		for(int a=0;a!=transform.childCount;++a) {
+		/*for(int a=0;a!=transform.childCount;++a) {
 			SkillButton button = transform.GetChild(a).GetComponent<SkillButton>();
 			for(int b=0;b!=skilltree.skillLevel;++b) {
 				if(skilltree.skills[b].skillType == button.skillType) {
@@ -55,7 +58,7 @@ public class SkillTreeHandler : MonoBehaviour {
 					break;
 				}
 			}
-		}
+		}*/
 	}
 
 	public bool checkClicked(int skillType) {
@@ -72,27 +75,24 @@ public class SkillTreeHandler : MonoBehaviour {
 	}
 
 	public bool clickSkill(SkillButton button) {
-		if(skilltree.skillLevel != button.skillLevel || button.skillCount >= button.skillCountMax ||
-		   (button.prereSkillType != -1 && !checkClicked(button.prereSkillType)) ) {
-			return false;
+		skilltree.skills[button.skillLevel] = new Skill(button.skillType);
+		SkillButton[] buttons = skillTreeButtons.GetComponentsInChildren<SkillButton>();
+		foreach (SkillButton b in buttons) {
+			if(b.skillLevel == button.skillLevel && b.selected == false) {
+				b.disableClick();
+			}
 		}
-		button.skillCount++;
-		if(button.skillCount == button.skillCountMax) {
-			skilltree.skills[skilltree.skillLevel] = new Skill();
-			skilltree.skills[skilltree.skillLevel].skillType = button.skillType;
-			skilltree.skills[skilltree.skillLevel].skillCount = button.skillCount;
-			skilltree.skillLevel++;
-		}
+		saveSkillsToDisk();
 		return true;
 	}
 
-	public bool rightClickSkill(SkillButton button) {
-		if(skilltree.skillLevel-1 != button.skillLevel || button.skillCount == 0) {
-			return false;
-		}
-		button.skillCount--;
-		if(button.skillCount == 0) {
-			skilltree.skillLevel--;
+	public bool removeSkill(SkillButton button) {
+		skilltree.skills[button.skillLevel] = null;
+		SkillButton[] buttons = skillTreeButtons.GetComponentsInChildren<SkillButton>();
+		foreach (SkillButton b in buttons) {
+			if(b.skillLevel == button.skillLevel && b.selected == false) {
+				b.enableClick();
+			}
 		}
 		return true;
 	}
@@ -109,13 +109,29 @@ public class SkillTreeHandler : MonoBehaviour {
 		return true;
 	}
 
+
 	bool loadSkillsFromDisk() {
 		if(SaveLoad.Load()) {
 			Debug.Log("loaded");
 			GameSave save = GameSave.current;
 			skilltree = save.skilltree;
+			putSkillsAfterLoad();
 			return true;
 		}
 		return false;
+	}
+
+	void putSkillsAfterLoad() {
+		SkillButton[] buttons = skillTreeButtons.GetComponentsInChildren<SkillButton>();
+		for(int a=0;a!=8;++a) {
+			if(skilltree.skills[a] == null)return;
+			foreach (SkillButton b in buttons) {
+				if(b.skillLevel == a && b.skillType == skilltree.skills[a].skillType) {
+					b.transform.position = slots.slots[a].transform.position;
+				} else if(b.skillLevel == a) {
+					b.disableClick();
+				}
+			}
+		}
 	}
 }
