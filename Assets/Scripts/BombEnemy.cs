@@ -16,7 +16,7 @@ public class BombEnemy : Character {
 			AIController.current.characters.Add(this);
 		}
 
-		status.regularMoveSpeed = 35f;
+		status.regularMoveSpeed = 55f;
 		status.turningSpeed = 3f;
 
 		actionCds[0] = 1f;
