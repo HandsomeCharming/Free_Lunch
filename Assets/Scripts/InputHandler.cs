@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour {
 	int usingSkillType = 0;
 
 	public bool paused = false;
+	public bool canInput = true;
 
 	Canvas pauseMenu;
 
@@ -44,22 +45,42 @@ public class InputHandler : MonoBehaviour {
 		handleInput();
 	}
 
+	public void stopInput() {
+		canInput = false;
+	}
+
+	public void enableInput() {
+		canInput = true;
+	}
+
+	public void pause() {
+		Time.timeScale = 0;
+		pauseMenu.enabled = true;
+		paused = true;
+	}
+
+	public void resume() {
+		Time.timeScale = 1f;
+		pauseMenu.enabled = false;
+		paused = false;
+	}
+
 	void handleInput () {
 		if(character == null) return;
+		if(!canInput) {
+			character.stop();
+			return;
+		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)) {
 			if(!paused) {
-				Time.timeScale = 0;
-				pauseMenu.enabled = true;
-				paused = true;
+				pause();
 			}
 			else {
-				Time.timeScale = 1f;
-				pauseMenu.enabled = false;
-				paused = false;
+				resume();
 			}
 		} 
-		if(paused)return;
+		if(paused )return;
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			character.status.hp = 100;
 		}
