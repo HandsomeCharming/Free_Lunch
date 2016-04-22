@@ -221,6 +221,8 @@ public class Projectile : MonoBehaviour {
 			return Quaternion.Euler(270, 0, 0);
 		case 200:
 			return Quaternion.Euler(320, 90-angle, 90);
+		case 204:
+			return Quaternion.Euler(0,0,0);
 		case 251:
 			return Quaternion.Euler(90, 0, 0);
 		case 258:
@@ -282,7 +284,10 @@ public class Projectile : MonoBehaviour {
 		} else if(type == 204 || type == 203) {
 			pos = this.transform.position;
 			if(InputHandler.current.blockTime == 0) {
-				Destroy(this.gameObject);
+				if(this.transform.parent == null) 
+					Destroy(this.transform.parent);
+				else 
+					Destroy(this.gameObject);
 			}
 		} else if(type == 258) {
 			pos = shooter.transform.position;
