@@ -90,12 +90,18 @@ public class Projectile : MonoBehaviour {
 		projectileTypes.Add(30, new ProjectileType(30,1));
 		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
 
+		projectileTypes.Add(31, new ProjectileType(31,1));
+		projectileTypes[31].projectileDatas[0] = new ProjectileData(31, 0, CharacterSkillType.Attack, 2f, 4f, "Prefabs/Boss1/Boss1Bullet");
+
 		projectileTypes.Add(103, new ProjectileType(103, 2));
 		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.ChargedAttack, 2.0f, 2f, "Prefabs/CubeBullet");
 		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.ChargedAttack, 0f, 2f, "Prefabs/BurstExplosion");
 
 		projectileTypes.Add(116, new ProjectileType(116,1));
 		projectileTypes[116].projectileDatas[0] = new ProjectileData(116, 0, CharacterSkillType.ChargedAttack, 0f, 1f, "Prefabs/TempBombExplosion");
+
+		projectileTypes.Add(117, new ProjectileType(117,1));
+		projectileTypes[117].projectileDatas[0] = new ProjectileData(117, 0, CharacterSkillType.ChargedAttack, 1f, 4f, "Prefabs/Boss1/Boss1UltBullet");
 
 		projectileTypes.Add(152, new ProjectileType(152, 2));
 		projectileTypes[152].projectileDatas[0] = new ProjectileData(152, 0, CharacterSkillType.Dodge, 1f, 2f, "");

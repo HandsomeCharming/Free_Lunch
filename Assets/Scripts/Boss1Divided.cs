@@ -22,6 +22,7 @@ public class Boss1Divided : Enemy {
 		status.hp = 100;
 		status.regularMoveSpeed = 200f;
 
+
 		lowerShields = new ArrayList();
 		for(int a=0;a!=8;++a) {
 			float angle = a * 360f/8f*Mathf.Deg2Rad + lowerAnglePlus;
@@ -65,7 +66,7 @@ public class Boss1Divided : Enemy {
 			yield return new WaitForEndOfFrame();
 		}
 		GetComponent<Collider>().isTrigger = false;
-		while(time <= 0.7f) {
+		while(time <= 0.5f) {
 			time += Time.deltaTime;
 			Vector3 rot = transform.rotation.eulerAngles;
 			rot.y += rotSpeed;
@@ -100,7 +101,7 @@ public class Boss1Divided : Enemy {
 			time += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
-		float rammingTime = 1f;
+		float rammingTime = 0.7f;
 		Vector3 dir = player.transform.position - transform.position;
 		time = 0;
 		float currentSpeed = 150f;
@@ -129,6 +130,20 @@ public class Boss1Divided : Enemy {
 		}
 		state = CharacterState.Stand;
 		yield break;
+	}
+
+	void OnTriggerEnter(Collider coll) {
+		if(coll.tag == "Player") {
+			Character player = coll.gameObject.GetComponent<Character>();
+			player.gotHit(this, 10f);
+		}
+	}
+
+	void OnTriggerStay(Collider coll) {
+		if(coll.tag == "Player") {
+			Character player = coll.gameObject.GetComponent<Character>();
+			player.gotHit(this, 2f);
+		}
 	}
 
 	void OnCollisionEnter(Collision coll) {

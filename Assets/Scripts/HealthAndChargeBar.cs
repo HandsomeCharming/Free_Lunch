@@ -65,7 +65,7 @@ public class HealthAndChargeBar : MonoBehaviour {
 			cursorCharge.SetActive(false);
 		}
 
-		if(hp != character.status.hp) {
+		if(hp < character.status.hp || hp > character.status.hp+5f ) {
 			if(hpChangeFrameRemain > 0) {
 				hpChangeFrameRemain --;
 			} else {
@@ -97,7 +97,14 @@ public class HealthAndChargeBar : MonoBehaviour {
 						rend.color = new Color(255/255f,164f/255f, 0);
 					}
 					colorState = ColorState.Orange;
-				} 
+				} else if(hp/character.status.maxhp > 0.6f && colorState != ColorState.Yellow) {
+					for(int a=0; a!=20;++a) {
+						GameObject obj =  (GameObject)hpBarPart[a];
+						SpriteRenderer rend = obj.GetComponent<SpriteRenderer>();
+						rend.color = new Color(240/255f,255f/255f, 0);
+					}
+					colorState = ColorState.Yellow;
+				}
 			}
 		}
 
