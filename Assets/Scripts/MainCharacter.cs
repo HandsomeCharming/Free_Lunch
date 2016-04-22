@@ -291,6 +291,6 @@ public class MainCharacter : Character {
 	}
 
 	void OnDestroy() {
-		
+		Instantiate(Resources.Load("Prefabs/MenuDead"));
 	}
 }
