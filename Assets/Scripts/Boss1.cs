@@ -27,8 +27,8 @@ public class Boss1 : Enemy {
 
 	void Start () {
 		type = 9;
-		status.maxhp = 3000;
-		status.hp = 3000;
+		status.maxhp = 4500;
+		status.hp = 4500;
 		status.canBeCCed = false;
 		actionCds[0] = 6f;		//Single Ram
 		actionCds[1] = 20f;		//Divide
@@ -269,11 +269,12 @@ public class Boss1 : Enemy {
 			}
 			for(int a=0;a!=8;++a) {
 				GameObject obj = (GameObject) lowerShields[a];
+				obj.SetActive(false);/*
 				Rigidbody body = obj.GetComponent<Rigidbody>();
 				body.AddForce(0,-10f,0f);
 				Vector3 rota = new Vector3(rotx, 45f*a, 0f);
 				Quaternion rot = Quaternion.Euler(rota);
-				obj.transform.localRotation = rot;
+				obj.transform.localRotation = rot;*/
 			}
 			time += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
