@@ -284,8 +284,10 @@ public class Projectile : MonoBehaviour {
 		} else if(type == 204 || type == 203) {
 			pos = this.transform.position;
 			if(InputHandler.current.blockTime == 0) {
-				if(this.transform.parent != null) 
+				if(this.transform.parent != null) {
 					Destroy(this.transform.parent);
+					Destroy(this.gameObject);
+				}
 				else 
 					Destroy(this.gameObject);
 			}

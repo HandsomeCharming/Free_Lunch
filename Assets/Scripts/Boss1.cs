@@ -20,6 +20,10 @@ public class Boss1 : Enemy {
 	int ramCount = 0;
 	bool isRamming = false;
 	bool[] cannonCanShoot = {true, true, true, true};
+	bool died = false;
+
+	public FinishPoint finishPoint;
+	public Canvas hpBar;
 
 	void Start () {
 		type = 9;
@@ -76,6 +80,7 @@ public class Boss1 : Enemy {
 	}
 
 	void OnCollisionEnter(Collision coll) {
+		if(died)return;
 		if(coll.rigidbody.tag == "Player") {
 			Character player = coll.gameObject.GetComponent<Character>();
 			player.gotHit(this, 10f);
@@ -83,6 +88,7 @@ public class Boss1 : Enemy {
 	}
 
 	void OnCollisionStay(Collision coll) {
+		if(died)return;
 		if(coll.rigidbody.tag == "Player") {
 			Character player = coll.gameObject.GetComponent<Character>();
 			player.gotHit(this, 2f);
@@ -90,10 +96,28 @@ public class Boss1 : Enemy {
 	}
 
 	public override void die() {
-		GetComponent<Collider>().enabled = false;
+		if(died)return;
+		died = true;
+		//GetComponent<Collider>().enabled = false;
 		stop();
 		status.hp = 0;
 		MainCamera.current.startBloomEffect();
+		StartCoroutine(generateFinishPoint());
+		Destroy(this.gameObject, 2f);
+	}
+
+	IEnumerator generateFinishPoint() {
+		yield return new WaitForSeconds(1.4f);
+		finishPoint.gameObject.SetActive(true);
+		finishPoint.transform.position = transform.position;
+		MeshRenderer[] rends = GetComponentsInChildren<MeshRenderer>();
+		foreach(MeshRenderer rend in rends) {
+			rend.enabled = false;
+		}
+		GetComponent<Collider>().enabled = false;
+		hpBar.enabled = false;
+		//Destroy(this);
+		yield break;
 	}
 
 	IEnumerator startDivision() {
@@ -299,6 +323,7 @@ public class Boss1 : Enemy {
 		float degree = Vector3.Angle(Vector3.right, dir);
 		time = 0;
 		while(time <= shootTime) {
+			if(died)yield break;
 			Vector3 rot = transform.rotation.eulerAngles;
 			rot.y += rotSpeed;
 			transform.rotation = Quaternion.Euler(rot);
@@ -350,6 +375,7 @@ public class Boss1 : Enemy {
 		time = 0;
 		stop();
 		while(time <= shootTime) {
+			if(died)yield break;
 			Vector3 rot = transform.rotation.eulerAngles;
 			rot.y += rotSpeed;
 			transform.rotation = Quaternion.Euler(rot);

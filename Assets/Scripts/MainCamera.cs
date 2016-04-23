@@ -71,14 +71,13 @@ public class MainCamera : MonoBehaviour {
 		bloom.enabled = true;
 		float time = 0f, bloomTime = 1f;
 		while(time <= bloomTime) {
-			bloom.bloomIntensity += 0.2f;
+			bloom.bloomIntensity += 0.4f;
 			time += Time.deltaTime;
-			print(time);
 			yield return new WaitForEndOfFrame();
 		}
 		time = 0;
-		while(time <= bloomTime) {
-			bloom.bloomIntensity -= 0.2f;
+		while(time <= bloomTime/2f) {
+			bloom.bloomIntensity -= 0.8f;
 			time += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}

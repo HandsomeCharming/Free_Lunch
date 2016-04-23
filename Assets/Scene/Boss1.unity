@@ -538,14 +538,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 116380, guid: d6521d5ebaf3a44febac950431da8b19, type: 2}
-      propertyPath: m_Name
-      value: 'Main Camera '
-      objectReference: {fileID: 0}
     - target: {fileID: 11484762, guid: d6521d5ebaf3a44febac950431da8b19, type: 2}
       propertyPath: otherFocus
       value: 
       objectReference: {fileID: 996449471}
+    - target: {fileID: 116380, guid: d6521d5ebaf3a44febac950431da8b19, type: 2}
+      propertyPath: m_Name
+      value: 'Main Camera '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6521d5ebaf3a44febac950431da8b19, type: 2}
   m_IsPrefabParent: 0
