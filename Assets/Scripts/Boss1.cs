@@ -418,7 +418,7 @@ public class Boss1 : Enemy {
 		if(AIController.current != null && player == null) {
 			player = AIController.current.player;
 		}
-		if(state != CharacterState.UseSkill && status.hp < 0.4f * status.maxhp && phase == 1) {
+		if(state != CharacterState.UseSkill && status.hp < 0.6f * status.maxhp && phase == 1) {
 			phase = 2;
 			stop();
 			StartCoroutine(enterPhase2());
