@@ -132,7 +132,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		//description.gameObject.transform.SetParent(this.transform);
 		//description.text = "amigo";
 		//description.rectTransform.position = this.GetComponent<Image>().rectTransform.position;
-		if(SkillDescription.current == null)return;
+		if(SkillDescription.current == null || description == null)return;
 		description.enabled = true;
 		SkillDescription.current.baseImage.enabled = true;
 	}
@@ -141,7 +141,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		/*if(description != null) {
 			Destroy(description.gameObject);
 		}*/
-		if(SkillDescription.current == null)return;
+		if(SkillDescription.current == null || description == null)return;
 		description.enabled = false;
 		SkillDescription.current.baseImage.enabled = false;
 		//Debug.Log("Exit");
