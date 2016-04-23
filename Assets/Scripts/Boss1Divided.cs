@@ -101,13 +101,13 @@ public class Boss1Divided : Enemy {
 			time += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
-		float rammingTime = 0.7f;
+		float rammingTime = 0.9f;
 		Vector3 dir = player.transform.position - transform.position;
 		time = 0;
 		float currentSpeed = 150f;
 		status.regularMoveSpeed = currentSpeed;
 		while(time <= rammingTime) {
-			if(currentSpeed <= 200f)
+			if(currentSpeed <= 180f)
 				currentSpeed += 2f;
 			status.regularMoveSpeed = currentSpeed;
 			Vector3 rot = transform.rotation.eulerAngles;

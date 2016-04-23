@@ -37,7 +37,7 @@ public class MainCamera : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.y = 0;
 		Vector3 minus;
-		if(otherFocus == null) {
+		if(otherFocus == null || !otherFocus.isActiveAndEnabled) {
 			minus = character.transform.position - pos;
 			if(minus.magnitude <=1.5f) {
 				pos.x = Mathf.Clamp(character.transform.position.x, cameraBoundaries[0], cameraBoundaries[2]);
