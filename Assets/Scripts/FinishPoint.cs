@@ -31,8 +31,8 @@ public class FinishPoint : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		//text.text = "You win!";
 		if(triggered)return;
-		triggered = true;
 		if(col.tag == "Player") {
+			triggered = true;
 			InputHandler.current.stopInput();
 			if(type == 0) {
 				LevelCompleteMenu menu = ((GameObject)Instantiate(Resources.Load("Prefabs/LevelComplete"))).GetComponent<LevelCompleteMenu>();

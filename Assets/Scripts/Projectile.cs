@@ -285,7 +285,7 @@ public class Projectile : MonoBehaviour {
 			pos = this.transform.position;
 			if(InputHandler.current.blockTime == 0) {
 				if(this.transform.parent != null) {
-					Destroy(this.transform.parent);
+					Destroy(this.transform.parent.gameObject);
 					Destroy(this.gameObject);
 				}
 				else 
