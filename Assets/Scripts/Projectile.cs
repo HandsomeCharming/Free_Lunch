@@ -272,6 +272,11 @@ public class Projectile : MonoBehaviour {
 			return;
 		}
 
+		if(type == 117) {
+			Boss1 boss = (Boss1)shooter;
+			if(boss.died) Destroy(this.gameObject);
+		}
+
 		if(type == 200) {
 			pos = shooter.transform.position;
 			pos.x += shooter.status.facingDirection.x * 3f;

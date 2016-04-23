@@ -20,7 +20,7 @@ public class Boss1 : Enemy {
 	int ramCount = 0;
 	bool isRamming = false;
 	bool[] cannonCanShoot = {true, true, true, true};
-	bool died = false;
+	public bool died = false;
 
 	public FinishPoint finishPoint;
 	public Canvas hpBar;
