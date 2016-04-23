@@ -21,9 +21,6 @@ public class LevelSelectCircle : MonoBehaviour {
 		if(coll.tag == "Player") {
 			playerMatch = true;
 		}
-		if(coll.tag ==  "Wall") {
-			circleMatch = true;
-		}
 		if(playerMatch && circleMatch) {
 			parent.goToLevel(level);
 		}

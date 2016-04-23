@@ -6,6 +6,8 @@ public class LevelSelectUnit : MonoBehaviour {
 	public float circleRadius = 0.31642f;
 	public float circleSpeed = 1f;
 
+	public LevelSelectCircle[] circles;
+
 	float rad = 90f*Mathf.Deg2Rad;
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,15 @@ public class LevelSelectUnit : MonoBehaviour {
 		if(rad >= 2*Mathf.PI) {
 			rad = 0;
 		}
+		float deg = rad*Mathf.Rad2Deg;
+		if(deg>=88f-2f&& deg <=92f && circles[0].playerMatch) {
+			goToLevel(circles[0].level);
+		} else if(deg>=208f&& deg <=212f && circles[1].playerMatch) {
+			goToLevel(circles[1].level);
+		} else if(deg>=328f&& deg <=332f && circles[2].playerMatch){
+			goToLevel(circles[2].level);
+		}
+
 	}
 
 	public void goToLevel(int level) {
