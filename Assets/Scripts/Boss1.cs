@@ -33,7 +33,7 @@ public class Boss1 : Enemy {
 		actionCds[0] = 6f;		//Single Ram
 		actionCds[1] = 20f;		//Divide
 		actionCdRemain[1] = 5f;
-		actionCds[2] = 20f;
+		actionCds[2] = 12f;
 		actionCds[3] = 3f;
 
 		attackModifier = new AttackModifier(31);
@@ -229,7 +229,7 @@ public class Boss1 : Enemy {
 			cannons.Add(obj);
 		}
 
-		actionCdRemain[2] = 10f;
+		actionCdRemain[2] = 6f;
 
 		while(time < 0.5f) {
 			float lowerR = Mathf.Lerp(lowerRadius, lowerRadius*3f, time/3f);

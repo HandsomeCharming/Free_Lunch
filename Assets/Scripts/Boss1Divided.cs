@@ -163,6 +163,9 @@ public class Boss1Divided : Enemy {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
+		if(Vector3.Distance(transform.position, Vector3.zero) > 110f) {
+			Destroy(this);
+		}
 		if(AIController.current != null && player == null) {
 			player = AIController.current.player;
 		}
