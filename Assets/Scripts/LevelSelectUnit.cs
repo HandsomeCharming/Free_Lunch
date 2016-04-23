@@ -38,6 +38,14 @@ public class LevelSelectUnit : MonoBehaviour {
 	}
 
 	public void goToLevel(int level) {
-		Application.LoadLevel("Level1");
+		if (level == 1) {
+			Application.LoadLevel ("Level1");
+		}
+		if (level == 2) {
+			Application.LoadLevel ("Boss1");
+		}
+		if (level == 3) {
+			Application.LoadLevel ("Boss1");
+		}
 	}
 }
