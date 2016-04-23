@@ -4,6 +4,8 @@ using System.Collections;
 
 public class FinishPoint : MonoBehaviour {
 
+	public int type;  //0: level 1: chapter
+
 	public Text text;
 
 
@@ -21,7 +23,11 @@ public class FinishPoint : MonoBehaviour {
 		//text.text = "You win!";
 		if(col.tag == "Player") {
 			InputHandler.current.stopInput();
-			LevelCompleteMenu menu = ((GameObject)Instantiate(Resources.Load("Prefabs/LevelComplete"))).GetComponent<LevelCompleteMenu>();
+			if(type == 0) {
+				LevelCompleteMenu menu = ((GameObject)Instantiate(Resources.Load("Prefabs/LevelComplete"))).GetComponent<LevelCompleteMenu>();
+			} else {
+				LevelCompleteMenu menu = ((GameObject)Instantiate(Resources.Load("Prefabs/ChapterComplete"))).GetComponent<LevelCompleteMenu>();
+			}
 		}
 
 	}

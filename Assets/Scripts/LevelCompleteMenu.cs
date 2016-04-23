@@ -20,7 +20,8 @@ public class LevelCompleteMenu : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(1f);
 		completeText.SetActive(true);
-		next.SetActive(true);
+		if(next != null)
+			next.SetActive(true);
 		yield break;
 	}
 	

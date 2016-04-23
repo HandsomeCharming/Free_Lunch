@@ -109,6 +109,12 @@ public class SkillTreeHandler : MonoBehaviour {
 		return true;
 	}
 
+	void Update() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			Application.LoadLevel(LevelLoad.lastScene);
+		}
+	}
+
 
 	bool loadSkillsFromDisk() {
 		if(SaveLoad.Load()) {
