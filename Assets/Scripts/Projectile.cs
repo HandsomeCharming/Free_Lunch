@@ -349,7 +349,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	bool destroyIfShooterDestroyed() {
-		if(type == 200 || type == 258) return true;
+		if(type == 200 || type == 258 || type == 117) return true;
 		return false;
 	}
 
