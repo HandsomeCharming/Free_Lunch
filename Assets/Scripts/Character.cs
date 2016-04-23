@@ -235,6 +235,9 @@ public class Character : MonoBehaviour {
 		if(AIController.current.characters.Contains(this)) {
 			AIController.current.characters.Remove(this);
 		}
+		if(tag == "Player") {
+			Instantiate(Resources.Load("Prefabs/MenuDead"));
+		}
 		Destroy(this.gameObject);
 	}
 

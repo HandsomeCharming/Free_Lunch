@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class LevelCompleteMenu : MonoBehaviour {
-
+	public GameObject completeText;
+	public GameObject next;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(delayAnimation());
@@ -17,6 +18,9 @@ public class LevelCompleteMenu : MonoBehaviour {
 		foreach(Animator a in ani) {
 			a.enabled = true;
 		}
+		yield return new WaitForSeconds(1f);
+		completeText.SetActive(true);
+		next.SetActive(true);
 		yield break;
 	}
 	
