@@ -14,11 +14,13 @@ public class HPBarCanvas : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(boss == null) hpBar.SetActive(false);
+		float hp = boss.status.hp;
+		if(hp < 0)hp = 0f;
 		Vector3 scale = hpBar.transform.localScale;
-		scale.x = (boss.status.hp/boss.status.maxhp)*10f;
+		scale.x = (hp/boss.status.maxhp)*10f;
 		hpBar.transform.localScale = scale;
 		Vector3 pos = hpBar.transform.localPosition;
-		pos.x =-(1f-(boss.status.hp/boss.status.maxhp))*370f;
+		pos.x =-(1f-(hp/boss.status.maxhp))*370f;
 		hpBar.transform.localPosition = pos;
 	}
 }

@@ -19,6 +19,15 @@ public class FinishPoint : MonoBehaviour {
 	
 	}
 
+	public void showUpInSecond(float time) {
+		StartCoroutine(showUp(time));
+	}
+
+	IEnumerator showUp(float time) {
+		yield return new WaitForSeconds(time);
+		gameObject.SetActive(true);
+	}
+
 	void OnTriggerEnter(Collider col) {
 		//text.text = "You win!";
 		if(col.tag == "Player") {
