@@ -14,7 +14,7 @@ public class LevelCompleteMenu : MonoBehaviour {
 		foreach(Animator a in ani) {
 			a.enabled = false;
 		}
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.7f);
 		foreach(Animator a in ani) {
 			a.enabled = true;
 		}
