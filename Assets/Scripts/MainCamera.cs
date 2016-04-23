@@ -61,4 +61,28 @@ public class MainCamera : MonoBehaviour {
 		pos.y = transform.position.y;
 		transform.position = pos;
 	}
+
+	public void startBloomEffect() {
+		StartCoroutine(bloomEffect());
+	}
+
+	IEnumerator bloomEffect() {
+		Bloom bloom = this.GetComponent<Bloom>();
+		bloom.enabled = true;
+		float time = 0f, bloomTime = 1f;
+		while(time <= bloomTime) {
+			bloom.bloomIntensity += 0.2f;
+			time += Time.deltaTime;
+			print(time);
+			yield return new WaitForEndOfFrame();
+		}
+		time = 0;
+		while(time <= bloomTime) {
+			bloom.bloomIntensity -= 0.2f;
+			time += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		bloom.enabled = false;
+		yield break;
+	}
 }

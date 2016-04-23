@@ -94,6 +94,7 @@ public class SkillTreeHandler : MonoBehaviour {
 				b.enableClick();
 			}
 		}
+		saveSkillsToDisk();
 		return true;
 	}
 
@@ -130,7 +131,7 @@ public class SkillTreeHandler : MonoBehaviour {
 	void putSkillsAfterLoad() {
 		SkillButton[] buttons = skillTreeButtons.GetComponentsInChildren<SkillButton>();
 		for(int a=0;a!=8;++a) {
-			if(skilltree.skills[a] == null)return;
+			if(skilltree.skills[a] == null)continue;
 			foreach (SkillButton b in buttons) {
 				if(b.skillLevel == a && b.skillType == skilltree.skills[a].skillType) {
 					b.transform.position = slots.slots[a].transform.position;

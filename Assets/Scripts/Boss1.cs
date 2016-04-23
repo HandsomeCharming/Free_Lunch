@@ -89,6 +89,13 @@ public class Boss1 : Enemy {
 		}
 	}
 
+	public override void die() {
+		GetComponent<Collider>().enabled = false;
+		stop();
+		status.hp = 0;
+		MainCamera.current.startBloomEffect();
+	}
+
 	IEnumerator startDivision() {
 		float prepareTime = 2f;
 		float time = 0;

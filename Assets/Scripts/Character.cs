@@ -231,7 +231,7 @@ public class Character : MonoBehaviour {
 		}
 	}
 
-	public void die() {
+	public virtual void die() {
 		if(AIController.current.characters.Contains(this)) {
 			AIController.current.characters.Remove(this);
 		}
