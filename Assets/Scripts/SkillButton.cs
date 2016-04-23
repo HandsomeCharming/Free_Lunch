@@ -27,7 +27,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 	public bool selected = false;
 	public bool canClick = true;
 
-	Text description;
+	public Text description;
 
 	SkillTreeHandler skillTreeHandler;
 
@@ -126,18 +126,24 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 	}
 
 	public void OnPointerEnter(PointerEventData eventData) {
-		if(description != null) return;
-		description = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillDescriptionText"))).GetComponent<Text>();
+		//if(description != null) return;
+		//description = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillDescriptionText"))).GetComponent<Text>();
 		//description.gameObject.transform.parent = this.transform;
-		description.gameObject.transform.SetParent(this.transform);
-		description.text = "amigo";
-		description.rectTransform.position = this.GetComponent<Image>().rectTransform.position;
+		//description.gameObject.transform.SetParent(this.transform);
+		//description.text = "amigo";
+		//description.rectTransform.position = this.GetComponent<Image>().rectTransform.position;
+		if(SkillDescription.current == null)return;
+		description.enabled = true;
+		SkillDescription.current.baseImage.enabled = true;
 	}
 
 	public void OnPointerExit(PointerEventData eventData) {
-		if(description != null) {
+		/*if(description != null) {
 			Destroy(description.gameObject);
-		}
+		}*/
+		if(SkillDescription.current == null)return;
+		description.enabled = false;
+		SkillDescription.current.baseImage.enabled = false;
 		//Debug.Log("Exit");
 	}
 }

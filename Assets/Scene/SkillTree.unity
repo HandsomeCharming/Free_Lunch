@@ -180,7 +180,7 @@ RectTransform:
   m_LocalScale: {x: 0.6, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 2029547880}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -550, y: 310}
@@ -367,6 +367,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 70460220}
+  - 114: {fileID: 70460221}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -387,12 +388,25 @@ RectTransform:
   - {fileID: 1976042256}
   - {fileID: 1207301703}
   m_Father: {fileID: 2029547880}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &70460221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70460219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261a714412adc4b22b52c23d5180cc4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseImage: {fileID: 1976042257}
+  text: {fileID: 1207301704}
 --- !u!1 &90795945
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +515,7 @@ RectTransform:
   - {fileID: 825701895}
   - {fileID: 466263160}
   m_Father: {fileID: 2029547880}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -530, y: 0}
@@ -541,7 +555,7 @@ RectTransform:
   m_Children:
   - {fileID: 23507873}
   m_Father: {fileID: 2029547880}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 300, y: -120}
@@ -1908,7 +1922,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22497872, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22497872, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2014,6 +2028,10 @@ Prefab:
       propertyPath: skillType
       value: 262
       objectReference: {fileID: 0}
+    - target: {fileID: 11445228, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
+      propertyPath: description
+      value: 
+      objectReference: {fileID: 1585573850}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
   m_IsPrefabParent: 0
@@ -2671,7 +2689,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207301702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -3496,6 +3514,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1529524821}
+--- !u!1 &1585573848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1585573849}
+  - 222: {fileID: 1585573851}
+  - 114: {fileID: 1585573850}
+  m_Layer: 5
+  m_Name: fileCorrupt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1585573849
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585573848}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -0.00000016292068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1807121694}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -218.00009, y: 35.33339}
+  m_SizeDelta: {x: 257.5, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1585573850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585573848}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21204586, g: 0.27208272, b: 0.3897059, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 411c4b960816a41e7b4d49722c5e04dc, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "fileCorrupt() {\n  You attack will corrupt \n  the designated file, \n
+    \ deal N damage over X \n  sec;\n}"
+--- !u!222 &1585573851
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585573848}
 --- !u!1 &1586651107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4024,7 +4116,7 @@ RectTransform:
   - {fileID: 785368341}
   - {fileID: 780933947}
   m_Father: {fileID: 2029547880}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4383,6 +4475,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784771283}
+--- !u!224 &1807121694 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22483852, guid: 2fc4b58651582464693373d5a4cd2bf3,
+    type: 2}
+  m_PrefabInternal: {fileID: 803579127}
 --- !u!1001 &1869557879
 Prefab:
   m_ObjectHideFlags: 0
@@ -4586,7 +4683,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1976042255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -4711,12 +4808,12 @@ RectTransform:
   - {fileID: 693502034}
   - {fileID: 1459566857}
   - {fileID: 962257663}
+  - {fileID: 273270995}
+  - {fileID: 70460220}
   - {fileID: 376731017}
   - {fileID: 1732039239}
   - {fileID: 113065322}
-  - {fileID: 273270995}
   - {fileID: 20694201}
-  - {fileID: 70460220}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
