@@ -83,7 +83,7 @@ public class Boss1 : Enemy {
 		if(died)return;
 		if(coll.rigidbody.tag == "Player") {
 			Character player = coll.gameObject.GetComponent<Character>();
-			player.gotHit(this, 10f);
+			player.gotHit(this, 8f);
 		}
 	}
 

@@ -149,7 +149,7 @@ public class Boss1Divided : Enemy {
 	void OnCollisionEnter(Collision coll) {
 		if(coll.rigidbody.tag == "Player") {
 			Character player = coll.gameObject.GetComponent<Character>();
-			player.gotHit(this, 10f);
+			player.gotHit(this, 8f);
 		}
 	}
 

@@ -2254,6 +2254,14 @@ Prefab:
       propertyPath: description
       value: 
       objectReference: {fileID: 1822835533}
+    - target: {fileID: 11491954, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
+      propertyPath: description
+      value: 
+      objectReference: {fileID: 1318460039}
+    - target: {fileID: 11484038, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
+      propertyPath: description
+      value: 
+      objectReference: {fileID: 1614573834}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fc4b58651582464693373d5a4cd2bf3, type: 2}
   m_IsPrefabParent: 0
@@ -2945,6 +2953,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207301702}
+--- !u!1 &1318460037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1318460038}
+  - 222: {fileID: 1318460040}
+  - 114: {fileID: 1318460039}
+  m_Layer: 5
+  m_Name: restrictAccess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1318460038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318460037}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -0.00000016292068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_Children: []
+  m_Father: {fileID: 376731017}
+  m_RootOrder: 38
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -234.89, y: -25.500015}
+  m_SizeDelta: {x: 243, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1318460039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318460037}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21204586, g: 0.27208272, b: 0.3897059, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 411c4b960816a41e7b4d49722c5e04dc, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 222
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "restrictAccess() {\n\tRestrict the access of a certain area in the memory,
+    trapping all enemies in it for X sec and dealing N damage;\n}"
+--- !u!222 &1318460040
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318460037}
 --- !u!1 &1323702953
 GameObject:
   m_ObjectHideFlags: 0
@@ -3624,8 +3706,8 @@ RectTransform:
   m_RootOrder: 34
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -254.5, y: -7.7}
-  m_SizeDelta: {x: 226.3, y: 190}
+  m_AnchoredPosition: {x: -237.4, y: -19.9}
+  m_SizeDelta: {x: 215.71, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487045703
 MonoBehaviour:
@@ -3648,7 +3730,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 411c4b960816a41e7b4d49722c5e04dc, type: 3}
-    m_FontSize: 23
+    m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3840,8 +3922,8 @@ RectTransform:
   m_RootOrder: 32
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235, y: -4.7}
-  m_SizeDelta: {x: 257.5, y: 190}
+  m_AnchoredPosition: {x: -238.4, y: -13.5}
+  m_SizeDelta: {x: 237.4, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1585573850
 MonoBehaviour:
@@ -3864,7 +3946,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 411c4b960816a41e7b4d49722c5e04dc, type: 3}
-    m_FontSize: 22
+    m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3981,8 +4063,8 @@ RectTransform:
   m_RootOrder: 33
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.5, y: -22.3}
-  m_SizeDelta: {x: 257.5, y: 190}
+  m_AnchoredPosition: {x: -237.5, y: -22.3}
+  m_SizeDelta: {x: 230.7, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604275629
 MonoBehaviour:
@@ -4091,6 +4173,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1610249160}
+--- !u!1 &1614573832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1614573833}
+  - 222: {fileID: 1614573835}
+  - 114: {fileID: 1614573834}
+  m_Layer: 5
+  m_Name: overFlow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1614573833
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614573832}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -0.00000016292068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_Children: []
+  m_Father: {fileID: 376731017}
+  m_RootOrder: 39
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -234.89001, y: -25.50003}
+  m_SizeDelta: {x: 243.9, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1614573834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614573832}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21204586, g: 0.27208272, b: 0.3897059, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 411c4b960816a41e7b4d49722c5e04dc, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 222
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "overFlow() {\n\tYou release a huge amount of data and overflow the target,
+    dealing N damage for X sec;\n}"
+--- !u!222 &1614573835
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614573832}
 --- !u!1 &1624528895
 GameObject:
   m_ObjectHideFlags: 0
