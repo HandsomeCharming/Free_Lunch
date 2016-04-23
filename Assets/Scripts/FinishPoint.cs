@@ -8,7 +8,7 @@ public class FinishPoint : MonoBehaviour {
 
 	public Text text;
 
-
+	bool triggered = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -30,6 +30,8 @@ public class FinishPoint : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		//text.text = "You win!";
+		if(triggered)return;
+		triggered = true;
 		if(col.tag == "Player") {
 			InputHandler.current.stopInput();
 			if(type == 0) {
