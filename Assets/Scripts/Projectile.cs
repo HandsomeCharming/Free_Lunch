@@ -79,13 +79,13 @@ public class Projectile : MonoBehaviour {
 		projectileTypes = new Dictionary<int, ProjectileType>();
 
 		projectileTypes.Add(3, new ProjectileType(3,1));
-		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[3].projectileDatas[0] = new ProjectileData(3, 0, CharacterSkillType.Attack, 1.8f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(4, new ProjectileType(4,1));
-		projectileTypes[4].projectileDatas[0] = new ProjectileData(4, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[4].projectileDatas[0] = new ProjectileData(4, 0, CharacterSkillType.Attack, 1.8f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(5, new ProjectileType(5,1));
-		projectileTypes[5].projectileDatas[0] = new ProjectileData(5, 0, CharacterSkillType.Attack, 1.35f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[5].projectileDatas[0] = new ProjectileData(5, 0, CharacterSkillType.Attack, 1.8f, 2f, "Prefabs/CubeBullet");
 
 		projectileTypes.Add(30, new ProjectileType(30,1));
 		projectileTypes[30].projectileDatas[0] = new ProjectileData(30, 0, CharacterSkillType.Attack, 1f, 2f, "Prefabs/EnemyBullet");
@@ -94,7 +94,7 @@ public class Projectile : MonoBehaviour {
 		projectileTypes[31].projectileDatas[0] = new ProjectileData(31, 0, CharacterSkillType.Attack, 2f, 4f, "Prefabs/Boss1/Boss1Bullet");
 
 		projectileTypes.Add(103, new ProjectileType(103, 2));
-		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.ChargedAttack, 2.0f, 2f, "Prefabs/CubeBullet");
+		projectileTypes[103].projectileDatas[0] = new ProjectileData(103, 0, CharacterSkillType.ChargedAttack, 2.5f, 2f, "Prefabs/CubeBullet");
 		projectileTypes[103].projectileDatas[1] = new ProjectileData(103, 1, CharacterSkillType.ChargedAttack, 0f, 2f, "Prefabs/BurstExplosion");
 
 		projectileTypes.Add(116, new ProjectileType(116,1));

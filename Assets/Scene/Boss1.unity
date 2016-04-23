@@ -563,6 +563,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &1200605348
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1200605342}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a32462fe45f241659517b3c3acd67aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1207781715
 Prefab:
   m_ObjectHideFlags: 0
@@ -995,7 +1012,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 74bc2e7cc3beb41dcac69c92cdbee48e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.011
+      value: -0.148
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 74bc2e7cc3beb41dcac69c92cdbee48e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6225e6724e0c4df394b7a4a3fa37574, type: 2}
+    - target: {fileID: 2300004, guid: 74bc2e7cc3beb41dcac69c92cdbee48e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed130b56b1317420682389947fa65b6d, type: 2}
+    - target: {fileID: 400008, guid: 74bc2e7cc3beb41dcac69c92cdbee48e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74bc2e7cc3beb41dcac69c92cdbee48e, type: 3}
