@@ -32,6 +32,7 @@ public class Boss1 : Enemy {
 		status.canBeCCed = false;
 		actionCds[0] = 6f;		//Single Ram
 		actionCds[1] = 20f;		//Divide
+		actionCdRemain[0] = 2f;
 		actionCdRemain[1] = 5f;
 		actionCds[2] = 12f;
 		actionCds[3] = 3f;

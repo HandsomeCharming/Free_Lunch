@@ -53,8 +53,8 @@ public class MainCamera : MonoBehaviour {
 				pos.x = Mathf.Clamp(midp.x, cameraBoundaries[0], cameraBoundaries[2]);
 				pos.z = Mathf.Clamp(midp.z, cameraBoundaries[1], cameraBoundaries[3]);
 			} else {
-				pos.x = Mathf.Clamp(transform.position.x + minus.normalized.x*2f, cameraBoundaries[0], cameraBoundaries[2]);
-				pos.z = Mathf.Clamp(transform.position.z + minus.normalized.z*2f, cameraBoundaries[1], cameraBoundaries[3]);
+				pos.x = Mathf.Clamp(transform.position.x + minus.normalized.x*1f, cameraBoundaries[0], cameraBoundaries[2]);
+				pos.z = Mathf.Clamp(transform.position.z + minus.normalized.z*1f, cameraBoundaries[1], cameraBoundaries[3]);
 			}
 		}
 
