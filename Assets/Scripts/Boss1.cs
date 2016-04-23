@@ -27,8 +27,8 @@ public class Boss1 : Enemy {
 
 	void Start () {
 		type = 9;
-		status.maxhp = 200;
-		status.hp = 200;
+		status.maxhp = 3000;
+		status.hp = 3000;
 		status.canBeCCed = false;
 		actionCds[0] = 6f;		//Single Ram
 		actionCds[1] = 20f;		//Divide
@@ -169,13 +169,13 @@ public class Boss1 : Enemy {
 			time += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
-		float rammingTime = 0.7f;
+		float rammingTime = 0.9f;
 		Vector3 dir = player.transform.position - transform.position;
 		time = 0;
 		float currentSpeed = 150f;
 		status.regularMoveSpeed = currentSpeed;
 		while(time <= rammingTime) {
-			if(currentSpeed <= 200f)
+			if(currentSpeed <= 180f)
 				currentSpeed += 2f;
 			status.regularMoveSpeed = currentSpeed;
 			Vector3 rot = transform.rotation.eulerAngles;
@@ -231,7 +231,7 @@ public class Boss1 : Enemy {
 
 		actionCdRemain[2] = 10f;
 
-		while(time < 1f) {
+		while(time < 0.5f) {
 			float lowerR = Mathf.Lerp(lowerRadius, lowerRadius*3f, time/3f);
 			float rotx = Mathf.Lerp(270f, 180f, time/2f);
 			float cannonScale = Mathf.Lerp(20f, 60f, time/1f);
@@ -341,6 +341,8 @@ public class Boss1 : Enemy {
 				}
 			}
 			time += Time.deltaTime;
+			status.regularMoveSpeed = 30f;
+			status.moveSpeed = 30f;
 			moveToward(new Vector2(dir.x, dir.z).normalized);
 			yield return new WaitForEndOfFrame();
 		}
@@ -361,6 +363,8 @@ public class Boss1 : Enemy {
 		float prepareTime = 0.5f;
 		float time = 0;
 		float rotSpeed = 0;
+		stop();
+		transform.position = Vector3.zero;
 		while(time <= prepareTime) {
 			rotSpeed = Mathf.Lerp(0f, 11f,time/prepareTime);
 			Vector3 rot = transform.rotation.eulerAngles;
@@ -389,6 +393,9 @@ public class Boss1 : Enemy {
 			time += Time.deltaTime;
 			//moveToward(new Vector2(dir.x, dir.z).normalized);
 			yield return new WaitForEndOfFrame();
+			time += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+
 		}
 		time = 0;
 		prepareTime = 2f;
@@ -410,7 +417,7 @@ public class Boss1 : Enemy {
 		if(AIController.current != null && player == null) {
 			player = AIController.current.player;
 		}
-		if(state != CharacterState.UseSkill && status.hp < 0.66f * status.maxhp && phase == 1) {
+		if(state != CharacterState.UseSkill && status.hp < 0.4f * status.maxhp && phase == 1) {
 			phase = 2;
 			stop();
 			StartCoroutine(enterPhase2());
@@ -419,7 +426,7 @@ public class Boss1 : Enemy {
 			//phase = 3;
 		}
 		if(phase == 1) {
-			/*if(state != CharacterState.UseSkill) {
+			if(state != CharacterState.UseSkill) {
 				if(actionCdRemain[1] == 0) {
 					actionCdRemain[1] = actionCds[1];
 					state = CharacterState.UseSkill;
@@ -434,7 +441,7 @@ public class Boss1 : Enemy {
 					status.regularMoveSpeed = 30f;
 					moveToward(new Vector2(dir.x, dir.z).normalized);
 				}
-			}*/
+			}
 		} else if(phase == 2) {
 			if(state != CharacterState.UseSkill) {
 				if(actionCdRemain[2] == 0) {

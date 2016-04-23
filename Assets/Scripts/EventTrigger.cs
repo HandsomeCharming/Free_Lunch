@@ -9,6 +9,8 @@ public class EventTrigger : MonoBehaviour {
 	public int eventType = 0;
 
 	void OnTriggerEnter(Collider coll) {
-		mEvent.Invoke();
+		if(coll.tag == "Player") {
+			mEvent.Invoke();
+		}
 	}
 }
